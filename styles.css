@@ -64,10 +64,20 @@ body {
 .hero {
   text-align: center;
   padding: 4rem 1rem 2rem 1rem;
-  background: linear-gradient(135deg, var(--accent), var(--light) 70%);
   border-radius: 0 0 var(--radius) var(--radius);
   box-shadow: var(--shadow);
+  background: linear-gradient(115deg, #3BB1E6 0%, #80d8ff 70%, #F5FBFF 100%);
+  position: relative;
 }
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
 .hero-content h1 {
   font-size: 3rem;
   font-weight: 700;
@@ -75,6 +85,7 @@ body {
   color: var(--primary);
   letter-spacing: 2px;
 }
+
 .tagline {
   font-size: 1.3rem;
   color: var(--primary);
@@ -104,6 +115,11 @@ body {
 }
 
 /* Card sections */
+
+#about {
+  margin-top: 40px; /* Adjust the value as needed */
+}
+
 .card {
   padding: 1rem;
   animation: fadeIn 0.7s;
@@ -481,22 +497,6 @@ section {
   to { opacity: 1; transform: translateY(0);}
 }
 
-.hero {
-  background: linear-gradient(115deg, #3BB1E6 0%, #80d8ff 70%, #F5FBFF 100%);
-  position: relative;
-}
-.hero-content h1 {
-  position: relative;
-  display: inline-block;
-}
-.hero-content h1::after {
-  content: '';
-  display: inline-block;
-  width: 38px; height: 38px;
-  margin-left: 12px;
-  vertical-align: middle;
-  animation: popLogo 1s infinite alternate;
-}
 @keyframes popLogo {
   0% { transform: scale(1);}
   100% { transform: scale(1.15);}
@@ -537,6 +537,14 @@ section {
 @keyframes bounceDown {
   0% { transform: translateY(0);}
   100% { transform: translateY(12px);}
+}
+
+.logo img {
+  height: 40px;
+  width: auto;
+  max-height: 40px;
+  vertical-align: middle;
+  /* Prevent growing too large due to SVG or PNG changes */
 }
 
 .logo img:hover {
