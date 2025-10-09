@@ -6,11 +6,13 @@
   <title>CodeKraft | Where Code Becomes Craft, Dreams Become Reality</title>
   <meta name="description" content="CodeKraft brings AI & Automation, cutting-edge coding training, industry-ready internships, and real-world software solutions for businesses and students in India.">
   <meta name="keywords" content="AI Automation, Coding Training, Data Science, Internships, Digital Transformation, Chatbots, Software Solutions, India">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' https:; style-src 'self' https:; img-src 'self' https: data:;">
   <!-- Open Graph / Facebook -->
   <meta property="og:title" content="CodeKraft | Where Code Becomes Craft, Dreams Become Reality">
   <meta property="og:description" content="Unlock AI, automation, and technical training. Explore our projects and services.">
   <meta property="og:image" content="https://codekrafthub.github.io/static/codekraft_logo.png">
   <meta property="og:url" content="https://codekrafthub.github.io/">
+  <meta property="og:type" content="website">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="CodeKraft | Code Becomes Craft, Dreams Become Reality">
@@ -38,7 +40,7 @@
   </script>
   <!-- Google Analytics 4 (GA4) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-GXYELFBD5L"></script>
-  <script>
+  <script async>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
@@ -48,20 +50,21 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/x-icon" href="static/favicon.ico">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="static/codekraft_logo.png">
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 </head>
 <body>
   <!-- Top Navigation Bar -->
   <nav class="navbar" aria-label="Primary navigation">
     <div class="logo">
-      <img src="static/codekraft_logo_white.png" alt="CodeKraft Logo" style="height: 40px; vertical-align: middle;">
+      <img src="static/codekraft_logo_white.png" alt="CodeKraft Logo" style="height: 40px; vertical-align: middle;" loading="lazy">
       CodeKraft
     </div>
-    <div class="nav-toggle" id="navToggle">&#9776;</div>
+    <div class="nav-toggle" id="navToggle" aria-label="Toggle navigation">&#9776;</div>
     <ul class="nav-links" id="navLinks">
       <li><a href="#home">Home</a></li>
       <li><a href="#about">Who We Are</a></li>
-      <li><a href="#services">Services</a></li>
+      <li><a href="#services" title="AI & Coding Services">Services</a></li>
       <li><a href="#portfolio">Portfolio</a></li>
       <li><a href="#contact" class="floating-cta" title="Contact CodeKraft for AI & Automation Projects">Contact</a></li>
     </ul>
@@ -70,12 +73,12 @@
   <!-- Hero Section with Slider Buttons -->
   <section id="home" class="hero">
     <div class="hero-content">
-      <img src="static/codekraft_logo.png" alt="CodeKraft logo" width="90" height="90" style="vertical-align:middle">
+      <img src="static/codekraft_logo.png" alt="CodeKraft logo" width="90" height="90" style="vertical-align:middle" loading="lazy">
       <h1>CodeKraft</h1>
       <p class="tagline">Where Code Becomes Craft, Dreams Become Reality</p>
       <div class="slider-buttons">
-        <button class="slider-btn active" data-target="#services">Our Services</button>
-        <button class="slider-btn" data-target="#contact">Contact Us</button>
+        <button class="slider-btn active" data-target="#services" aria-label="See Our Services">Our Services</button>
+        <button class="slider-btn" data-target="#contact" aria-label="Contact Us">Contact Us</button>
       </div>
     </div>
   </section>
@@ -309,7 +312,9 @@
       </div>
       <div class="contact-calendly">
         <!-- Calendly inline widget begin -->
-        <div class="calendly-inline-widget" data-url="https://calendly.com/codekraft-hub/30min" style="min-width:320px;height:390px;"></div>
+        <div class="contact-calendly" id="calendly-placeholder">
+          <button class="btn-home" id="load-calendly" aria-label="Book a meeting with CodeKraft">Book a Meeting</button>
+        </div>
         <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
         <!-- Calendly inline widget end -->
       </div>
@@ -427,6 +432,15 @@
     var isMobile = /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop|webOS|BlackBerry|Windows Phone/i.test(navigator.userAgent);
 
     window.open(isMobile ? urlMobile : urlWeb, '_blank');
+  };
+
+  document.getElementById('load-calendly').onclick = function() {
+    var calendlyDiv = document.getElementById('calendly-placeholder');
+    calendlyDiv.innerHTML = '<div class="calendly-inline-widget" data-url="https://calendly.com/codekraft-hub/30min" style="min-width:320px;height:390px;"></div>';
+    var s = document.createElement('script');
+    s.src = 'https://assets.calendly.com/assets/external/widget.js';
+    s.async = true;
+    document.body.appendChild(s);
   };
   </script>
 </body>

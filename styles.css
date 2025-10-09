@@ -105,6 +105,8 @@ body {
 
 /* Card sections */
 .card {
+  padding: 1rem;
+  animation: fadeIn 0.7s;
   max-width: 900px;
   margin: 2rem auto;
   background: var(--white);
@@ -112,7 +114,6 @@ body {
   border-radius: var(--radius);
   padding: 2rem 1rem;
   transition: box-shadow 0.3s;
-  animation: fadeIn 0.8s;
 }
 @keyframes fadeIn {
   from {opacity: 0;}
@@ -127,47 +128,6 @@ body {
   font-weight: 700;
 }
 
-/* Service columns */
-.service-columns {
-  display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-.service-columns > div {
-  flex: 1 1 300px;
-  background: var(--light);
-  padding: 1rem;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  margin-bottom: 1rem;
-  min-width: 220px;
-}
-.service-columns h3 {
-  margin-top: 0;
-  color: var(--primary);
-}
-
-/* Portfolio cards */
-.portfolio-cards {
-  display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-.card-inner {
-  background: var(--light);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 1rem;
-  flex: 1 1 250px;
-  margin-bottom: 1rem;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-.card-inner:hover {
-  transform: translateY(-5px) scale(1.03);
-  box-shadow: 0 8px 32px rgba(59,177,230,0.18);
-}
-
 /* Footer */
 footer {
   text-align: center;
@@ -178,11 +138,6 @@ footer {
   border-radius: var(--radius) var(--radius) 0 0;
 }
 
-/* Responsive styles */
-@media (max-width: 900px) {
-  .card { max-width: 98vw;}
-  .portfolio-cards, .service-columns { flex-direction: column; }
-}
 @media (max-width: 600px) {
   .navbar { flex-direction: row; align-items: center; padding: 1rem;}
   .nav-links {
@@ -209,7 +164,6 @@ footer {
     display: block;
   }
   .logo { font-size: 1.2rem;}
-  .card { padding: 1rem;}
   .slider-buttons { flex-direction: column;}
   .slider-btn { width: 90vw;}
 }
@@ -336,15 +290,16 @@ section {
   justify-content: center;
 }
 
+/* Cards: clickable cues */
 .project-card {
+  transition: box-shadow 0.3s, transform 0.2s, border 0.2s;
   flex: 1 1 280px;
   background: var(--white);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   padding: 2rem 1rem 1.5rem 1rem;
   text-align: center;
-  transition: box-shadow 0.3s, transform 0.2s;
-  animation: fadeIn 0.9s;
+  animation: fadeIn 0.7s;
   margin-bottom: 1rem;
   min-width: 220px;
   max-width: 320px;
@@ -353,16 +308,9 @@ section {
 }
 
 .project-card:hover {
-  box-shadow: 0 8px 32px rgba(59,177,230,0.18);
-  transform: scale(1.025) translateY(-4px);
-}
-
-.project-figure {
-  margin-bottom: 1.2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 80px;
+  box-shadow: 0 8px 32px rgba(59,177,230,0.24);
+  transform: scale(1.04) translateY(-4px);
+  border: 2px solid var(--accent);
 }
 
 .project-card h3 {
@@ -389,13 +337,22 @@ section {
     margin-left: auto;
     margin-right: auto;
     box-sizing: border-box;
+    background: #fff !important;
+    box-shadow: 0 6px 24px 2px rgba(34, 34, 34, 0.30), 
+                0 2px 12px rgba(170, 206, 223, 0.19) !important;
+    border-radius: 20px !important;
+    margin-bottom: 0.8rem !important;
+    cursor: pointer !important;
+    transform: none !important; /* Remove any conflicting transforms */
+    z-index: 1 !important;
   }
 }
 
 .project-modal {
+  z-index: 10000 !important;
+  pointer-events: auto !important;
   display: none;
   position: fixed;
-  z-index: 9999;
   left: 0; top: 0; width: 100vw; height: 100vh;
   background: rgba(11,43,60,0.25);
   justify-content: center;
@@ -404,23 +361,9 @@ section {
 }
 
 .modal-content {
-  z-index: 10000; /* <-- Make sure content is on top */
+  z-index: 10000 !important; /* <-- Make sure content is on top */
   position: relative;
-}
-
-.project-modal {
-  pointer-events: auto !important; /* <-- Ensure overlay allows clicking through to modal content */
-}
-
-.project-modal .modal-content {
-  pointer-events: auto !important; /* Ensure modal content is clickable */
-}
-
-@keyframes fadeInModal {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-.modal-content {
+  pointer-events: auto !important;
   background: var(--white);
   border-radius: var(--radius);
   padding: 2rem 1.2rem;
@@ -434,6 +377,12 @@ section {
   flex-direction: column;
   align-items: center;
 }
+
+@keyframes fadeInModal {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 .close-modal {
   position: absolute;
   top: 12px;
@@ -464,26 +413,8 @@ section {
   color: var(--accent);
 }
 
-/* Cards: clickable cues */
-.project-card {
-  cursor: pointer;
-  position: relative;
-  transition: box-shadow 0.3s, transform 0.2s;
-  box-shadow: var(--shadow);
-  border: 2px solid transparent;
-}
-.project-card:hover, .project-card:focus {
-  box-shadow: 0 8px 32px rgba(59,177,230,0.24);
-  transform: scale(1.04) translateY(-4px);
-  border: 2px solid var(--accent);
-}
 .project-card:active {
   border: 2px solid var(--primary);
-}
-
-.project-card:hover, .service-columns > div:hover {
-  box-shadow: 0 12px 32px rgba(59,177,230,0.22);
-  transform: scale(1.03) translateY(-4px);
 }
 
 .slider-btn:hover, .external-link-btn:hover {
@@ -520,13 +451,7 @@ section {
   0% { transform: translateY(0);}
   100% { transform: translateY(-6px);}
 }
-.project-modal {
-  z-index: 10000 !important;
-}
-.modal-content {
-  z-index: 10100 !important;
-  position: relative;
-}
+
 .external-link-btn {
   z-index: 10200 !important;
   pointer-events: auto !important;
@@ -555,9 +480,6 @@ section {
   from { opacity: 0; transform: translateY(30px);}
   to { opacity: 1; transform: translateY(0);}
 }
-.card, .project-card {
-  animation: fadeInUp 0.7s;
-}
 
 .hero {
   background: linear-gradient(115deg, #3BB1E6 0%, #80d8ff 70%, #F5FBFF 100%);
@@ -571,7 +493,6 @@ section {
   content: '';
   display: inline-block;
   width: 38px; height: 38px;
-  background: url('static/logo-symbol.svg') no-repeat center/contain;
   margin-left: 12px;
   vertical-align: middle;
   animation: popLogo 1s infinite alternate;
@@ -591,11 +512,18 @@ section {
   box-shadow: 0 12px 32px rgba(59,177,230,0.32);
 }
 
-.project-card:hover .project-figure svg {
-  transform: rotate(-8deg) scale(1.13);
-  transition: transform 0.3s;
+.project-figure svg, .svg-wrap svg {
+  transition: filter 0.3s;
+}
+
+.project-card:hover .project-figure svg,
+.project-card:focus .project-figure svg,
+.project-card:hover .svg-wrap svg,
+.project-card:focus .svg-wrap svg  {
+  transform: rotate(-8deg); 
   filter: drop-shadow(0 1px 6px #3BB1E6);
 }
+
 
 .scroll-indicator {
   width: 36px; height: 36px;
@@ -635,21 +563,21 @@ section {
 }
 
 .floating-chat-btn {
+  display: flex;
+  align-items: center; 
+  justify-content: flex-start;
   position: fixed;
   right: 32px;
   bottom: 32px;
+  width: 54px;
+  min-width: 54px;
+  height: 54px;
   z-index: 2000;
   background: transparent;  /* No background on button itself */
   border: none;
   box-shadow: none;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
   overflow: visible;
   cursor: pointer;
-  min-width: 54px;
-  width: 54px;
-  height: 54px;
   transition: width 0.35s cubic-bezier(.52,.04,.32,1.47);
   font-weight: 600;
   text-decoration: none;
@@ -658,14 +586,13 @@ section {
 }
 
 .floating-chat-btn .chat-icon {
+  display: flex;
+  align-items: center;    
+  justify-content: center;
   width: 46px;
   height: 46px;
   min-width: 30px;
   min-height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
 }
 
 .floating-chat-btn .chat-label {
@@ -688,8 +615,8 @@ section {
 }
 
 .floating-chat-btn:hover, .floating-chat-btn:focus {
-  width: 170px;
-}
+    width: 170px;
+  }
 
 .floating-chat-btn:hover .chat-label,
 .floating-chat-btn:focus .chat-label {
@@ -709,14 +636,9 @@ section {
     padding: 0;
     font-size: 0.7em;
   }
-  .floating-chat-btn .chat-icon {
-    width: 30px;
-    height: 30px;
-    min-width: 22px;
-    min-height: 22px;
-  }
+
   .floating-chat-btn:hover, .floating-chat-btn:focus {
-    width: 118px;
+    width: 170px;
   }
   .floating-chat-btn:hover .chat-label,
   .floating-chat-btn .chat-label {
@@ -735,15 +657,49 @@ section {
   }
 }
 
+.contact-calendly {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #E9F1F7;
+  border-radius: 14px;
+  box-shadow: 0 2px 14px rgba(59, 177, 230, 0.07);
+  padding: 12px 4px 10px 4px;
+  margin: 0 0 8px 0;
+  min-height: 0;
+}
+
+.contact-calendly .btn-home {
+  background: #3BB1E6;
+  color: #fff;
+  font-family: 'Montserrat', Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 24px;
+  box-shadow: 0 1px 6px rgba(59,177,230,0.07);
+  cursor: pointer;
+  transition: background 0.18s, box-shadow 0.18s;
+  outline: none;
+  margin: 0;
+}
+
+.contact-calendly .btn-home:hover,
+.contact-calendly .btn-home:focus {
+  background: #0B2B3C;
+  color: #FFF;
+  box-shadow: 0 3px 10px rgba(11,43,60,0.12);
+}
+
 @media (max-width: 600px) {
-  .project-card {
-    background: #fff !important;
-    box-shadow: 0 6px 24px 2px rgba(34, 34, 34, 0.30), 
-                0 2px 12px rgba(170, 206, 223, 0.19) !important;
-    border-radius: 20px !important;
-    margin-bottom: 0.8rem !important;
-    cursor: pointer !important;
-    transform: none !important; /* Remove any conflicting transforms */
-    z-index: 1 !important;
+  .contact-calendly {
+    padding: 7px 0 6px 0;
+    border-radius: 10px;
+  }
+  .contact-calendly .btn-home {
+    padding: 9px 12px;
+    font-size: 0.97rem;
   }
 }
