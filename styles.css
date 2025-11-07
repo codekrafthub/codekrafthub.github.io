@@ -156,11 +156,12 @@ footer {
 
 @media (max-width: 600px) {
   .navbar { flex-direction: row; align-items: center; padding: 1rem;}
+  .tagline {font-size: 1rem;}
   .nav-links {
     flex-direction: column;
     position: absolute;
-    top: 56px;
-    left: 0;
+    top: 70px;
+    left:0;
     width: 100vw;
     background: var(--primary);
     max-height: 0;
@@ -179,7 +180,7 @@ footer {
   .nav-toggle {
     display: block;
   }
-  .logo { font-size: 1.2rem;}
+  .logo { font-size: 1.4rem;}
   .slider-buttons { flex-direction: column;}
   .slider-btn { width: 90vw;}
 }
@@ -392,6 +393,15 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+#modalIntro {
+  font-weight: 300;
+  font-size: 0.7rem;
+  color: #222; /* Or your preferred modal body color */
+  margin-bottom: 1.4rem;
+  margin-left: 1.4rem;
+  margin-right: 1.4rem /* For spacing above the button */
 }
 
 @keyframes fadeInModal {
@@ -635,33 +645,73 @@ section {
 /* Mobile Styles */
 @media (max-width: 600px) {
   .floating-chat-btn {
-    right: 10px;
-    bottom: 18px;
-    min-width: 44px;
-    width: auto;
+    right: 16px;
+    bottom: 20px;
+    width: 44px;  /* Start with icon width */
     height: 44px;
     border-radius: 22px;
+    background: transparent;
+    box-shadow: none;
     padding: 0;
-    font-size: 0.7em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    overflow: visible;
+    transition: width 0.3s ease;
   }
 
-  .floating-chat-btn:hover, .floating-chat-btn:focus {
-    width: 170px;
+  .floating-chat-btn .chat-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+    min-height: 34px;
+    flex-shrink: 0;
+    position: absolute;
+    right: 0;  /* Icon always stays at right edge */
+    z-index: 2;
   }
-  .floating-chat-btn:hover .chat-label,
+  
+  .floating-chat-btn .chat-icon svg {
+    width: 34px;
+    height: 34px;
+  }
+  
   .floating-chat-btn .chat-label {
-    opacity: 1 !important;   /* Always show on mobile */
-    margin-left: 6px;
-    padding: 7px 10px;
-    font-size: 0.92em;
+    opacity: 0;
     background: #25D366;
     color: #fff;
-    border-radius: 20px;
-    box-shadow: 0 4px 16px rgba(34, 34, 34, 0.20);
-    position: relative;
+    padding: 0 5px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85em;
+    font-weight: 400;
+    border-radius: 22px;
+    box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
     white-space: nowrap;
-    transition: none;
-    display: inline-block;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 1;  /* Behind the icon */
+  }
+
+  /* Expanded state on tap */
+  .floating-chat-btn.expanded {
+    width: 120px;  /* Full button width when expanded */
+  }
+
+  .floating-chat-btn.expanded .chat-label {
+    opacity: 1;
+    pointer-events: auto;
+    padding-right: 40px;  /* Make room for icon on right */
+    padding-left: 10px;
   }
 }
 
@@ -704,7 +754,7 @@ section {
 @media (max-width: 600px) {
   .contact-calendly {
     padding: 7px 0 6px 0;
-    border-radius: 10px;
+    border-radius: 15px;
   }
   .contact-calendly .btn-home {
     padding: 9px 12px;

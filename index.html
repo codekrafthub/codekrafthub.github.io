@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>CodeKraft | Where Code Becomes Craft, Dreams Become Reality</title>
   <meta name="description" content="CodeKraft brings AI & Automation, cutting-edge coding training, industry-ready internships, and real-world software solutions for businesses and students in India.">
-  <meta name="keywords" content="AI Automation, Coding Training, Data Science, Internships, Digital Transformation, Chatbots, Software Solutions, India">
+  <meta name="keywords" content="AI Automation, Coding Training, Data Science, AI, Internships, college students, Digital Transformation, Chatbots, Software Solutions, India">
   <!-- Open Graph / Facebook -->
   <meta property="og:title" content="CodeKraft | Where Code Becomes Craft, Dreams Become Reality">
   <meta property="og:description" content="Unlock AI, automation, and technical training. Explore our projects and services.">
@@ -38,7 +38,7 @@
 }
   </script>
   <!-- Google Analytics 4 (GA4) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GXYELFBD5L"></script>
+  <script defer src="https://www.googletagmanager.com/gtag/js?id=G-GXYELFBD5L"></script>
   <script async>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -50,13 +50,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/x-icon" href="static/favicon.ico">
   <link rel="apple-touch-icon" sizes="180x180" href="static/codekraft_logo.png">
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preload" href="static/codekraft_logo.png" as="image">
 </head>
 <body>
   <!-- Top Navigation Bar -->
   <nav class="navbar" aria-label="Primary navigation">
     <div class="logo">
-      <img src="static/codekraft_logo_white.png" alt="CodeKraft Logo" style="height: 40px; vertical-align: middle;" loading="lazy">
+      <img src="static/codekraft_logo_white.png" alt="" aria-hidden="true" style="height: 40px; vertical-align: middle;" loading="lazy">
       CodeKraft
     </div>
     <div class="nav-toggle" id="navToggle" aria-label="Toggle navigation">&#9776;</div>
@@ -74,7 +75,7 @@
     <div class="hero-content">
       <img src="static/codekraft_logo.png" alt="CodeKraft logo" width="100" height="100" loading="lazy" >
       <h1>CodeKraft</h1>
-      <p class="tagline">Where Code Becomes Craft, Dreams Become Reality</p>
+      <p class="tagline">Emprowering India's Tech Talent through <br> Industry-Ready Training & AI Solutions</p>
       <div class="slider-buttons">
         <button class="slider-btn active" data-target="#services" aria-label="See Our Services">Our Services</button>
         <button class="slider-btn" data-target="#contact" aria-label="Contact Us">Contact Us</button>
@@ -95,6 +96,7 @@
   </section>
 
   <!-- Services -->
+  <!-- Services -->
   <section id="services" class="card services-section">
     <h2>Our Services</h2>
     <div class="services-panels">
@@ -103,19 +105,20 @@
         <h3>Academic Services</h3>
         <div class="accordion">
           <div class="accordion-item">
-            <button class="accordion-header">Technical Training</button>
-            <div class="accordion-body">
+            <button class="accordion-header active" aria-expanded="true">Technical Training</button>
+            <div class="accordion-body open">
               <i class="fas fa-code" style="color:#3BB1E6;font-size:2rem;margin-bottom:0.5rem;"></i>
               <p>Master essential coding and data skills through practical, project-driven learning tailored for real-world applications.</p>
               <ul>
                 <li>Python, SQL, C, C++, Advanced Excel</li>
                 <li>Data Science, Data Visualization</li>
                 <li>Task Automation</li>
+                <li>Web Development</li>
               </ul>
             </div>
           </div>
           <div class="accordion-item">
-            <button class="accordion-header">Career Readiness</button>
+            <button class="accordion-header" aria-expanded="false">Career Readiness</button>
             <div class="accordion-body">
               <i class="fas fa-user-graduate" style="color:#3BB1E6;font-size:2rem;margin-bottom:0.5rem;"></i>
               <p>We prepare students for industry placements. From resumes to LinkedIn and soft skills, we ensure complete career readiness.</p>
@@ -129,7 +132,7 @@
             </div>
           </div>
           <div class="accordion-item">
-            <button class="accordion-header">Industry Exposure</button>
+            <button class="accordion-header" aria-expanded="false">Industry Exposure</button>
             <div class="accordion-body">
               <i class="fas fa-briefcase" style="color:#3BB1E6;font-size:2rem;margin-bottom:0.5rem;"></i>
               <p>We connect academia with real industry problems to make students job-ready from day one.</p>
@@ -149,8 +152,8 @@
         <h3>Industry Services</h3>
         <div class="accordion">
           <div class="accordion-item">
-            <button class="accordion-header">AI & Automation</button>
-            <div class="accordion-body">
+            <button class="accordion-header active" aria-expanded="true">AI & Automation</button>
+            <div class="accordion-body open">
               <i class="fas fa-robot" style="color:#3BB1E6;font-size:2rem;margin-bottom:0.5rem;"></i>
               <p>We help businesses embrace AI. Our tailored AI-driven systems boost efficiency and unlock data-powered insights.</p>
               <ul>
@@ -162,7 +165,7 @@
             </div>
           </div>
           <div class="accordion-item">
-            <button class="accordion-header">Software Solutions</button>
+            <button class="accordion-header" aria-expanded="false">Software Solutions</button>
             <div class="accordion-body">
               <i class="fas fa-laptop-code" style="color:#3BB1E6;font-size:2rem;margin-bottom:0.5rem;"></i>
               <p>From concept to deployment, we build scalable web and mobile apps powered by AI/ML. We also help modernize your cloud and database systems for seamless digital transformation.</p>
@@ -176,7 +179,7 @@
             </div>
           </div>
           <div class="accordion-item">
-            <button class="accordion-header">SME & Rural Tech</button>
+            <button class="accordion-header" aria-expanded="false">SME & Rural Tech</button>
             <div class="accordion-body">
               <i class="fas fa-balance-scale" style="color:#3BB1E6;font-size:2rem;margin-bottom:0.5rem;"></i>
               <p>We empower small businesses and rural communities with affordable tech.</p>
@@ -184,7 +187,7 @@
                 <li>Automated Billing</li>
                 <li>Inventory & Attendance Systems</li>
                 <li>School/College ERP</li>
-                <li>CSR-driven E-learning Platforms</li>
+                <li>Corporate Social Responsibility driven E-learning Platforms</li>
               </ul>
             </div>
           </div>
@@ -199,7 +202,10 @@
   <p class="project-subtitle">Low-Cost | High-Impact | AI-Driven</p>
   <div class="project-cards">
     <!-- 1. AI & Data Science Solutions -->
-    <div class="project-card" data-link="https://www.kaggle.com/code/kapilverma/energy-trading" tabindex="0">
+    <div class="project-card" role="button" 
+    data-link="https://www.kaggle.com/code/kapilverma/energy-trading" 
+    data-intro="Dive into our UK energy trading case study. Explore real market auction data and see how AI-driven trading strategies can help maximize profits from financial energy trades."
+    tabindex="0">
       <div class="project-figure">
         <!-- Bar chart + arrow icon -->
         <svg width="70" height="70" viewBox="0 0 70 70">
@@ -216,7 +222,10 @@
       <p>We turn raw data into actionable insights that fuel growth and smarter decisions.</p>
     </div>
     <!-- 2. Business Process Automation -->
-    <div class="project-card" data-link="https://kapilve.pythonanywhere.com/" tabindex="0">
+    <div class="project-card" role="button" 
+    data-link="https://kapilve.pythonanywhere.com/" 
+    data-intro="Try our AI tool for instant machine part defect detection: upload a photo of a Fender Apron, and the deep learning model will tell if it's defective or not."
+    tabindex="0">
       <div class="project-figure">
         <!-- Robot arm automating tasks -->
         <svg width="70" height="70" viewBox="0 0 70 70">
@@ -232,7 +241,10 @@
       <p>We automate repetitive tasks to save time, reduce costs, and increase efficiency.</p>
     </div>
     <!-- 3. Conversational AI & Chatbots -->
-    <div class="project-card" data-link="https://kapilve.pythonanywhere.com/senti" tabindex="0">
+    <div class="project-card" role="button" 
+    data-link="https://kapilve.pythonanywhere.com/senti"
+    data-intro="Experience our automated sentiment analysis tool: upload a CSV of reviews and instantly filter, correct, and rate user sentiments using advanced Natural language processing (NLP)." 
+    tabindex="0">
       <div class="project-figure">
         <svg width="40" height="40" viewBox="0 0 40 40">
           <circle cx="35" cy="35" r="15" fill="#E9F1F7"/>
@@ -244,7 +256,10 @@
       <p>We design intelligent chatbots that simplify communication and enhance engagement.</p>
     </div>
     <!-- 4. Smart Healthcare & Education -->
-    <div class="project-card" data-link="https://github.com/kapil-verma/Hyper_or_Hypotension/blob/master/Hypertension%20or%20Hypotension.ipynb" tabindex="0">
+    <div class="project-card" role="button" 
+    data-link="https://github.com/kapil-verma/Hyper_or_Hypotension/blob/master/Hypertension%20or%20Hypotension.ipynb" 
+    data-intro="See applied data science in action for healthcare risk detection. This project analyzes blood pressure data with Python and machine learning to classify whether a patient is experiencing hypertension or hypotension."
+    tabindex="0">
       <div class="project-figure">
         <svg width="40" height="40" viewBox="0 0 40 40">
           <circle cx="35" cy="35" r="25" fill="#E9F1F7"/>
@@ -258,7 +273,7 @@
 
     </div>
     <!-- 5. Governance & Social Impact -->
-    <div class="project-card" data-link="https://yourdomain.com/project5" tabindex="0">
+    <div class="project-card" role="button" data-link="https://yourdomain.com/project5" tabindex="0">
       <div class="project-figure">
         <!-- Hands shaking, bridge, globe -->
         <svg width="70" height="70" viewBox="0 0 70 70">
@@ -292,11 +307,11 @@
           <polyline points="50,30 60,30 60,40" stroke="#0B2B3C" stroke-width="5" fill="none"/>
         </svg>
       </div>
-      <h3>See More</h3>
-      <p>You're about to visit a project showcase.<br>Click below to continue to the external project link.</p>
+      <h3>Project Showcase</h3>
+      <p id="modalIntro">You're about to visit a project showcase.<br>Click below to continue to the external project link.</p>
       <a id="modalLink" href="https://kapilve.pythonanywhere.com/" target="_blank" rel="noopener noreferrer" class="external-link-btn">
-      <span class="link-btn-icon">&#8599;</span> Go to Project
-    </a>
+        <span class="link-btn-icon">&#8599;</span> Go to Project
+      </a>
     </div>
   </div>
 </section>
@@ -307,7 +322,7 @@
       <div class="contact-details">
         <h2>Let's talk!</h2>
         <p>Email: <a href="mailto:codekraft.hub@gmail.com">codekraft.hub@gmail.com</a></p>
-        <p>Phone: <a href="tel:+91 78983-78933">+91 78983-78933</a></p>
+        <p>Phone: <a href="tel:+91 7898378933">+91 78983 78933</a></p>
       </div>
       <div class="contact-calendly">
         <!-- Calendly inline widget begin -->
@@ -367,9 +382,14 @@
     document.querySelectorAll('.project-card').forEach(card => {
       card.addEventListener('click', function() {
         var link = card.getAttribute('data-link');
+        var intro = card.getAttribute('data-intro');
         var modalLink = document.getElementById('modalLink');
+        var modalIntro = document.getElementById('modalIntro');
         if (modalLink) {
           modalLink.setAttribute('href', link);
+        }
+        if (modalIntro) {
+          modalIntro.textContent = intro || "You're about to visit a project showcase.";
         }
         document.getElementById('projectModal').style.display = 'flex';
         document.body.style.overflow = 'hidden';
@@ -421,17 +441,42 @@
     };
 
   document.getElementById('whatsappChatBtn').onclick = function(e) {
-    e.preventDefault();
-    var phone = "917898378933"; // Your WhatsApp number
-    var message = encodeURIComponent("Hello, I'm interested in CodeKraft services!");
-    var urlMobile = "whatsapp://send?phone=" + phone + "&text=" + message;
-    var urlWeb = "https://api.whatsapp.com/send?phone=" + phone + "&text=" + message;
-
-    // Detect mobile device
-    var isMobile = /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop|webOS|BlackBerry|Windows Phone/i.test(navigator.userAgent);
-
-    window.open(isMobile ? urlMobile : urlWeb, '_blank');
-  };
+      e.preventDefault();
+      
+      // Check if on mobile
+      var isMobile = /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop|webOS|BlackBerry|Windows Phone/i.test(navigator.userAgent);
+      
+      if (isMobile) {
+        // Toggle expanded state on mobile
+        if (this.classList.contains('expanded')) {
+          // If already expanded, open WhatsApp
+          var phone = "917898378933";
+          var message = encodeURIComponent("Hello, I'm interested in CodeKraft services!");
+          var urlMobile = "whatsapp://send?phone=" + phone + "&text=" + message;
+          var urlWeb = "https://api.whatsapp.com/send?phone=" + phone + "&text=" + message;
+          window.open(urlMobile, '_blank');
+          
+          // Remove expanded class after opening
+          setTimeout(() => {
+            this.classList.remove('expanded');
+          }, 300);
+        } else {
+          // First tap: expand to show label
+          this.classList.add('expanded');
+          
+          // Auto-collapse after 3 seconds if not tapped again
+          setTimeout(() => {
+            this.classList.remove('expanded');
+          }, 500);
+        }
+      } else {
+        // Desktop: open WhatsApp directly
+        var phone = "917898378933";
+        var message = encodeURIComponent("Hello, I'm interested in CodeKraft services!");
+        var urlWeb = "https://api.whatsapp.com/send?phone=" + phone + "&text=" + message;
+        window.open(urlWeb, '_blank');
+      }
+    };
 
   document.getElementById('load-calendly').onclick = function() {
     var calendlyDiv = document.getElementById('calendly-placeholder');
