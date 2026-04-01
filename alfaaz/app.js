@@ -2,7 +2,7 @@
 // After deploying to HF Spaces, replace this with your Space API URL.
 // Format: "https://{hf-username-or-org}-{space-name}.hf.space"
 // Example: "https://codekrafthub-alfaaz-ai.hf.space"
-const BACKEND_URL = "https://kapilve-alfaaz-ai.hf.space";
+const BACKEND_URL = "https://alfaaz-ai-production.up.railway.app";
 
 // ── DOM refs ─────────────────────────────────────────────────────────────────
 const urlInput = document.getElementById("urlInput");
