@@ -219,9 +219,13 @@ if (audioDuration > 120 || transcript.length > 3000) {
 exportActions.classList.remove("hidden");
 
 const processingInfo = document.getElementById("processingInfo");
-if (data.processing_time_sec) {
-    processingInfo.innerText = "Processing time: " + data.processing_time_sec + " seconds";
-}
+const tierInfo = [
+    data.processing_time_sec ? `${data.processing_time_sec}s` : "",
+    data.tier_used || "",
+    data.duration ? `audio: ${Math.round(data.duration)}s` : "",
+    Array.isArray(data.segments) ? `${data.segments.length} segments` : "",
+].filter(Boolean).join(" · ");
+processingInfo.innerText = tierInfo;
 
 } catch(e) {
     clearInterval(txTimer);
