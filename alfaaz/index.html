@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alfaaz.ai — Indic Speech Transcription</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Alfaaz.ai</h1>
+
+<p class="subtitle">
+Hindi / Urdu / Hinglish transcription — upload a video/audio file or paste a URL.
+</p>
+
+<div class="card">
+
+<input id="urlInput" placeholder="Paste YouTube or video URL">
+
+<div class="divider">OR</div>
+
+<div id="dropZone" class="drop-zone">
+Drag & Drop Video/Audio File Here
+<br>
+<span class="small">or click to upload</span>
+<input type="file" id="fileInput" hidden>
+</div>
+
+<button id="transcribeBtn">Transcribe</button>
+
+</div>
+
+
+<!-- Loading Section -->
+
+<div id="loading" class="hidden">
+
+<div class="wave-container">
+<div class="wave"></div>
+<div class="wave"></div>
+<div class="wave"></div>
+<div class="wave"></div>
+<div class="wave"></div>
+</div>
+
+<p id="progressText">Preparing audio...</p>
+
+<div class="progress-bar">
+<div id="progressFill"></div>
+</div>
+
+<button id="cancelBtn" class="cancel-btn hidden">✕ Cancel</button>
+
+</div>
+
+<!-- ETA Banner (persists into result section) -->
+<div id="etaBanner" class="eta-banner hidden"></div>
+
+<!-- Result Section -->
+
+<div id="resultSection" class="hidden">
+
+<h2>Transcript</h2>
+
+<textarea id="resultText"></textarea>
+
+<div class="result-actions">
+
+  <button id="copyBtn">
+    Copy Transcript
+    <span id="copyTick" class="hidden">✓</span>
+  </button>
+
+  <button id="refineBtn" class="refine-btn">
+    ✦ Refine Hindi Text
+  </button>
+
+</div>
+
+<div id="exportActions" class="export-actions hidden">
+  <span class="export-label">Download as:</span>
+  <button id="exportTxt" class="export-btn">TXT</button>
+  <button id="exportSrt" class="export-btn">SRT</button>
+  <button id="exportVtt" class="export-btn">VTT</button>
+  <button id="exportJson" class="export-btn">JSON</button>
+</div>
+
+<div id="refineLoading" class="hidden refine-loading">
+  <span class="refine-spinner"></span>
+  Correcting Hindi grammar with Sarvam 30B...
+</div>
+
+<div id="refineProgressBar" class="progress-bar hidden" style="margin-top:10px">
+  <div id="refineProgressFill"></div>
+</div>
+
+<div id="refineInfo" class="hidden refine-info"></div>
+
+<div id="processingInfo"></div>
+
+</div>
+
+</div>
+
+<!-- Stats Panel -->
+<details id="statsPanel" class="stats-panel">
+  <summary>&#9881; Server Stats</summary>
+  <div id="statsContent" class="stats-content">Loading...</div>
+</details>
+
+<script src="app.js"></script>
+
+</body>
+</html>
