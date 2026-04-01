@@ -180,7 +180,16 @@ if (urlInput.value) {
     return;
 }
 
+if (!response.ok) {
+    const errText = await response.text();
+    throw new Error(`Server error ${response.status}: ${errText.slice(0, 200)}`);
+}
+
 const data = await response.json();
+
+if (data.error || data.detail) {
+    throw new Error(data.error || JSON.stringify(data.detail));
+}
 
 clearInterval(txTimer);
 delete etaBanner.dataset.estimated;
@@ -228,7 +237,7 @@ if (data.processing_time_sec) {
         if (activeEventSource) { activeEventSource.close(); activeEventSource = null; }
         loading.classList.add("hidden");
         etaBanner.classList.add("hidden");
-        alert("Transcription failed");
+        alert("Transcription failed: " + (e.message || e));
     }
 } finally {
     activeController = null;
