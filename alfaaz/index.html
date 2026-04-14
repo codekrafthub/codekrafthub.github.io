@@ -2,36 +2,84 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Alfaaz.ai — Indic Speech Transcription</title>
-<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>alfaaz.ai — Hindi, Hinglish & Urdu Speech to Text</title>
+<meta name="description" content="AI-powered transcription for Hindi, Hinglish and Urdu audio & video. Upload a file or paste a YouTube URL and get accurate text in seconds.">
 <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
+<header class="navbar">
+  <a class="navbar-brand" href="/">
+    <span class="brand-alfaaz">الفاظ</span><span class="brand-separator">&nbsp;•&nbsp;</span><span class="brand-en">alfaaz</span><span class="brand-dot">.</span><span class="brand-ai">ai</span>
+  </a>
+  <nav class="navbar-links">
+    <a href="#tool" class="nav-link">Try Free</a>
+    <a href="mailto:hello@alfaaz.ai" class="nav-link nav-cta">Get API Access</a>
+  </nav>
+</header>
+
 <div class="container">
 
-<h1>Alfaaz.ai</h1>
+<div class="hero">
+  <h1 class="hero-title">Hindi &amp; Urdu Speech to Text</h1>
+  <p class="hero-sub">हिंदी, هندی &amp; Hinglish audio &mdash; accurate transcription in seconds.</p>
+  <div class="hero-badges">
+    <span class="badge">BPO &amp; Call Centers</span>
+    <span class="badge">Legal &amp; Depositions</span>
+    <span class="badge">Media &amp; Subtitles</span>
+    <span class="badge">EdTech</span>
+    <span class="badge">Healthcare</span>
+  </div>
+</div>
 
-<p class="subtitle">
-Hindi / Urdu / Hinglish transcription — upload a video/audio file or paste a URL.
-</p>
+<div id="tool">
+
+<!-- Feature strip -->
+<div class="feature-strip">
+  <div class="feat">
+    <span class="feat-icon">🎯</span>
+    <strong>Hindi-Optimised AI</strong>
+    <span>Post-processing corrections for Devanagari — not just generic Whisper</span>
+  </div>
+  <div class="feat">
+    <span class="feat-icon">📄</span>
+    <strong>Export-Ready Formats</strong>
+    <span>Download SRT, VTT, TXT and JSON — ready for editing suites &amp; CMS</span>
+  </div>
+  <div class="feat">
+    <span class="feat-icon">🎙️</span>
+    <strong>Speaker Separation</strong>
+    <span>Diarization labels each speaker — ideal for calls, interviews &amp; depositions</span>
+  </div>
+</div>
+
+
 
 <div class="card">
 
-<input id="urlInput" placeholder="Paste YouTube or video URL">
+<input id="urlInput" placeholder="Paste YouTube or Facebook video URL">
 
 <div class="divider">OR</div>
 
 <div id="dropZone" class="drop-zone">
-Drag & Drop Video/Audio File Here
-<br>
-<span class="small">or click to upload</span>
-<input type="file" id="fileInput" hidden>
+  Drag &amp; Drop Audio / Video File Here
+  <br>
+  <span class="small">or click to browse &mdash; MP3, MP4, WAV, M4A, OGG supported</span>
+  <input type="file" id="fileInput" accept="audio/*,video/*" hidden>
 </div>
 
-<button id="transcribeBtn">Transcribe</button>
+<!-- Language selector -->
+<div class="lang-selector">
+  <span class="lang-label">Language:</span>
+  <label class="lang-opt"><input type="radio" name="lang" value="hi" checked> हिंदी Hindi</label>
+  <label class="lang-opt"><input type="radio" name="lang" value="ur"> اردو Urdu</label>
+  <label class="lang-opt"><input type="radio" name="lang" value="hi"> Hinglish</label>
+  <label class="lang-opt"><input type="radio" name="lang" value="auto"> Auto-detect</label>
+</div>
+
+<button id="transcribeBtn">⚡ Transcribe Now</button>
 
 </div>
 
@@ -58,6 +106,18 @@ Drag & Drop Video/Audio File Here
 
 </div>
 
+<!-- Error Section (shown when URL transcription fails) -->
+<div id="errorSection" class="hidden error-section">
+  <p id="errorMessage" class="error-message"></p>
+  <div id="downloadSection" class="hidden">
+    <p class="error-hint">Download the audio and drop it into the upload box above to transcribe it:</p>
+    <button id="downloadAudioBtn" class="download-btn">⬇ Download Audio</button>
+    <p id="downloadHint" class="error-hint" style="margin-top:8px;font-size:12px;color:#aaa;">
+      If the download also fails, use a browser extension to save the file locally.
+    </p>
+  </div>
+</div>
+
 <!-- ETA Banner (persists into result section) -->
 <div id="etaBanner" class="eta-banner hidden"></div>
 
@@ -65,14 +125,23 @@ Drag & Drop Video/Audio File Here
 
 <div id="resultSection" class="hidden">
 
-<h2>Transcript</h2>
+<div class="result-header">
+  <h2>Transcript</h2>
+  <div id="exportActions" class="export-actions">
+    <span class="export-label">Download as:</span>
+    <button id="exportTxt" class="export-btn" title="Plain text file">TXT</button>
+    <button id="exportSrt" class="export-btn" title="SubRip subtitles">SRT</button>
+    <button id="exportVtt" class="export-btn" title="WebVTT subtitles">VTT</button>
+    <button id="exportJson" class="export-btn" title="Full JSON with timestamps">JSON</button>
+  </div>
+</div>
 
 <textarea id="resultText"></textarea>
 
 <div class="result-actions">
 
   <button id="copyBtn">
-    Copy Transcript
+    📋 Copy Transcript
     <span id="copyTick" class="hidden">✓</span>
   </button>
 
@@ -80,14 +149,6 @@ Drag & Drop Video/Audio File Here
     ✦ Refine Hindi Text
   </button>
 
-</div>
-
-<div id="exportActions" class="export-actions hidden">
-  <span class="export-label">Download as:</span>
-  <button id="exportTxt" class="export-btn">TXT</button>
-  <button id="exportSrt" class="export-btn">SRT</button>
-  <button id="exportVtt" class="export-btn">VTT</button>
-  <button id="exportJson" class="export-btn">JSON</button>
 </div>
 
 <div id="refineLoading" class="hidden refine-loading">
@@ -105,7 +166,9 @@ Drag & Drop Video/Audio File Here
 
 </div>
 
-</div>
+</div><!-- /#tool -->
+
+</div><!-- /.container -->
 
 <!-- Stats Panel -->
 <details id="statsPanel" class="stats-panel">

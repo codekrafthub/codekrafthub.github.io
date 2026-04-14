@@ -1,10 +1,3 @@
-// ── Backend URL ──────────────────────────────────────────────────────────────
-// After deploying to HF Spaces, replace this with your Space API URL.
-// Format: "https://{hf-username-or-org}-{space-name}.hf.space"
-// Example: "https://codekrafthub-alfaaz-ai.hf.space"
-const BACKEND_URL = "https://alfaaz-ai-production.up.railway.app";
-
-// ── DOM refs ─────────────────────────────────────────────────────────────────
 const urlInput = document.getElementById("urlInput");
 const fileInput = document.getElementById("fileInput");
 const dropZone = document.getElementById("dropZone");
@@ -18,6 +11,11 @@ const progressText = document.getElementById("progressText");
 const progressFill = document.getElementById("progressFill");
 const etaBanner    = document.getElementById("etaBanner");
 
+const errorSection     = document.getElementById("errorSection");
+const errorMessage     = document.getElementById("errorMessage");
+const downloadSection  = document.getElementById("downloadSection");
+const downloadAudioBtn = document.getElementById("downloadAudioBtn");
+
 let selectedFile = null;
 let activeController = null;   // AbortController for the current fetch
 let activeEventSource = null;  // EventSource for SSE progress stream
@@ -28,6 +26,17 @@ let currentPct     = 0;        // Current displayed percentage
 function setProgress(pct) {
     currentPct = pct;
     progressFill.style.width = pct + "%";
+}
+
+function showError(msg, urlForDownload) {
+    errorMessage.textContent = msg;
+    if (urlForDownload) {
+        downloadAudioBtn.dataset.url = urlForDownload;
+        downloadSection.classList.remove("hidden");
+    } else {
+        downloadSection.classList.add("hidden");
+    }
+    errorSection.classList.remove("hidden");
 }
 
 function startCreep(limit) {
@@ -107,7 +116,7 @@ if (activeController) {
 
 loading.classList.remove("hidden");
 resultSection.classList.add("hidden");
-exportActions.classList.add("hidden");
+errorSection.classList.add("hidden");
 cancelBtn.classList.remove("hidden");
 
 progressText.innerText = "Preparing audio…";
@@ -125,9 +134,49 @@ const txTimer = setInterval(() => {
     }
 }, 1000);
 
-// Open SSE before firing the POST so progress events are not missed
+activeController = new AbortController();
+const signal = activeController.signal;
+
+try {
+
+const selectedLang = (document.querySelector('input[name="lang"]:checked') || {}).value || "hi";
+
+let jobResp;
+if (urlInput.value) {
+    const form = new FormData();
+    form.append("url", urlInput.value);
+    form.append("language", selectedLang);
+    jobResp = await fetch("/transcribe/url", { method:"POST", body:form, signal });
+} else if (selectedFile) {
+    const form = new FormData();
+    form.append("file", selectedFile);
+    form.append("language", selectedLang);
+    progressText.innerText = "Uploading file...";
+    jobResp = await fetch("/transcribe/file", { method:"POST", body:form, signal });
+} else {
+    alert("Upload a file or paste URL");
+    loading.classList.add("hidden");
+    cancelBtn.classList.add("hidden");
+    btn.disabled = false;
+    clearInterval(txTimer);
+    return;
+}
+
+if (!jobResp.ok && jobResp.status !== 202) {
+    const errData = await jobResp.json().catch(() => ({}));
+    throw new Error(errData.detail || errData.error || `Server error ${jobResp.status}`);
+}
+
+const { job_id, position } = await jobResp.json();
+
+// Show queue position if waiting behind other jobs
+if (position > 1) {
+    progressText.innerText = `Position ${position} in queue — waiting…`;
+}
+
+// Open SSE with job_id so we receive progress for this specific job
 if (activeEventSource) activeEventSource.close();
-activeEventSource = new EventSource(BACKEND_URL + "/transcribe/progress");
+activeEventSource = new EventSource(`/transcribe/progress?job_id=${job_id}`);
 activeEventSource.onmessage = e => {
     const ev = JSON.parse(e.data);
     if (ev.stage === "estimate") {
@@ -154,45 +203,22 @@ activeEventSource.onerror = () => {
     if (activeEventSource) { activeEventSource.close(); activeEventSource = null; }
 };
 
-activeController = new AbortController();
-const signal = activeController.signal;
-
-try {
-
-if (urlInput.value) {
-
-    const form = new FormData();
-    form.append("url", urlInput.value);
-    response = await fetch(BACKEND_URL + "/transcribe/url", { method:"POST", body:form, signal });
-
-} else if (selectedFile) {
-
-    const form = new FormData();
-    form.append("file", selectedFile);
-    progressText.innerText = "Uploading file...";
-    response = await fetch(BACKEND_URL + "/transcribe/file", { method:"POST", body:form, signal });
-
-} else {
-    alert("Upload a file or paste URL");
-    loading.classList.add("hidden");
-    cancelBtn.classList.add("hidden");
-    btn.disabled = false;
-    return;
-}
-
-if (!response.ok) {
-    const errText = await response.text();
-    throw new Error(`Server error ${response.status}: ${errText.slice(0, 200)}`);
-}
-
-const data = await response.json();
-
-if (data.error || data.detail) {
-    throw new Error(data.error || JSON.stringify(data.detail));
-}
+// Long-poll the result endpoint — returns when the job finishes
+const resultResp = await fetch(`/transcribe/result/${job_id}`, { signal });
+const data = await resultResp.json();
 
 clearInterval(txTimer);
 delete etaBanner.dataset.estimated;
+
+if (data.error) {
+    stopCreep();
+    if (activeEventSource) { activeEventSource.close(); activeEventSource = null; }
+    loading.classList.add("hidden");
+    cancelBtn.classList.add("hidden");
+    etaBanner.classList.add("hidden");
+    showError(data.error, urlInput.value.trim() || null);
+    return;
+}
 
 loading.classList.add("hidden");
 cancelBtn.classList.add("hidden");
@@ -206,8 +232,30 @@ if (data.processing_time_sec) {
     etaBanner.textContent = existing + ` · took ${elapsedLabel}`;
 }
 
-const transcript = data.full_text || data.text || "";
 const audioDuration = data.duration || 0;
+
+// Build display text: use speaker-labeled format when diarization ran
+let transcript = data.full_text || data.text || "";
+if (data.diarization && data.segments && data.segments.length > 0) {
+    const lines = [];
+    let currentSpeaker = null;
+    for (const seg of data.segments) {
+        if (seg.speaker && seg.speaker !== currentSpeaker) {
+            if (lines.length > 0) lines.push("");
+            lines.push(`[${seg.speaker}]`);
+            currentSpeaker = seg.speaker;
+        }
+        const mins = String(Math.floor(seg.start / 60)).padStart(2, "0");
+        const secs = String(Math.floor(seg.start % 60)).padStart(2, "0");
+        lines.push(`[${mins}:${secs}]  ${seg.text.trim()}`);
+    }
+    transcript = lines.join("\n").trim();
+}
+
+// Show diarization badge in processingInfo
+const diarBadge = data.diarization
+    ? `<span class="diar-badge">🎙️ Speaker labels applied</span>  `
+    : "";
 
 if (audioDuration > 120 || transcript.length > 3000) {
     resultText.value = transcript;
@@ -216,16 +264,13 @@ if (audioDuration > 120 || transcript.length > 3000) {
     const speed = transcript.length > 600 ? 3 : 8;
     await typeText(resultText, transcript, speed);
 }
-exportActions.classList.remove("hidden");
 
 const processingInfo = document.getElementById("processingInfo");
-const tierInfo = [
-    data.processing_time_sec ? `${data.processing_time_sec}s` : "",
-    data.tier_used || "",
-    data.duration ? `audio: ${Math.round(data.duration)}s` : "",
-    Array.isArray(data.segments) ? `${data.segments.length} segments` : "",
-].filter(Boolean).join(" · ");
-processingInfo.innerText = tierInfo;
+if (data.processing_time_sec) {
+    processingInfo.innerHTML = diarBadge + "Processing time: " + data.processing_time_sec + " seconds";
+} else if (diarBadge) {
+    processingInfo.innerHTML = diarBadge;
+}
 
 } catch(e) {
     clearInterval(txTimer);
@@ -241,7 +286,7 @@ processingInfo.innerText = tierInfo;
         if (activeEventSource) { activeEventSource.close(); activeEventSource = null; }
         loading.classList.add("hidden");
         etaBanner.classList.add("hidden");
-        alert("Transcription failed: " + (e.message || e));
+        showError(e.message || "Transcription failed. Check your connection and try again.", urlInput.value.trim() || null);
     }
 } finally {
     activeController = null;
@@ -264,6 +309,74 @@ cancelBtn.onclick = () => {
     }
 };
 
+/* ---------------- Download Audio Button ---------------- */
+
+downloadAudioBtn.onclick = async () => {
+    const url = downloadAudioBtn.dataset.url;
+    if (!url) return;
+
+    downloadAudioBtn.disabled = true;
+    downloadAudioBtn.textContent = "⬇ Downloading\u2026";
+    downloadAudioBtn.style.background = "";
+
+    const hint = document.getElementById("downloadHint");
+    hint.style.color = "";
+    hint.style.fontWeight = "";
+    hint.textContent = "If the download also fails, use a browser extension to save the file locally.";
+
+    const form = new FormData();
+    form.append("url", url);
+
+    let downloadFailed = false;
+    try {
+        const resp = await fetch("/download", { method: "POST", body: form });
+        if (!resp.ok) {
+            downloadFailed = true;
+            const d = await resp.json().catch(() => ({}));
+            hint.textContent = d.error || "Our server could not reach this video either. Use a browser extension to download locally.";
+            hint.style.color = "#c0392b";
+            hint.style.fontWeight = "500";
+            downloadAudioBtn.textContent = "\u2717 Download failed";
+            downloadAudioBtn.style.background = "#c0392b";
+            setTimeout(() => {
+                downloadAudioBtn.disabled = false;
+                downloadAudioBtn.textContent = "⬇ Retry Download";
+                downloadAudioBtn.style.background = "";
+            }, 3000);
+            return;
+        }
+        const blob = await resp.blob();
+        const cd = resp.headers.get("Content-Disposition") || "";
+        const match = cd.match(/filename="(.+?)"/);
+        const filename = match ? match[1] : "audio";
+        const dl = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = dl;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(dl);
+    } catch (e) {
+        downloadFailed = true;
+        hint.textContent = "Download request failed: " + e.message;
+        hint.style.color = "#c0392b";
+        hint.style.fontWeight = "500";
+        downloadAudioBtn.textContent = "\u2717 Download failed";
+        downloadAudioBtn.style.background = "#c0392b";
+        setTimeout(() => {
+            downloadAudioBtn.disabled = false;
+            downloadAudioBtn.textContent = "⬇ Retry Download";
+            downloadAudioBtn.style.background = "";
+        }, 3000);
+    } finally {
+        if (!downloadFailed) {
+            downloadAudioBtn.disabled = false;
+            downloadAudioBtn.textContent = "⬇ Download Audio";
+        }
+    }
+};
+
 /* ---------------- Refine Text ---------------- */
 
 const refineBtn          = document.getElementById("refineBtn");
@@ -280,22 +393,26 @@ refineBtn.onclick = async () => {
     return;
   }
 
+  // UI: show loading, disable button
   refineBtn.disabled = true;
   refineBtn.textContent = "Refining...";
   refineLoading.classList.remove("hidden");
   refineInfo.classList.add("hidden");
 
+  // ETA banner — estimate ~1 sec per 250 chars, min 5s
   const estSec = Math.max(5, Math.round(currentText.length / 250));
   const estLabel = estSec < 60 ? `~${estSec} sec` : `~${(estSec / 60).toFixed(1)} min`;
   etaBanner.textContent = `Sending to Sarvam 30B — estimated ${estLabel}…`;
   etaBanner.classList.remove("hidden");
 
+  // Tick a live elapsed counter while we wait
   const refineT0 = Date.now();
   const refineTimer = setInterval(() => {
     const elapsed = Math.round((Date.now() - refineT0) / 1000);
     etaBanner.textContent = `Sending to Sarvam 30B — ${elapsed}s elapsed (est. ${estLabel})`;
   }, 1000);
 
+  // Progress bar — creep calibrated to reach ~85% by estSec
   let rpVal = 0;
   const rpRate = Math.max(0.3, (85 * 0.3) / estSec);
   refineProgressFill.style.width = "0%";
@@ -309,7 +426,7 @@ refineBtn.onclick = async () => {
     const form = new FormData();
     form.append("text", currentText);
 
-    const resp = await fetch(BACKEND_URL + "/refine", { method: "POST", body: form });
+    const resp = await fetch("/refine", { method: "POST", body: form });
     const data = await resp.json();
 
     clearInterval(refineTimer);
@@ -323,12 +440,14 @@ refineBtn.onclick = async () => {
       return;
     }
 
+    // Jump to 100%, then fade out the bar
     refineProgressFill.style.width = "100%";
     setTimeout(() => {
       refineProgressBar.classList.add("hidden");
       refineProgressFill.style.width = "0%";
     }, 700);
 
+    // Show refined text — instant for long content, animated for short
     const refined = data.refined_text;
     if (refined.length > 3000) {
         resultText.value = refined;
@@ -338,8 +457,10 @@ refineBtn.onclick = async () => {
         await typeText(resultText, refined, speed);
     }
 
+    // Update ETA banner with actual time
     etaBanner.textContent = `✦ Sarvam 30B refined in ${data.processing_time_sec}s`;
 
+    // Show a small info line
     refineInfo.classList.remove("hidden");
     refineInfo.textContent =
       `✦ Refined by Sarvam 30B in ${data.processing_time_sec}s`;
@@ -366,7 +487,7 @@ statsPanel.addEventListener("toggle", async () => {
   if (!statsPanel.open) return;
   const content = document.getElementById("statsContent");
   try {
-    const resp = await fetch(BACKEND_URL + "/stats");
+    const resp = await fetch("/stats");
     const d = await resp.json();
     content.innerHTML = `
       <table class="stats-table">
@@ -391,10 +512,10 @@ const copyBtn = document.getElementById("copyBtn");
 const copyTick = document.getElementById("copyTick");
 const exportActions = document.getElementById("exportActions");
 
-document.getElementById("exportTxt").onclick  = () => { window.location.href = BACKEND_URL + "/export/txt"; };
-document.getElementById("exportSrt").onclick  = () => { window.location.href = BACKEND_URL + "/export/srt"; };
-document.getElementById("exportVtt").onclick  = () => { window.location.href = BACKEND_URL + "/export/vtt"; };
-document.getElementById("exportJson").onclick = () => { window.location.href = BACKEND_URL + "/export/json"; };
+document.getElementById("exportTxt").onclick  = () => { window.location.href = "/export/txt"; };
+document.getElementById("exportSrt").onclick  = () => { window.location.href = "/export/srt"; };
+document.getElementById("exportVtt").onclick  = () => { window.location.href = "/export/vtt"; };
+document.getElementById("exportJson").onclick = () => { window.location.href = "/export/json"; };
 
 copyBtn.onclick = () => {
 
@@ -407,3 +528,4 @@ copyTick.classList.add("hidden");
 },2000);
 
 };
+
