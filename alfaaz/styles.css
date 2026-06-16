@@ -1,6 +1,8 @@
 :root {
  --primary: #0B2B3C;
+ --primary-rgb: 11, 43, 60;
  --accent: #3BB1E6;
+ --accent-rgb: 59, 177, 230;
  --light: #F5FBFF;
  --white: #ffffff;
 }
@@ -140,7 +142,7 @@ body{
 .feat {
   flex: 1;
   min-width: 200px;
-  background: white;
+  background: var(--white);
   border: 1px solid #ddeaf3;
   border-radius: 10px;
   padding: 18px 20px;
@@ -179,41 +181,39 @@ h1{
  color:var(--primary);
 }
 
-.subtitle{
- color:#555;
- margin-bottom:40px;
-}
-
 .card{
- background:white;
+ background:var(--white);
  padding:40px;
  border-radius:12px;
  box-shadow:0 4px 12px rgba(0,0,0,0.1);
 }
 
-input[type="file"],
-input[type="text"],
-input{
- width:100%;
- padding:12px;
- margin-top:10px;
- border-radius:6px;
- border:1px solid #ccc;
+input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
 }
 
-button{
- margin-top:20px;
- background:var(--accent);
- color:white;
- border:none;
- padding:14px 24px;
- border-radius:6px;
- font-size:16px;
- cursor:pointer;
+button {
+  background: var(--accent);
+  color: var(--white);
+  border: none;
+  padding: 14px 24px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
 }
 
-button:hover{
- opacity:0.9;
+#transcribeBtn {
+  margin-top: 20px;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.9;
 }
 
 .divider{
@@ -260,20 +260,8 @@ button:hover{
   cursor: pointer;
 }
 
-#loading{
- margin-top:30px;
-}
-
 #resultSection{
  margin-top:40px;
-}
-
-textarea{
- width:100%;
- height:300px;
- padding:20px;
- border-radius:8px;
- border:1px solid #ccc;
 }
 
 .hidden{
@@ -301,16 +289,6 @@ border-color:var(--primary);
 .small{
 font-size:13px;
 color:#777;
-}
-
-.loader{
-border:6px solid #eee;
-border-top:6px solid var(--accent);
-border-radius:50%;
-width:40px;
-height:40px;
-animation:spin 1s linear infinite;
-margin:20px auto;
 }
 
 @keyframes spin{
@@ -515,7 +493,7 @@ transition:width 0.28s ease-out;
 
 .export-btn {
   margin-top: 0;
-  background: white;
+  background: var(--white);
   color: var(--primary);
   border: 1px solid #c0d8e8;
   padding: 7px 14px;
@@ -583,7 +561,7 @@ transition:width 0.28s ease-out;
   max-width: 800px;
   margin: 20px auto 0;
   text-align: left;
-  background: white;
+  background: var(--white);
   border: 1px solid #dde;
   border-radius: 8px;
   padding: 0 20px;

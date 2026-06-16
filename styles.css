@@ -1,10 +1,12 @@
 :root {
   --primary: #0B2B3C;
+  --primary-rgb: 11, 43, 60;
   --accent: #3BB1E6;
+  --accent-rgb: 59, 177, 230;
   --light: #F5FBFF;
   --white: #fff;
   --radius: 16px;
-  --shadow: 0 4px 16px rgba(59,177,230,0.10);
+  --shadow: 0 4px 16px rgba(var(--accent-rgb), 0.10);
   --header-font: 'Montserrat', Arial, sans-serif;
 }
 
@@ -111,7 +113,7 @@ body {
 .slider-btn.active, .slider-btn:hover {
   background: var(--accent);
   color: var(--white);
-  box-shadow: 0 8px 32px rgba(59,177,230,0.18);
+  box-shadow: 0 8px 32px rgba(var(--accent-rgb), 0.18);
 }
 
 /* Card sections */
@@ -121,7 +123,6 @@ body {
 }
 
 .card {
-  padding: 1rem;
   animation: fadeIn 0.7s;
   max-width: 900px;
   margin: 2rem auto;
@@ -136,7 +137,7 @@ body {
   to {opacity: 1;}
 }
 .card:hover {
-  box-shadow: 0 8px 32px rgba(59,177,230,0.18);
+  box-shadow: 0 8px 32px rgba(var(--accent-rgb), 0.18);
 }
 .card h2 {
   color: var(--accent);
@@ -325,7 +326,7 @@ section {
 }
 
 .project-card:hover {
-  box-shadow: 0 8px 32px rgba(59,177,230,0.24);
+  box-shadow: 0 8px 32px rgba(var(--accent-rgb), 0.24);
   transform: scale(1.04) translateY(-4px);
   border: 2px solid var(--accent);
 }
@@ -366,27 +367,23 @@ section {
 }
 
 .project-modal {
-  z-index: 10000 !important;
-  pointer-events: auto !important;
+  z-index: 10000;
   display: none;
   position: fixed;
   left: 0; top: 0; width: 100vw; height: 100vh;
-  background: rgba(11,43,60,0.25);
+  background: rgba(var(--primary-rgb), 0.25);
   justify-content: center;
   align-items: center;
   animation: fadeInModal 0.4s;
 }
 
 .modal-content {
-  z-index: 10000 !important; /* <-- Make sure content is on top */
   position: relative;
-  pointer-events: auto !important;
   background: var(--white);
   border-radius: var(--radius);
   padding: 2rem 1.2rem;
-  box-shadow: 0 8px 32px rgba(59,177,230,0.24);
+  box-shadow: 0 8px 32px rgba(var(--accent-rgb), 0.24);
   text-align: center;
-  position: relative;
   width: 90vw;
   max-width: 360px;
   min-height: 300px;
@@ -421,33 +418,12 @@ section {
 .modal-graphic {
   margin: 1rem auto 1.5rem auto;
 }
-.external-link-btn {
-  display: inline-block;
-  margin-top: 1.5rem;
-  padding: 0.7rem 1.5rem;
-  background: var(--accent);
-  color: var(--white);
-  border-radius: var(--radius);
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 1.1rem;
-  box-shadow: var(--shadow);
-  transition: background 0.2s;
-}
-.external-link-btn:hover {
-  background: var(--primary);
-  color: var(--accent);
-}
-
 .project-card:active {
   border: 2px solid var(--primary);
 }
 
-.slider-btn:hover, .external-link-btn:hover {
-  transform: scale(1.05);
-}
-
 /* Modal link icon */
+/* ── External Link Button ───────────────────────────────────────────────── */
 .external-link-btn {
   display: inline-flex;
   align-items: center;
@@ -460,13 +436,18 @@ section {
   text-decoration: none;
   font-weight: 600;
   font-size: 1.1rem;
-  box-shadow: 0 2px 8px rgba(59,177,230,0.16);
-  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(var(--accent-rgb), 0.16);
+  transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+  z-index: 10200;
+  position: relative;
+  overflow: hidden;
 }
-.external-link-btn:hover, .external-link-btn:focus {
-  background: var(--primary);
-  color: var(--accent);
-  box-shadow: 0 8px 32px rgba(59,177,230,0.18);
+.external-link-btn:hover,
+.external-link-btn:focus {
+  background: linear-gradient(90deg, var(--primary) 20%, var(--accent) 100%);
+  color: var(--white);
+  transform: translateY(-4px) scale(1.08);
+  box-shadow: 0 12px 32px rgba(var(--accent-rgb), 0.32);
 }
 .link-btn-icon {
   font-size: 1.4em;
@@ -476,11 +457,6 @@ section {
 @keyframes bounceArrow {
   0% { transform: translateY(0);}
   100% { transform: translateY(-6px);}
-}
-
-.external-link-btn {
-  z-index: 10200 !important;
-  pointer-events: auto !important;
 }
 
 .contact-content {
@@ -495,6 +471,16 @@ section {
 .contact-calendly {
   flex: 1 1 320px;
   min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #E9F1F7;
+  border-radius: 14px;
+  box-shadow: 0 2px 14px rgba(var(--accent-rgb), 0.07);
+  padding: 12px 4px 10px 4px;
+  margin: 0 0 8px 0;
+  min-height: 0;
 }
 
 @media (max-width: 800px) {
@@ -512,14 +498,14 @@ section {
   100% { transform: scale(1.15);}
 }
 
-.slider-btn, .external-link-btn {
+.slider-btn {
   transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
 }
-.slider-btn:hover, .external-link-btn:hover {
-  background: linear-gradient(90deg, #0B2B3C 20%, #3BB1E6 100%);
-  color: #fff;
+.slider-btn:hover {
+  background: linear-gradient(90deg, var(--primary) 20%, var(--accent) 100%);
+  color: var(--white);
   transform: translateY(-4px) scale(1.08);
-  box-shadow: 0 12px 32px rgba(59,177,230,0.32);
+  box-shadow: 0 12px 32px rgba(var(--accent-rgb), 0.32);
 }
 
 .project-figure svg, .svg-wrap svg {
@@ -562,10 +548,6 @@ section {
   transition: transform 0.25s;
 }
 
-.external-link-btn {
-  position: relative;
-  overflow: hidden;
-}
 .external-link-btn::before {
   content: '';
   position: absolute;
@@ -715,29 +697,18 @@ section {
   }
 }
 
-.contact-calendly {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: #E9F1F7;
-  border-radius: 14px;
-  box-shadow: 0 2px 14px rgba(59, 177, 230, 0.07);
-  padding: 12px 4px 10px 4px;
-  margin: 0 0 8px 0;
-  min-height: 0;
-}
+
 
 .contact-calendly .btn-home {
-  background: #3BB1E6;
-  color: #fff;
+  background: var(--accent);
+  color: var(--white);
   font-family: 'Montserrat', Arial, sans-serif;
   font-size: 1rem;
   font-weight: 700;
   padding: 10px 24px;
   border: none;
   border-radius: 24px;
-  box-shadow: 0 1px 6px rgba(59,177,230,0.07);
+  box-shadow: 0 1px 6px rgba(var(--accent-rgb), 0.07);
   cursor: pointer;
   transition: background 0.18s, box-shadow 0.18s;
   outline: none;
@@ -746,9 +717,9 @@ section {
 
 .contact-calendly .btn-home:hover,
 .contact-calendly .btn-home:focus {
-  background: #0B2B3C;
-  color: #FFF;
-  box-shadow: 0 3px 10px rgba(11,43,60,0.12);
+  background: var(--primary);
+  color: var(--white);
+  box-shadow: 0 3px 10px rgba(var(--primary-rgb), 0.12);
 }
 
 @media (max-width: 600px) {
