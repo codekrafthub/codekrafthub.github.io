@@ -75,7 +75,7 @@
     <div class="hero-content">
       <img src="static/codekraft_logo.png" alt="CodeKraft logo" width="100" height="100" loading="lazy" >
       <h1>CodeKraft</h1>
-      <p class="tagline">Emprowering India's Tech Talent through <br> Industry-Ready Training & AI Solutions</p>
+      <p class="tagline">Empowering India's Tech Talent through <br> Industry-Ready Training & AI Solutions</p>
       <div class="slider-buttons">
         <button class="slider-btn active" data-target="#services" aria-label="See Our Services">Our Services</button>
         <button class="slider-btn" data-target="#contact" aria-label="Contact Us">Contact Us</button>
@@ -95,7 +95,6 @@
     </p>
   </section>
 
-  <!-- Services -->
   <!-- Services -->
   <section id="services" class="card services-section">
     <h2>Our Services</h2>
@@ -403,15 +402,13 @@
       });
     });
 
-    document.getElementById('closeModal').onclick = function() {
+    function closeProjectModal() {
       document.getElementById('projectModal').style.display = 'none';
       document.body.style.overflow = '';
-    };
+    }
+    document.getElementById('closeModal').onclick = closeProjectModal;
     document.getElementById('projectModal').onclick = function(e) {
-      if (e.target === this) {
-        document.getElementById('projectModal').style.display = 'none';
-        document.body.style.overflow = '';
-      }
+      if (e.target === this) closeProjectModal();
     };
 
     // Smooth scroll for anchors
@@ -435,45 +432,27 @@
       });
     });
 
-    document.getElementById('modalLink').onclick = function(e) {
-  // No preventDefault, no custom logic
-  // This should just follow the href and open in new tab
-    };
 
   document.getElementById('whatsappChatBtn').onclick = function(e) {
       e.preventDefault();
-      
-      // Check if on mobile
+      var phone = "917898378933";
+      var message = encodeURIComponent("Hello, I'm interested in CodeKraft services!");
+      var urlWeb = "https://api.whatsapp.com/send?phone=" + phone + "&text=" + message;
+
       var isMobile = /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop|webOS|BlackBerry|Windows Phone/i.test(navigator.userAgent);
-      
+
       if (isMobile) {
-        // Toggle expanded state on mobile
         if (this.classList.contains('expanded')) {
-          // If already expanded, open WhatsApp
-          var phone = "917898378933";
-          var message = encodeURIComponent("Hello, I'm interested in CodeKraft services!");
-          var urlMobile = "whatsapp://send?phone=" + phone + "&text=" + message;
-          var urlWeb = "https://api.whatsapp.com/send?phone=" + phone + "&text=" + message;
-          window.open(urlMobile, '_blank');
-          
-          // Remove expanded class after opening
-          setTimeout(() => {
-            this.classList.remove('expanded');
-          }, 300);
+          // Already expanded — open WhatsApp deep link
+          window.open("whatsapp://send?phone=" + phone + "&text=" + message, '_blank');
+          setTimeout(() => this.classList.remove('expanded'), 300);
         } else {
-          // First tap: expand to show label
+          // First tap: expand to show label, auto-collapse after 500ms
           this.classList.add('expanded');
-          
-          // Auto-collapse after 3 seconds if not tapped again
-          setTimeout(() => {
-            this.classList.remove('expanded');
-          }, 500);
+          setTimeout(() => this.classList.remove('expanded'), 500);
         }
       } else {
-        // Desktop: open WhatsApp directly
-        var phone = "917898378933";
-        var message = encodeURIComponent("Hello, I'm interested in CodeKraft services!");
-        var urlWeb = "https://api.whatsapp.com/send?phone=" + phone + "&text=" + message;
+        // Desktop: open WhatsApp Web directly
         window.open(urlWeb, '_blank');
       }
     };
@@ -487,9 +466,7 @@
     document.body.appendChild(s);
   };
 
-  document.addEventListener('DOMContentLoaded', function() {
-    // Attach listeners
-  });
+
   </script>
 </body>
 </html>

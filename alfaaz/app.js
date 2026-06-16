@@ -211,8 +211,6 @@ clearInterval(txTimer);
 delete etaBanner.dataset.estimated;
 
 if (data.error) {
-    stopCreep();
-    if (activeEventSource) { activeEventSource.close(); activeEventSource = null; }
     loading.classList.add("hidden");
     cancelBtn.classList.add("hidden");
     etaBanner.classList.add("hidden");
@@ -276,14 +274,10 @@ if (data.processing_time_sec) {
     clearInterval(txTimer);
     delete etaBanner.dataset.estimated;
     if (e.name === "AbortError") {
-        stopCreep();
-        if (activeEventSource) { activeEventSource.close(); activeEventSource = null; }
         progressText.innerText = "Cancelled.";
         etaBanner.classList.add("hidden");
         setTimeout(() => loading.classList.add("hidden"), 800);
     } else {
-        stopCreep();
-        if (activeEventSource) { activeEventSource.close(); activeEventSource = null; }
         loading.classList.add("hidden");
         etaBanner.classList.add("hidden");
         showError(e.message || "Transcription failed. Check your connection and try again.", urlInput.value.trim() || null);
@@ -512,10 +506,10 @@ const copyBtn = document.getElementById("copyBtn");
 const copyTick = document.getElementById("copyTick");
 const exportActions = document.getElementById("exportActions");
 
-document.getElementById("exportTxt").onclick  = () => { window.location.href = "/export/txt"; };
-document.getElementById("exportSrt").onclick  = () => { window.location.href = "/export/srt"; };
-document.getElementById("exportVtt").onclick  = () => { window.location.href = "/export/vtt"; };
-document.getElementById("exportJson").onclick = () => { window.location.href = "/export/json"; };
+["txt", "srt", "vtt", "json"].forEach(fmt => {
+  const id = "export" + fmt[0].toUpperCase() + fmt.slice(1);
+  document.getElementById(id).onclick = () => { window.location.href = "/export/" + fmt; };
+});
 
 copyBtn.onclick = () => {
 
