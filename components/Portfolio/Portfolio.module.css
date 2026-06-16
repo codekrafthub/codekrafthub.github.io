@@ -1,0 +1,224 @@
+.section {
+  background: var(--white);
+  padding: 5rem 1.5rem;
+}
+
+.inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.label {
+  display: block;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+.heading {
+  font-family: var(--header-font);
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 800;
+  color: var(--primary);
+  text-align: center;
+  margin: 0 0 0.5rem;
+}
+
+.sub {
+  text-align: center;
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  margin: 0 0 2.5rem;
+}
+
+/* Cards grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  background: var(--white);
+  border: 1.5px solid rgba(11, 43, 60, 0.08);
+  border-radius: 20px;
+  padding: 1.8rem 1.5rem 1.5rem;
+  cursor: pointer;
+  text-align: left;
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), #7dd3f8);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(59, 177, 230, 0.18);
+  border-color: var(--accent);
+}
+
+.card:hover::before { opacity: 1; }
+
+.cardIcon {
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.cardTitle {
+  font-family: var(--header-font);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 0;
+}
+
+.cardDesc {
+  font-size: 0.88rem;
+  color: #6b7a8a;
+  line-height: 1.55;
+  margin: 0;
+  flex: 1;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.tag {
+  background: rgba(59, 177, 230, 0.1);
+  color: var(--primary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: 50px;
+}
+
+.cardArrow {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  font-size: 1.1rem;
+  color: var(--accent);
+  opacity: 0;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.card:hover .cardArrow {
+  opacity: 1;
+  transform: translate(2px, -2px);
+}
+
+/* Modal */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(11, 43, 60, 0.55);
+  backdrop-filter: blur(6px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  animation: fadeIn 0.25s ease;
+}
+
+.modal {
+  position: relative;
+  background: var(--white);
+  border-radius: 24px;
+  padding: 2.5rem 2rem;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 24px 64px rgba(11, 43, 60, 0.25);
+  animation: scaleIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.closeBtn {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  background: rgba(11, 43, 60, 0.06);
+  border: none;
+  border-radius: 50%;
+  width: 32px; height: 32px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: var(--primary);
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s;
+}
+
+.closeBtn:hover { background: rgba(11, 43, 60, 0.12); }
+
+.modalIcon {
+  color: var(--accent);
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.modalTitle {
+  font-family: var(--header-font);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 0 0 1rem;
+}
+
+.modalIntro {
+  font-size: 0.92rem;
+  color: #5a6a78;
+  line-height: 1.7;
+  margin: 0 0 1.5rem;
+}
+
+.modalCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--accent);
+  color: var(--white);
+  text-decoration: none;
+  padding: 0.75rem 1.8rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
+}
+
+.modalCta:hover {
+  background: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(11, 43, 60, 0.25);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to   { opacity: 1; transform: scale(1); }
+}

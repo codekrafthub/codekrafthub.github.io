@@ -1,0 +1,42 @@
+:root {
+  --primary: #0B2B3C;
+  --primary-rgb: 11, 43, 60;
+  --accent: #3BB1E6;
+  --accent-rgb: 59, 177, 230;
+  --accent-dark: #2a9ccf;
+  --white: #ffffff;
+  --light: #f7fafd;
+  
+  --body-font: 'Inter', sans-serif;
+  --header-font: 'Montserrat', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--body-font);
+  background-color: var(--white);
+  color: var(--primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Scroll reveal utility */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}

@@ -1,0 +1,185 @@
+.section {
+  background: var(--light);
+  padding: 5rem 1.5rem;
+}
+
+.inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+.heading {
+  font-family: var(--header-font);
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 800;
+  color: var(--primary);
+  margin: 0 0 0.75rem;
+}
+
+.sub {
+  color: #6b7a8a;
+  font-size: 1rem;
+  line-height: 1.7;
+  max-width: 500px;
+  margin: 0 auto 3rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  text-align: left;
+}
+
+/* Info card */
+.infoCard {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(11, 43, 60, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.infoItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.infoIcon {
+  color: var(--accent);
+  margin-top: 2px;
+  display: flex;
+}
+
+.infoLabel {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #8a9aaa;
+  margin-bottom: 3px;
+}
+
+.infoLink {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.97rem;
+  transition: color 0.2s;
+}
+
+.infoLink:hover { color: var(--accent); }
+
+.quickActions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: auto;
+  padding-top: 0.5rem;
+}
+
+.actionBtn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 1rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  background: var(--accent);
+  color: var(--white);
+  transition: background 0.2s, transform 0.2s;
+}
+
+.actionBtn:hover { background: var(--primary); transform: translateY(-2px); }
+
+.actionBtn.outline {
+  background: transparent;
+  color: var(--primary);
+  border: 1.5px solid rgba(11, 43, 60, 0.2);
+}
+
+.actionBtn.outline:hover {
+  background: rgba(11, 43, 60, 0.06);
+  border-color: var(--primary);
+}
+
+/* Calendly card */
+.calendlyCard {
+  background: var(--white);
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(11, 43, 60, 0.08);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+}
+
+.calendlyPlaceholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2.5rem 2rem;
+  gap: 0.75rem;
+}
+
+.calIcon { 
+  color: var(--accent); 
+  display: flex;
+}
+
+.calHeading {
+  font-family: var(--header-font);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 0;
+}
+
+.calSub {
+  font-size: 0.9rem;
+  color: #6b7a8a;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.calBtn {
+  margin-top: 0.5rem;
+  padding: 0.75rem 2rem;
+  background: var(--accent);
+  color: var(--white);
+  border: none;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.97rem;
+  cursor: pointer;
+  font-family: var(--header-font);
+  transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
+}
+
+.calBtn:hover {
+  background: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(11, 43, 60, 0.2);
+}
+
+@media (max-width: 768px) {
+  .grid { grid-template-columns: 1fr; }
+}

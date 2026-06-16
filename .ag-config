@@ -1,0 +1,22 @@
+{
+  "agent": {
+    "mode": "file-modifier",
+    "max_iterations_per_task": 5,
+    "prevent_full_file_rewrites": true,
+    "diff_matching_only": true
+  },
+  "models": {
+    "default": "claude-sonnet-4.6-thinking",
+    "fallback": "gemini-3.5-flash-medium",
+    "switch_on_quota_low": true,
+    "quota_threshold_percent": 15
+  },
+  "context": {
+    "exclude_patterns": [
+      "**/node_modules/**",
+      "**/.git/**",
+      "**/assets/large-images/**"
+    ],
+    "max_file_read_size_kb": 50
+  }
+}
