@@ -25,8 +25,8 @@ export default function Hero({ onProgramsClick, onContactClick }: HeroProps) {
           <Image
             src="/ck_caet_logo.jpg"
             alt="CK-CAET Logo"
-            width={130}
-            height={130}
+            width={160}
+            height={160}
             className={styles.logoImg}
             priority
           />

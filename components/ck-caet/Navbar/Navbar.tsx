@@ -41,9 +41,6 @@ export default function Navbar() {
   return (
     <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`} aria-label="CAET navigation">
       <a href="#home" className={styles.logo} onClick={(e) => smoothScroll(e, '#home')}>
-        <div className={styles.logoWrapper}>
-          <Image src="/ck_caet_logo.jpg" alt="CK-CAET Logo" width={38} height={38} className={styles.logoImg} />
-        </div>
         <div className={styles.logoText}>
           <span className={styles.brandName}>CK-CAET</span>
           <span className={styles.brandSubName}>Centre for AI &amp; Emerging Tech</span>
