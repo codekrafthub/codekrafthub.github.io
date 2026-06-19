@@ -80,13 +80,25 @@
 }
 
 /* Logo */
-.logo {
-  border-radius: 24px;
+.logoWrapper {
+  width: 134px;
+  height: 134px;
+  padding: 3px;
+  background: linear-gradient(135deg, #0088ff, #7dd3f8);
+  clip-path: polygon(50% 0%, 100% 12%, 100% 75%, 50% 100%, 0% 75%, 0% 12%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 1.5rem;
-  border: 2px solid rgba(0, 136, 255, 0.3);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 16px rgba(0, 136, 255, 0.15);
   animation: fadeDown 0.7s 0.1s ease both;
+}
+
+.logoImg {
+  width: 128px;
+  height: 128px;
+  clip-path: polygon(50% 0%, 100% 12%, 100% 75%, 50% 100%, 0% 75%, 0% 12%);
   background: white;
+  object-fit: cover;
 }
 
 /* Title */

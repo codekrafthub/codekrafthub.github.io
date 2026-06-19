@@ -41,3 +41,15 @@
   font-size: 0.8rem;
   margin: 0;
 }
+
+.foundationLink {
+  color: #0088ff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.foundationLink:hover {
+  color: #40a5ff;
+  text-decoration: underline;
+}

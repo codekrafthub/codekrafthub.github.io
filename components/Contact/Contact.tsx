@@ -62,21 +62,6 @@ export default function Contact() {
               </div>
             </div>
 
-            <div className={styles.infoItem}>
-              <span className={styles.infoIcon}><Camera size={24} strokeWidth={1.5} /></span>
-              <div>
-                <div className={styles.infoLabel}>Instagram</div>
-                <a
-                  href="https://instagram.com/codekrafthub"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.infoLink}
-                >
-                  @codekrafthub
-                </a>
-              </div>
-            </div>
-
             <div className={styles.quickActions}>
               <a href="mailto:codekraft.hub@gmail.com" className={styles.actionBtn}>
                 Send Email

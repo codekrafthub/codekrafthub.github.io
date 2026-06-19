@@ -8,8 +8,16 @@ export default function Footer() {
           <strong>CodeKraft Centre for AI And Emerging Technologies</strong>
         </p>
         <p className={styles.affiliation}>
-          Established within the Education and Skill Development Framework of the H.D. Schaefer Memorial Foundation,  
-          a Section 8 Company under the Companies Act, 2013, Govt. of India.
+          Established within the Education and Skill Development Framework of the{' '}
+          <a
+            href="https://hdschaefer-foundation.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.foundationLink}
+          >
+            H.D. Schaefer Memorial Foundation
+          </a>
+          , a Section 8 Company under the Companies Act, 2013, Govt. of India.
         </p>
         <div className={styles.divider} />
         <p className={styles.copyright}>

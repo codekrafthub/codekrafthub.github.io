@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import Navbar from '@/components/ck-caet/Navbar/Navbar';
 import Hero from '@/components/ck-caet/Hero/Hero';
 import About from '@/components/ck-caet/About/About';
@@ -13,6 +14,15 @@ export default function CKCAETPage() {
   const aboutRef = useScrollReveal();
   const programsRef = useScrollReveal();
   const contactRef = useScrollReveal();
+
+  useEffect(() => {
+    // Prevent white background flash/leak during scroll reveal on dark page
+    const originalBg = document.body.style.backgroundColor;
+    document.body.style.backgroundColor = '#080b11';
+    return () => {
+      document.body.style.backgroundColor = originalBg;
+    };
+  }, []);
 
   function scrollToSection(id: string) {
     document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });

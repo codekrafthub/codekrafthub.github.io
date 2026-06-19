@@ -30,9 +30,21 @@
   text-decoration: none;
 }
 
+.logoWrapper {
+  width: 42px;
+  height: 42px;
+  padding: 1.5px;
+  background: linear-gradient(135deg, #0088ff, #7dd3f8);
+  clip-path: polygon(50% 0%, 100% 12%, 100% 75%, 50% 100%, 0% 75%, 0% 12%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .logoImg {
-  border-radius: 8px;
-  border: 1px solid rgba(0, 136, 255, 0.25);
+  width: 39px;
+  height: 39px;
+  clip-path: polygon(50% 0%, 100% 12%, 100% 75%, 50% 100%, 0% 75%, 0% 12%);
   object-fit: cover;
   background: white;
 }

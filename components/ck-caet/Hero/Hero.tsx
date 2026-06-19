@@ -21,14 +21,16 @@ export default function Hero({ onProgramsClick, onContactClick }: HeroProps) {
           In Association with H.D. Schaefer Memorial Foundation
         </div>
 
-        <Image
-          src="/ck_caet_logo.jpg"
-          alt="CK-CAET Logo"
-          width={130}
-          height={130}
-          className={styles.logo}
-          priority
-        />
+        <div className={styles.logoWrapper}>
+          <Image
+            src="/ck_caet_logo.jpg"
+            alt="CK-CAET Logo"
+            width={130}
+            height={130}
+            className={styles.logoImg}
+            priority
+          />
+        </div>
 
         <h1 className={styles.title}>
           CodeKraft <br />

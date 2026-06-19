@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 import styles from './Hero.module.css';
 
 interface HeroProps {
@@ -18,12 +17,10 @@ export default function Hero({ onServicesClick, onContactClick }: HeroProps) {
       <div className={styles.grid} aria-hidden />
 
       <div className={styles.content}>
-        <Link href="/ck-caet" className={styles.badgeLink}>
-          <div className={styles.badge}>
-            <span className={styles.dot} />
-            Academic Training &amp; Placements? Visit CK-CAET &rarr;
-          </div>
-        </Link>
+        <div className={styles.badge}>
+          <span className={styles.dot} />
+          Empowering India&apos;s Next Generation
+        </div>
 
         <Image
           src="/codekraft_logo_white.png"
