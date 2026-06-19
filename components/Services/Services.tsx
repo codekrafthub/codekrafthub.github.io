@@ -110,7 +110,7 @@ export default function Services() {
         <div className={styles.label}>What We Offer</div>
         <h2 className={styles.heading}>Our Services</h2>
         <p className={styles.sub}>
-          Two worlds, one mission — training India&apos;s talent and powering India&apos;s businesses.
+          Two worlds, one mission - training India&apos;s talent and powering India&apos;s businesses.
         </p>
         <div className={styles.panels}>
           {PANELS.map((panel) => (

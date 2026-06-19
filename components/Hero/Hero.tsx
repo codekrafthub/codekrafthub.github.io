@@ -36,7 +36,6 @@ export default function Hero({ onServicesClick, onContactClick }: HeroProps) {
         </h1>
 
         <p className={styles.tagline}>
-          Where code becomes craft and dreams become reality.<br />
           AI solutions &amp; industry-ready training for India&apos;s tech talent.
         </p>
 
@@ -53,7 +52,7 @@ export default function Hero({ onServicesClick, onContactClick }: HeroProps) {
           {[
             { value: '500+', label: 'Students Trained' },
             { value: '20+', label: 'AI Projects' },
-            { value: '5+', label: 'Years of Impact' },
+            { value: '12+', label: 'Years Experience' },
           ].map(({ value, label }) => (
             <div key={label} className={styles.stat}>
               <span className={styles.statValue}>{value}</span>

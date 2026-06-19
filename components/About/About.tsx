@@ -18,7 +18,7 @@ export default function About() {
         </h2>
         <p className={styles.body}>
           That&apos;s what we do at CodeKraft. Our AI and automation solutions help businesses
-          embrace digital transformation — while our academic programs deliver internships,
+          embrace digital transformation - while our academic programs deliver internships,
           live projects, and placement-focused training to create industry-ready talent.
           Together, we enable businesses to grow and students to thrive.
         </p>
