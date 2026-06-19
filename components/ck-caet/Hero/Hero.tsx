@@ -17,16 +17,12 @@ export default function Hero({ onProgramsClick, onContactClick }: HeroProps) {
       <div className={styles.grid} aria-hidden />
 
       <div className={styles.content}>
-        <div className={styles.foundationBadge}>
-          In Association with H.D. Schaefer Memorial Foundation
-        </div>
-
         <div className={styles.logoWrapper}>
           <Image
             src="/ck_caet_logo.jpg"
             alt="CK-CAET Logo"
-            width={160}
-            height={160}
+            width={120}
+            height={120}
             className={styles.logoImg}
             priority
           />
