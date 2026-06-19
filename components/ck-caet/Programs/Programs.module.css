@@ -1,5 +1,5 @@
 .section {
-  background: var(--light);
+  background: #080b11;
   padding: 6rem 1.5rem;
 }
 
@@ -15,7 +15,7 @@
   font-weight: 700;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: var(--accent);
+  color: #0088ff;
   margin-bottom: 0.75rem;
 }
 
@@ -23,20 +23,20 @@
   font-family: var(--header-font);
   font-size: clamp(1.8rem, 4vw, 2.6rem);
   font-weight: 800;
-  color: var(--primary);
+  color: #ffffff;
   text-align: center;
   margin: 0 0 0.5rem;
 }
 
 .sub {
   text-align: center;
-  color: #6b7a8a;
+  color: rgba(255, 255, 255, 0.6);
   font-size: 1.1rem;
   margin: 0 auto 3.5rem;
-  max-width: 580px;
+  max-width: 600px;
 }
 
-.panels {
+.grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2.25rem;
@@ -44,11 +44,10 @@
 
 /* Card */
 .card {
-  background: var(--white);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 20px;
-  box-shadow: 0 4px 20px rgba(11, 43, 60, 0.05);
   padding: 2.5rem 2rem;
-  border: 1px solid rgba(59, 177, 230, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   display: flex;
   flex-direction: column;
@@ -57,34 +56,35 @@
 
 .card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 12px 30px rgba(11, 43, 60, 0.1);
-  border-color: rgba(59, 177, 230, 0.35);
+  box-shadow: 0 12px 30px rgba(0, 136, 255, 0.15);
+  border-color: rgba(0, 136, 255, 0.35);
 }
 
 .cardIconWrapper {
-  background: rgba(59, 177, 230, 0.08);
+  background: rgba(0, 136, 255, 0.08);
   border-radius: 14px;
   padding: 0.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 1.5rem;
+  border: 1px solid rgba(0, 136, 255, 0.15);
 }
 
 .cardIcon {
-  color: var(--accent);
+  color: #0088ff;
 }
 
 .cardTitle {
   font-family: var(--header-font);
   font-size: 1.35rem;
   font-weight: 700;
-  color: var(--primary);
+  color: #ffffff;
   margin-bottom: 1rem;
 }
 
 .cardDesc {
-  color: #5a6a78;
+  color: rgba(255, 255, 255, 0.7);
   font-size: 0.95rem;
   line-height: 1.65;
   margin-bottom: 1.75rem;
@@ -106,14 +106,14 @@
   align-items: center;
   gap: 10px;
   font-size: 0.9rem;
-  color: var(--primary);
+  color: rgba(255, 255, 255, 0.85);
   font-weight: 500;
 }
 
 .bulletDot {
   width: 6px;
   height: 6px;
-  background: var(--accent);
+  background: #0088ff;
   border-radius: 50%;
   flex-shrink: 0;
 }

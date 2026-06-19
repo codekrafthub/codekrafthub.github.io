@@ -1,0 +1,157 @@
+.section {
+  background: #0d111b;
+  padding: 6rem 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.inner {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.label {
+  display: block;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #0088ff;
+  margin-bottom: 0.75rem;
+}
+
+.headline {
+  font-family: var(--header-font);
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 800;
+  color: #ffffff;
+  text-align: center;
+  margin: 0 0 1.5rem;
+  line-height: 1.25;
+}
+
+.gradient {
+  background: linear-gradient(90deg, #0088ff, #7dd3f8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.body {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  max-width: 800px;
+  margin: 0 auto 3.5rem;
+}
+
+/* Foundation Card */
+.foundationCard {
+  background: rgba(0, 136, 255, 0.04);
+  border: 1px solid rgba(0, 136, 255, 0.18);
+  border-radius: 20px;
+  padding: 2.25rem 2rem;
+  max-width: 800px;
+  margin: 0 auto 4rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.foundationHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+.infoIcon {
+  color: #0088ff;
+}
+
+.foundationHeader h3 {
+  font-family: var(--header-font);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+.foundationBody {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 1.5rem;
+}
+
+.foundationLink {
+  color: #0088ff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.foundationLink:hover {
+  color: #40a5ff;
+  transform: translateX(3px);
+}
+
+/* Pillars grid */
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.pillar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+}
+
+.pillar:hover {
+  transform: translateY(-5px);
+  border-color: rgba(0, 136, 255, 0.25);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.pillarIcon {
+  color: #0088ff;
+  margin-bottom: 1.25rem;
+  background: rgba(0, 136, 255, 0.08);
+  border-radius: 12px;
+  padding: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pillarTitle {
+  font-family: var(--header-font);
+  font-size: 1.15rem;
+  color: #ffffff;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.pillarDesc {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .section { padding: 4rem 1.5rem; }
+  .foundationCard { padding: 1.75rem 1.25rem; }
+}

@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import styles from './Hero.module.css';
 
 interface HeroProps {
@@ -17,10 +18,12 @@ export default function Hero({ onServicesClick, onContactClick }: HeroProps) {
       <div className={styles.grid} aria-hidden />
 
       <div className={styles.content}>
-        <div className={styles.badge}>
-          <span className={styles.dot} />
-          Empowering India&apos;s Next Generation
-        </div>
+        <Link href="/ck-caet" className={styles.badgeLink}>
+          <div className={styles.badge}>
+            <span className={styles.dot} />
+            Academic Training &amp; Placements? Visit CK-CAET &rarr;
+          </div>
+        </Link>
 
         <Image
           src="/codekraft_logo_white.png"
@@ -36,7 +39,7 @@ export default function Hero({ onServicesClick, onContactClick }: HeroProps) {
         </h1>
 
         <p className={styles.tagline}>
-          AI solutions &amp; industry-ready training for India&apos;s tech talent.
+          Tailored AI systems, business automation, and high-performance software solutions.
         </p>
 
         <div className={styles.ctas}>
@@ -50,8 +53,8 @@ export default function Hero({ onServicesClick, onContactClick }: HeroProps) {
 
         <div className={styles.stats}>
           {[
-            { value: '500+', label: 'Students Trained' },
             { value: '20+', label: 'AI Projects' },
+            { value: '99%', label: 'Automation Gain' },
             { value: '12+', label: 'Years Experience' },
           ].map(({ value, label }) => (
             <div key={label} className={styles.stat}>

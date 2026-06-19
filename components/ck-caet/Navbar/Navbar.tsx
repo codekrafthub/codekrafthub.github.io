@@ -2,15 +2,14 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import styles from './Navbar.module.css';
 
 const navLinks = [
-  { href: '#home',      label: 'Home' },
-  { href: '#about',     label: 'Who We Are' },
-  { href: '#services',  label: 'Services' },
-  { href: '#portfolio', label: 'Portfolio' },
-  { href: '/ck-caet',   label: 'Academic (CK-CAET)' },
-  { href: '#contact',   label: 'Contact', cta: true },
+  { href: '#home',      label: 'CAET Home' },
+  { href: '#caet-about',     label: 'About CAET' },
+  { href: '#caet-programs',  label: 'Programs' },
+  { href: '#caet-contact',   label: 'Contact' },
 ];
 
 export default function Navbar() {
@@ -28,17 +27,25 @@ export default function Navbar() {
     if (href.startsWith('#')) {
       e.preventDefault();
       setMenuOpen(false);
-      document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+      
+      const targetId = href === '#home' ? 'home' : href.substring(1);
+      const target = document.getElementById(targetId);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
     } else {
       setMenuOpen(false);
     }
   }
 
   return (
-    <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`} aria-label="Primary navigation">
+    <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`} aria-label="CAET navigation">
       <a href="#home" className={styles.logo} onClick={(e) => smoothScroll(e, '#home')}>
-        <Image src="/codekraft_logo_white.png" alt="" aria-hidden width={36} height={36} />
-        <span>CodeKraft</span>
+        <Image src="/ck_caet_logo.jpg" alt="CK-CAET Logo" width={38} height={38} className={styles.logoImg} />
+        <div className={styles.logoText}>
+          <span className={styles.brandName}>CK-CAET</span>
+          <span className={styles.brandSubName}>Centre for AI &amp; Emerging Tech</span>
+        </div>
       </a>
 
       <button
@@ -51,17 +58,21 @@ export default function Navbar() {
       </button>
 
       <ul ref={menuRef} className={`${styles.links} ${menuOpen ? styles.show : ''}`}>
-        {navLinks.map(({ href, label, cta }) => (
+        {navLinks.map(({ href, label }) => (
           <li key={href}>
             <a
               href={href}
-              className={cta ? styles.ctaLink : ''}
               onClick={(e) => smoothScroll(e, href)}
             >
               {label}
             </a>
           </li>
         ))}
+        <li>
+          <Link href="/" className={styles.ctaLink}>
+            IT Services &rarr;
+          </Link>
+        </li>
       </ul>
     </nav>
   );
