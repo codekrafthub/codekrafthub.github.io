@@ -33,11 +33,6 @@ export default function Hero({ onProgramsClick, onContactClick }: HeroProps) {
           <span className={styles.accent}>Centre for AI &amp; Emerging Technologies</span>
         </h1>
 
-        <p className={styles.affiliation}>
-          Established within the Education and Skill Development Framework of H.D. Schaefer Memorial Foundation  
-          <span className={styles.block}>(A Registered Section 8 Company under the Companies Act, 2013)</span>
-        </p>
-
         <p className={styles.tagline}>
           Empowering the next generation of engineers with placement-focused training, hands-on internships, and live industrial software projects.
         </p>
