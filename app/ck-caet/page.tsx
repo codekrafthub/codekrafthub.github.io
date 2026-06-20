@@ -19,8 +19,14 @@ export default function CKCAETPage() {
     // Prevent white background flash/leak during scroll reveal on dark page
     const originalBg = document.body.style.backgroundColor;
     document.body.style.backgroundColor = '#080b11';
+
+    // Set color scheme to only dark for this page to prevent system force-light/dark overrides
+    const originalColorScheme = document.documentElement.style.colorScheme;
+    document.documentElement.style.colorScheme = 'only dark';
+
     return () => {
       document.body.style.backgroundColor = originalBg;
+      document.documentElement.style.colorScheme = originalColorScheme;
     };
   }, []);
 

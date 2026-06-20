@@ -19,7 +19,7 @@ export default function Hero({ onProgramsClick, onContactClick }: HeroProps) {
       <div className={styles.content}>
         <div className={styles.logoWrapper}>
           <Image
-            src="/ck_caet_logo.jpg"
+            src="/ck_caet_logo.png"
             alt="CK-CAET Logo"
             width={120}
             height={120}

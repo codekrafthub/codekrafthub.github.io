@@ -12,36 +12,36 @@ interface ProgramItem {
 
 const PROGRAMS: ProgramItem[] = [
   {
-    title: 'Technical Training',
+    title: 'Vocational & Tech Training',
     icon: <Laptop size={36} strokeWidth={1.5} className={styles.cardIcon} />,
-    description: 'Master core coding languages and analytical methodologies through hands-on lab sessions and building practical applications.',
+    description: 'Master core job-oriented coding languages and systems architecture through hands-on practical lab sessions and direct exercises.',
     items: [
-      'Python, C, C++, & Advanced Excel',
-      'Data Science & Visualization',
-      'Backend & Task Automation',
-      'Responsive Web Development',
+      'Python, C, C++, & Systems Coding',
+      'Data Science & Predictive Analytics',
+      'Full-Stack Web Development',
+      'Automated Scripting & Office Tools',
     ],
   },
   {
-    title: 'Career Readiness',
-    icon: <GraduationCap size={36} strokeWidth={1.5} className={styles.cardIcon} />,
-    description: 'We structure individual career pipelines. From technical review to communication skills, we prepare you for corporate placement.',
-    items: [
-      'Mock Technical & HR Interviews',
-      'Resume & LinkedIn Optimization',
-      'Corporate Soft Skills & Grooming',
-      'Higher Education & Study Abroad Help',
-    ],
-  },
-  {
-    title: 'Industry Exposure',
+    title: 'Corporate Internships',
     icon: <Compass size={36} strokeWidth={1.5} className={styles.cardIcon} />,
-    description: 'Bridging the university-industry divide with active collaborative programs and real enterprise coding sandbox environments.',
+    description: 'Gain real-world experience. Build industrial software on production codebases, write clean pull-requests, and deploy live apps.',
     items: [
-      'Live Industry Coding Sandbox',
-      'Corporate Internship Opportunities',
-      'Hackathons & Deep-Dive Bootcamps',
-      'Expert Seminars & Tech Talks',
+      '3-6 Months Structured Internships',
+      'Collaborative Git & Agile Workflows',
+      'Live Enterprise Client Projects',
+      'Daily Mentoring from Tech Leads',
+    ],
+  },
+  {
+    title: 'Placement & Career Prep',
+    icon: <GraduationCap size={36} strokeWidth={1.5} className={styles.cardIcon} />,
+    description: 'We structure your path to top tech companies. From mock interviews to communication skills, we prepare you for corporate hires.',
+    items: [
+      'Mock Technical & HR Panels',
+      'Resume & LinkedIn Professional Styling',
+      'Corporate Soft Skills & Communication',
+      'Direct Recruitment Opportunities',
     ],
   },
 ];

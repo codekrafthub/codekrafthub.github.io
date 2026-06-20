@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import Navbar from '@/components/Navbar/Navbar';
 import Hero from '@/components/Hero/Hero';
 import About from '@/components/About/About';
@@ -15,6 +16,15 @@ export default function Home() {
   const servicesRef = useScrollReveal();
   const portfolioRef = useScrollReveal();
   const contactRef = useScrollReveal();
+
+  useEffect(() => {
+    // Prevent forced mobile system dark themes from breaking text gradients/colors
+    const originalColorScheme = document.documentElement.style.colorScheme;
+    document.documentElement.style.colorScheme = 'only light';
+    return () => {
+      document.documentElement.style.colorScheme = originalColorScheme;
+    };
+  }, []);
 
   function scrollToSection(id: string) {
     document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });
