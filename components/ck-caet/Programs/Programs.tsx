@@ -16,7 +16,7 @@ interface ProgramItem {
 const PROGRAMS: ProgramItem[] = [
   {
     title: 'Vocational & Tech Training',
-    duration: 'Duration: 6 Months',
+    duration: 'Duration: 1 to 6 Months',
     icon: <Laptop size={30} strokeWidth={1.5} className={styles.cardIcon} />,
     description: 'Master core job-oriented coding languages and systems architecture through hands-on practical lab sessions and direct exercises.',
     items: [
