@@ -1,7 +1,7 @@
 .section {
-  background: #0d111b;
+  background: #0f172a;
   padding: 6rem 1.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid rgba(0, 136, 255, 0.2);
 }
 
 .inner {
@@ -9,93 +9,114 @@
   margin: 0 auto;
 }
 
-.label {
+/* Label */
+.labelRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 0.9rem;
+}
+
+.labelBar {
   display: block;
-  text-align: center;
-  font-size: 0.75rem;
+  width: 28px;
+  height: 2px;
+  background: #0088ff;
+  flex-shrink: 0;
+}
+
+.label {
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 1.5px;
+  letter-spacing: 1.8px;
   text-transform: uppercase;
-  color: #0088ff;
-  margin-bottom: 0.75rem;
+  color: #38b6ff;
 }
 
 .heading {
   font-family: var(--header-font);
-  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-size: clamp(1.7rem, 3.6vw, 2.45rem);
   font-weight: 800;
   color: #ffffff;
-  text-align: center;
   margin: 0 0 0.5rem;
 }
 
 .sub {
-  text-align: center;
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 1.05rem;
-  margin: 0 auto 3.5rem;
-  max-width: 580px;
+  color: #94a3b8;
+  font-size: 1rem;
+  margin: 0 0 3rem;
+  max-width: 600px;
+  line-height: 1.65;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2.5rem;
+  gap: 2rem;
 }
 
 /* Contact Info Card */
 .infoCard {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 24px;
-  padding: 2.5rem 2rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-left: 3px solid #0088ff;
+  border-radius: 2px;
+  padding: 2rem 1.75rem;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.1rem;
 }
 
 .infoItem {
   display: flex;
   align-items: flex-start;
-  gap: 15px;
+  gap: 12px;
 }
 
 .infoIcon {
-  color: #0088ff;
-  background: rgba(0, 136, 255, 0.08);
-  border-radius: 12px;
-  padding: 0.5rem;
+  color: #38b6ff;
+  background: rgba(0, 136, 255, 0.1);
+  border: 1px solid rgba(0, 136, 255, 0.2);
+  border-radius: 6px;
+  padding: 0.42rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(0, 136, 255, 0.15);
+  flex-shrink: 0;
 }
 
 .infoLabel {
-  font-size: 0.76rem;
+  font-size: 0.65rem;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 0.9px;
+  color: #64748b;
   font-weight: 700;
   margin-bottom: 2px;
+  font-family: monospace;
 }
 
 .infoLink {
-  color: #ffffff;
-  font-size: 1.05rem;
+  color: #e2e8f0;
+  font-size: 0.93rem;
   font-weight: 600;
   text-decoration: none;
-  transition: color 0.2s;
+  transition: color 0.18s;
 }
 
 .infoLink:hover {
-  color: #0088ff;
+  color: #38b6ff;
+}
+
+.infoText {
+  color: #e2e8f0;
+  font-size: 0.93rem;
+  font-weight: 600;
 }
 
 .quickActions {
   display: flex;
-  gap: 12px;
-  margin-top: 1rem;
+  gap: 10px;
+  margin-top: 0.5rem;
 }
 
 .actionBtn {
@@ -106,40 +127,45 @@
   background: #0088ff;
   color: #ffffff;
   text-decoration: none;
-  padding: 0.75rem 1.25rem;
-  border-radius: 50px;
-  font-size: 0.9rem;
+  padding: 0.7rem 1rem;
+  font-size: 0.875rem;
   font-weight: 700;
-  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  transition: background 0.2s, transform 0.2s, filter 0.2s;
   text-align: center;
+  clip-path: polygon(0 0, 100% 0, 100% 68%, 91% 100%, 0 100%);
+  filter: drop-shadow(0 2px 8px rgba(0, 136, 255, 0.28));
 }
 
 .actionBtn:hover {
-  background: #2ea2ff;
+  background: #0070d4;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 136, 255, 0.3);
+  filter: drop-shadow(0 4px 12px rgba(0, 136, 255, 0.42));
 }
 
 .actionBtn.outline {
-  background: transparent;
-  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+  color: #e2e8f0;
+  clip-path: none;
+  filter: none;
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
 }
 
 .actionBtn.outline:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: #0088ff;
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(0, 136, 255, 0.4);
+  color: #ffffff;
 }
 
 /* Calendly Card */
 .calendlyCard {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 24px;
-  padding: 2.5rem 2rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  padding: 2rem 1.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 380px;
+  min-height: 360px;
 }
 
 .calendlyPlaceholder {
@@ -147,57 +173,72 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  max-width: 320px;
+  max-width: 300px;
+}
+
+.calTag {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #38b6ff;
+  font-family: monospace;
+  background: rgba(0, 136, 255, 0.1);
+  border: 1px solid rgba(0, 136, 255, 0.2);
+  border-radius: 50px;
+  padding: 0.25rem 0.75rem;
+  margin-bottom: 1.25rem;
 }
 
 .calIcon {
-  color: #0088ff;
-  background: rgba(0, 136, 255, 0.08);
-  border-radius: 50%;
-  padding: 1rem;
+  color: #38b6ff;
+  background: rgba(0, 136, 255, 0.1);
+  border: 1px solid rgba(0, 136, 255, 0.2);
+  border-radius: 6px;
+  padding: 0.75rem;
   display: flex;
   align-items: center;
-  margin-bottom: 1.5rem;
-  border: 1px solid rgba(0, 136, 255, 0.15);
+  margin-bottom: 1.25rem;
 }
 
 .calHeading {
   font-family: var(--header-font);
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   font-weight: 800;
   color: #ffffff;
   margin-bottom: 0.5rem;
 }
 
 .calSub {
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.875rem;
+  color: #94a3b8;
   line-height: 1.6;
-  margin-bottom: 1.75rem;
+  margin-bottom: 1.5rem;
 }
 
 .calBtn {
   background: #0088ff;
   color: #ffffff;
   border: none;
-  padding: 0.75rem 2rem;
-  border-radius: 50px;
-  font-size: 0.95rem;
+  padding: 0.72rem 1.75rem;
+  font-size: 0.9rem;
   font-weight: 700;
   cursor: pointer;
-  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 4px 16px rgba(0, 136, 255, 0.35);
+  transition: background 0.2s, transform 0.2s, filter 0.2s;
   font-family: var(--header-font);
+  clip-path: polygon(0 0, 100% 0, 100% 68%, 91% 100%, 0 100%);
+  filter: drop-shadow(0 3px 10px rgba(0, 136, 255, 0.3));
 }
 
 .calBtn:hover {
-  background: #2ea2ff;
+  background: #0070d4;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 136, 255, 0.55);
+  filter: drop-shadow(0 5px 16px rgba(0, 136, 255, 0.45));
 }
 
 @media (max-width: 768px) {
-  .section { padding: 4rem 1.5rem; }
-  .grid { gap: 2rem; }
-  .infoCard, .calendlyCard { padding: 2rem 1.5rem; }
+  .section { padding: 4rem 1.25rem; }
+  .grid { gap: 1.5rem; }
+  .infoCard, .calendlyCard { padding: 1.75rem 1.25rem; }
+  .quickActions { flex-direction: column; }
 }

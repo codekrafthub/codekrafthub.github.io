@@ -1,0 +1,74 @@
+/* ===== DARK TRUST BAND ===== */
+/* Sits between Hero and About — provides contrast and breaks visual monotony */
+.trustBand {
+  background: #0f172a;
+  padding: 2.5rem 2rem;
+  border-top: 1px solid rgba(0, 136, 255, 0.2);
+  border-bottom: 1px solid rgba(0, 136, 255, 0.12);
+}
+
+.trustInner {
+  max-width: 1060px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.trustItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  min-width: 120px;
+  position: relative;
+}
+
+.trustDivider {
+  position: absolute;
+  left: -0.75rem;
+  top: 10%;
+  height: 80%;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.trustValue {
+  font-family: var(--header-font);
+  font-size: 2rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.trustLabel {
+  font-size: 0.7rem;
+  color: rgba(0, 136, 255, 0.85);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  text-align: center;
+}
+
+@media (max-width: 680px) {
+  .trustInner {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  .trustItem {
+    min-width: unset;
+  }
+
+  .trustDivider {
+    display: none;
+  }
+
+  .trustValue {
+    font-size: 1.6rem;
+  }
+}

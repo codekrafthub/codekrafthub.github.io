@@ -1,137 +1,190 @@
 .section {
-  background: #0d111b;
+  background: #f8fafc;
   padding: 6rem 1.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid #edf0f5;
 }
 
 .inner {
-  max-width: 1000px;
+  max-width: 1060px;
   margin: 0 auto;
 }
 
-.label {
+/* Label row */
+.labelRow,
+.pillarsHeading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 0.9rem;
+}
+
+.pillarsHeading {
+  margin-top: 4rem;
+  margin-bottom: 1.5rem;
+}
+
+.labelBar {
   display: block;
-  text-align: center;
-  font-size: 0.75rem;
+  width: 28px;
+  height: 2px;
+  background: #0088ff;
+  flex-shrink: 0;
+}
+
+.label {
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 1.5px;
+  letter-spacing: 1.8px;
   text-transform: uppercase;
   color: #0088ff;
-  margin-bottom: 0.75rem;
 }
 
 .headline {
   font-family: var(--header-font);
-  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-size: clamp(1.7rem, 3.6vw, 2.45rem);
   font-weight: 800;
-  color: #ffffff;
-  text-align: center;
-  margin: 0 0 1.5rem;
-  line-height: 1.25;
+  color: #0f172a;
+  margin: 0 0 1.25rem;
+  line-height: 1.22;
+  max-width: 680px;
 }
 
 .gradient {
-  background: linear-gradient(90deg, #0088ff, #7dd3f8);
+  background: linear-gradient(90deg, #0088ff, #38b6ff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .body {
-  text-align: center;
-  color: rgba(255, 255, 255, 0.75);
-  font-size: 1.05rem;
-  line-height: 1.7;
-  max-width: 800px;
-  margin: 0 auto 3.5rem;
+  color: #64748b;
+  font-size: 1rem;
+  line-height: 1.72;
+  max-width: 760px;
+  margin: 0 0 3rem;
 }
 
-/* Foundation Card */
-.foundationCard {
-  background: rgba(0, 136, 255, 0.04);
-  border: 1px solid rgba(0, 136, 255, 0.18);
-  border-radius: 20px;
-  padding: 2.25rem 2rem;
-  max-width: 800px;
-  margin: 0 auto 4rem;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.foundationHeader {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 1rem;
-}
-
-.infoIcon {
-  color: #0088ff;
-}
-
-.foundationHeader h3 {
-  font-family: var(--header-font);
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: #ffffff;
-  margin: 0;
-}
-
-.foundationBody {
-  font-size: 0.95rem;
-  line-height: 1.65;
-  color: rgba(255, 255, 255, 0.7);
+/* ===== CREDENTIAL GRID ===== */
+.credGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
   margin-bottom: 1.5rem;
 }
 
-.foundationLink {
+/* Outer wrapper creates visible border on clip-path shape */
+.credOuter {
+  background: rgba(0, 136, 255, 0.22);
+  clip-path: polygon(0 0, 100% 0, 100% 78%, 94% 100%, 0 100%);
+  padding: 1px;
+  transition: background 0.25s;
+}
+
+.credOuter:hover {
+  background: rgba(0, 136, 255, 0.38);
+}
+
+.credCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: #ffffff;
+  clip-path: polygon(0 0, 100% 0, 100% 78%, 94% 100%, 0 100%);
+  padding: 1.4rem 1.3rem 1.8rem;
+  transition: background 0.25s;
+}
+
+.credOuter:hover .credCard {
+  background: #f4f8ff;
+}
+
+.credIcon {
   color: #0088ff;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.credLabel {
+  font-size: 0.65rem;
   font-weight: 700;
-  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: #0088ff;
+  margin-bottom: 4px;
+  font-family: monospace;
+}
+
+.credValue {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 3px;
+}
+
+.credDetail {
+  font-size: 0.77rem;
+  color: #94a3b8;
+}
+
+/* Foundation link */
+.foundationLinkRow {
+  margin-bottom: 0;
+}
+
+.foundationLink {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #0088ff;
   text-decoration: none;
-  transition: color 0.2s, transform 0.2s;
+  transition: color 0.18s;
 }
 
 .foundationLink:hover {
-  color: #40a5ff;
-  transform: translateX(3px);
+  color: #0070d4;
 }
 
-/* Pillars grid */
+/* ===== PILLARS ===== */
+.pillarsHeading {
+  margin-top: 4rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .pillars {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
+  gap: 1.5rem;
+  position: relative;
+  z-index: 1;
 }
 
 .pillar {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 16px;
-  padding: 2rem 1.5rem;
-  transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+  align-items: flex-start;
+  background: #ffffff;
+  border: 1px solid #e8edf5;
+  border-left: 3px solid #0088ff;
+  border-radius: 6px;
+  padding: 1.75rem 1.5rem;
+  transition: transform 0.26s ease, box-shadow 0.26s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
 }
 
 .pillar:hover {
-  transform: translateY(-5px);
-  border-color: rgba(0, 136, 255, 0.25);
-  background: rgba(255, 255, 255, 0.03);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 136, 255, 0.1);
 }
 
 .pillarIcon {
   color: #0088ff;
-  margin-bottom: 1.25rem;
-  background: rgba(0, 136, 255, 0.08);
-  border-radius: 12px;
-  padding: 0.6rem;
+  margin-bottom: 1rem;
+  background: #eff6ff;
+  border: 1px solid rgba(0, 136, 255, 0.15);
+  border-radius: 6px;
+  padding: 0.55rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -139,19 +192,20 @@
 
 .pillarTitle {
   font-family: var(--header-font);
-  font-size: 1.15rem;
-  color: #ffffff;
+  font-size: 1.02rem;
+  color: #0f172a;
   font-weight: 700;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.6rem;
 }
 
 .pillarDesc {
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.6);
-  line-height: 1.6;
+  font-size: 0.875rem;
+  color: #64748b;
+  line-height: 1.65;
 }
 
 @media (max-width: 768px) {
-  .section { padding: 4rem 1.5rem; }
-  .foundationCard { padding: 1.75rem 1.25rem; }
+  .section { padding: 4rem 1.25rem; }
+  .credGrid { grid-template-columns: 1fr; }
+  .headline { font-size: 1.75rem; }
 }
