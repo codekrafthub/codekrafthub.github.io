@@ -6,9 +6,9 @@ import Link from 'next/link';
 import styles from './Navbar.module.css';
 
 const navLinks = [
-  { href: '#home',      label: 'CAET Home' },
   { href: '#caet-about',     label: 'About CAET' },
   { href: '#caet-programs',  label: 'Programs' },
+  { href: '/youthx',         label: 'YouthX' },
   { href: '#caet-contact',   label: 'Contact' },
 ];
 

@@ -236,13 +236,17 @@
 }
 
 @media (max-width: 1024px) {
+  .hero {
+    align-items: flex-start;
+  }
   .inner {
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    padding-top: 6rem;
+    padding-top: 2rem;
+    padding-bottom: 4rem;
   }
   .liquidCard {
-    margin-top: 2rem;
+    margin-top: 1rem;
   }
 }

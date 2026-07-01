@@ -1,0 +1,39 @@
+.canvasContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  background-color: #050505;
+}
+
+/* Radial chromatic glow in center */
+.glowCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80vw;
+  height: 80vh;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(168, 85, 247, 0.06) 0%,
+    rgba(14, 165, 233, 0.04) 40%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+/* Edge vignette */
+.vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 40%,
+    rgba(5, 5, 5, 0.6) 100%
+  );
+  pointer-events: none;
+}

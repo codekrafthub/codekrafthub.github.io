@@ -1,0 +1,151 @@
+.hero {
+  position: relative;
+  width: 100vw;
+  height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 10;
+  background: transparent;
+}
+
+/* ─── CONTENT ───────────────────────────────────────────────────────────────── */
+.content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+/* ─── FULL LOGO (under gates, z-index 5) ────────────────────────────────────── */
+.revealLayer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+.fullLogoWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  max-width: 90vw;
+}
+
+.fullLogoImage {
+  width: 100%;
+  max-width: 580px;
+  height: auto;
+  object-fit: contain;
+}
+
+
+/* ─── OUTER GATE POSITIONER (no animation here, pure positioning) ────────────── */
+.xGateOuter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+/* ─── GATE WRAPPER (GSAP boot anim targets this) ────────────────────────────── */
+/* gsap.from animates scale + rotation on this div only.
+   The halves inside are NOT touched by the boot animation. */
+.xGateWrapper {
+  position: relative;
+  width: clamp(200px, 28vw, 320px);
+  height: clamp(200px, 28vw, 320px);
+}
+
+/* ─── CIRCULAR GLOW (separate div, always a soft circle) ────────────────────── */
+.xGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 220%;
+  height: 220%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(168, 85, 247, 0.15) 0%,
+    rgba(236, 72, 153, 0.06) 45%,
+    transparent 65%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── GATE HALVES — separate pre-split PNGs, no CSS splitting needed ─── */
+.xGateLeft {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  z-index: 1;
+  will-change: transform, opacity;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* image sits flush against the center split */
+}
+
+.xGateRight {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  z-index: 1;
+  will-change: transform, opacity;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* image sits flush against the center split */
+}
+
+.xGateImg {
+  width: auto;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  user-select: none;
+  pointer-events: none;
+  max-height: 100%;
+}
+
+/* ─── SCROLL HINT ───────────────────────────────────────────────────────────── */
+.scrollHint {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 20;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.scrollLine {
+  display: block;
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, transparent, rgba(168, 85, 247, 0.55));
+}
+
+.scrollText {
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.25em;
+  color: rgba(255, 255, 255, 0.3);
+  text-transform: uppercase;
+}
