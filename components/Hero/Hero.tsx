@@ -1,6 +1,6 @@
 'use client';
 
-import Image from 'next/image';
+import { ArrowRight } from 'lucide-react';
 import styles from './Hero.module.css';
 
 interface HeroProps {
@@ -11,59 +11,67 @@ interface HeroProps {
 export default function Hero({ onServicesClick, onContactClick }: HeroProps) {
   return (
     <section id="home" className={styles.hero}>
-      {/* Decorative orbs */}
-      <div className={styles.orb1} aria-hidden />
-      <div className={styles.orb2} aria-hidden />
-      <div className={styles.grid} aria-hidden />
-
-      <div className={styles.content}>
-        <div className={styles.badge}>
-          <span className={styles.dot} />
-          Empowering India&apos;s Next Generation
-        </div>
-
-        <Image
-          src="/codekraft_logo_white.png"
-          alt="CodeKraft logo"
-          width={96}
-          height={96}
-          className={styles.logo}
-          priority
+      {/* Background Media */}
+      <div className={styles.heroMediaWrap} aria-hidden="true">
+        <video
+          src="/hero-bg.mp4"
+          poster="/codekraft_logo.png"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className={styles.bgVideo}
         />
-
-        <h1 className={styles.title}>
-          Code<span className={styles.accent}>Kraft</span>
-        </h1>
-
-        <p className={styles.tagline}>
-          Tailored AI systems, business automation, and high-performance software solutions.
-        </p>
-
-        <div className={styles.ctas}>
-          <button className={styles.btnPrimary} onClick={onServicesClick}>
-            Explore Services
-          </button>
-          <button className={styles.btnOutline} onClick={onContactClick}>
-            Get in Touch
-          </button>
-        </div>
-
-        <div className={styles.stats}>
-          {[
-            { value: '20+', label: 'AI Projects' },
-            { value: '99%', label: 'Automation Gain' },
-            { value: '12+', label: 'Years Experience' },
-          ].map(({ value, label }) => (
-            <div key={label} className={styles.stat}>
-              <span className={styles.statValue}>{value}</span>
-              <span className={styles.statLabel}>{label}</span>
-            </div>
-          ))}
-        </div>
+        <div className={styles.heroFade} />
+        <div className={styles.heroVignette} />
       </div>
 
-      <div className={styles.scrollHint} aria-hidden>
-        <span />
+      {/* Central Glow */}
+      <div className={styles.centralGlow} aria-hidden="true" />
+
+      <div className={styles.inner}>
+        <div className={styles.content}>
+          <div className={styles.accentLine} aria-hidden="true" />
+          <h1 className={styles.title}>
+            Building Intelligent<br />
+            <span className={styles.titleLine2}>
+              Systems<span className={styles.accent}>.</span>
+            </span>
+          </h1>
+
+          <p className={styles.description}>
+            We deliver cutting-edge AI automation, intelligent chatbots, and robust software solutions to scale businesses and drive digital transformation.
+          </p>
+
+          <div className={styles.ctas}>
+            <button className={styles.btnPrimary} onClick={onServicesClick}>
+              Explore Services
+              <ArrowRight size={18} strokeWidth={2.5} />
+            </button>
+            <button className={styles.btnOutline} onClick={onContactClick}>
+              Get In Touch
+            </button>
+          </div>
+        </div>
+
+        {/* Liquid Glass Card (Stats & Info) */}
+        <div className={styles.liquidCard}>
+          <div className={styles.cardTag}>[ Enterprise Solutions ]</div>
+          <p className={styles.cardDesc}>Robust software architecture for modern businesses.</p>
+          
+          <div className={styles.statList}>
+            {[
+              { value: '20+', label: 'AI Projects' },
+              { value: '99%', label: 'Automation Gain' },
+              { value: '12+', label: 'Years Experience' },
+            ].map(({ value, label }) => (
+              <div key={label} className={styles.statItem}>
+                <span className={styles.statValue}>{value}</span>
+                <span className={styles.statLabel}>{label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -5,11 +5,10 @@ import Image from 'next/image';
 import styles from './Navbar.module.css';
 
 const navLinks = [
-  { href: '#home',      label: 'Home' },
-  { href: '#about',     label: 'Who We Are' },
+  { href: '#about',     label: 'About' },
   { href: '#services',  label: 'Services' },
   { href: '#portfolio', label: 'Portfolio' },
-  { href: '/ck-caet',   label: 'Academic (CK-CAET)' },
+  { href: '/ck-caet',   label: 'CAET Academy' },
   { href: '#contact',   label: 'Contact', cta: true },
 ];
 

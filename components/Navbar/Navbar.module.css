@@ -47,28 +47,29 @@
   padding: 0.45rem 1rem;
   color: rgba(255, 255, 255, 0.88);
   text-decoration: none;
+  font-family: var(--body-font);
   font-size: 0.95rem;
   font-weight: 500;
-  border-radius: 50px;
+  border-radius: 8px; /* Rectangular with smooth corners */
   transition: color 0.2s, background 0.2s;
 }
 
 .links a:hover {
-  color: var(--white);
-  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  background: rgba(0, 136, 255, 0.2);
 }
 
 .ctaLink {
-  background: var(--accent) !important;
+  background: #0088ff !important;
   color: var(--white) !important;
   font-weight: 600 !important;
   padding: 0.45rem 1.2rem !important;
 }
 
 .ctaLink:hover {
-  background: var(--accent-dark) !important;
+  background: #0070d4 !important;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(var(--accent-rgb), 0.4);
+  box-shadow: 0 4px 12px rgba(0, 136, 255, 0.4);
 }
 
 /* Hamburger toggle */
