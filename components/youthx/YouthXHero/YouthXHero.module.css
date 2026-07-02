@@ -36,6 +36,7 @@
   display: flex;
   justify-content: center;
   max-width: 90vw;
+  opacity: 0; /* Prevent FOUC before GSAP loads */
 }
 
 .fullLogoImage {
@@ -148,4 +149,58 @@
   letter-spacing: 0.25em;
   color: rgba(255, 255, 255, 0.3);
   text-transform: uppercase;
+}
+
+/* ─── NAVIGATION ────────────────────────────────────────────────────────────── */
+.backButton {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  z-index: 100;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.75rem 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  backdrop-filter: blur(10px);
+  background-color: rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.backButton:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.logo {
+  position: fixed;
+  top: 1.5rem;
+  left: 2rem;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Inter', 'SF Pro Display', system-ui, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  transition: opacity 0.3s ease;
+}
+
+.logo:hover {
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .logo {
+    left: 1.5rem;
+    top: 1.5rem;
+  }
 }

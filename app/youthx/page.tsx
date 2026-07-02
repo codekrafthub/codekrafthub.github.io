@@ -11,6 +11,7 @@ export const metadata: Metadata = {
 export default function YouthXPage() {
   return (
     <main style={{ backgroundColor: '#050505', minHeight: '100vh', position: 'relative', overflowX: 'hidden' }}>
+
       {/* Fixed 3D background canvas */}
       <Background3D />
 
@@ -25,3 +26,4 @@ export default function YouthXPage() {
     </main>
   );
 }
+

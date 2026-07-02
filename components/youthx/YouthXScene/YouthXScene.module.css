@@ -235,6 +235,9 @@
     grid-template-columns: 1fr;
     gap: 3rem;
   }
+  .keynotesLeft {
+    position: static;
+  }
 }
 
 .keynotesLeft {
@@ -387,6 +390,9 @@
   .goalsInner {
     grid-template-columns: 1fr;
     gap: 3rem;
+  }
+  .goalsLeft {
+    position: static;
   }
 }
 
@@ -610,6 +616,129 @@
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════════
+   TESTIMONIALS / VOICES SCENE
+═══════════════════════════════════════════════════════════════════════════════ */
+.voicesInner {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.voicesHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.voicesTitle {
+  font-family: var(--yx-header-font);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 900;
+  color: var(--yx-white);
+  letter-spacing: -0.04em;
+  line-height: 1.0;
+}
+
+.voicesGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2px;
+  background: var(--yx-border);
+  border: 1px solid var(--yx-border);
+}
+
+@media (min-width: 768px) {
+  .voicesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .voicesGrid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+.voiceCard {
+  background: var(--yx-bg);
+  padding: 2rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  transition: background 0.3s ease;
+}
+
+.voiceCard:hover {
+  background: rgba(168, 85, 247, 0.03);
+}
+
+.voiceQuote {
+  font-family: var(--yx-header-font);
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.75);
+  font-style: italic;
+  position: relative;
+}
+
+.voiceQuote::before {
+  content: '"';
+  position: absolute;
+  top: -1rem;
+  left: -1rem;
+  font-size: 3rem;
+  color: rgba(168, 85, 247, 0.2);
+  font-family: var(--yx-header-font);
+  font-weight: 900;
+  line-height: 1;
+}
+
+.voiceAuthor {
+  margin-top: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  border-left: 2px solid var(--yx-purple);
+  padding-left: 1rem;
+}
+
+.voiceImage {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--yx-border);
+  background: rgba(255, 255, 255, 0.05); /* Placeholder background if image breaks */
+}
+
+.voiceAuthorText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.voiceName {
+  font-family: var(--yx-header-font);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--yx-white);
+  letter-spacing: -0.01em;
+}
+
+.voiceRole {
+  font-family: var(--yx-mono-font);
+  font-size: 0.65rem;
+  color: var(--yx-blue);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
    PARTNER CTA SCENE
 ═══════════════════════════════════════════════════════════════════════════════ */
 .sceneCta {
@@ -750,6 +879,22 @@
 
 .footerContact:hover {
   color: var(--yx-purple);
+}
+
+.footerSocials {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.footerSocialLink {
+  color: rgba(255, 255, 255, 0.4);
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footerSocialLink:hover {
+  color: var(--yx-purple);
+  transform: translateY(-2px);
 }
 
 .footerCopy {

@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useEffect } from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -100,45 +101,57 @@ export default function YouthXHero() {
   }, []);
 
   return (
-    <section ref={heroRef} className={styles.hero}>
-      <div className={styles.content}>
+    <>
+      {/* Navigation (Logo & Back Button) */}
+      <Link href="/" className={styles.logo}>
+        <Image src="/codekraft_logo_white.png" alt="" aria-hidden width={36} height={36} />
+        <span>CodeKraft</span>
+      </Link>
 
-        {/* Full logo — sits beneath the gates, revealed as they open */}
-        <div className={styles.revealLayer}>
-          <div ref={logoRef} className={styles.fullLogoWrapper}>
-            <Image
-              src="/youthx-logo-full.png"
-              alt="YouthX Summit"
-              width={640}
-              height={210}
-              className={styles.fullLogoImage}
-              priority
-            />
-          </div>
-        </div>
+      <Link href="/ck-caet" className={styles.backButton}>
+        ← Back to CAET
+      </Link>
 
-        {/* X gate — boot wrapper + left/right pre-split halves */}
-        <div className={styles.xGateOuter}>
-          <div ref={gateWrapRef} className={styles.xGateWrapper}>
-            <div className={styles.xGlow} />
+      <section ref={heroRef} className={styles.hero}>
+        <div className={styles.content}>
 
-            <div ref={xLeftRef} className={styles.xGateLeft}>
-              <img src="/youthx-x-left.png" alt="" className={styles.xGateImg} draggable={false} />
-            </div>
-
-            <div ref={xRightRef} className={styles.xGateRight}>
-              <img src="/youthx-x-right.png" alt="" className={styles.xGateImg} draggable={false} />
+          {/* Full logo — sits beneath the gates, revealed as they open */}
+          <div className={styles.revealLayer}>
+            <div ref={logoRef} className={styles.fullLogoWrapper}>
+              <Image
+                src="/youthx-logo-full.png"
+                alt="YouthX Summit"
+                width={640}
+                height={210}
+                className={styles.fullLogoImage}
+                priority
+              />
             </div>
           </div>
-        </div>
 
-        {/* Scroll hint */}
-        <div ref={scrollHintRef} className={styles.scrollHint}>
-          <span className={styles.scrollLine} />
-          <span className={styles.scrollText}>SCROLL</span>
-        </div>
+          {/* X gate — boot wrapper + left/right pre-split halves */}
+          <div className={styles.xGateOuter}>
+            <div ref={gateWrapRef} className={styles.xGateWrapper}>
+              <div className={styles.xGlow} />
 
-      </div>
-    </section>
+              <div ref={xLeftRef} className={styles.xGateLeft}>
+                <img src="/youthx-x-left.png" alt="" className={styles.xGateImg} draggable={false} />
+              </div>
+
+              <div ref={xRightRef} className={styles.xGateRight}>
+                <img src="/youthx-x-right.png" alt="" className={styles.xGateImg} draggable={false} />
+              </div>
+            </div>
+          </div>
+
+          {/* Scroll hint */}
+          <div ref={scrollHintRef} className={styles.scrollHint}>
+            <span className={styles.scrollLine} />
+            <span className={styles.scrollText}>SCROLL</span>
+          </div>
+
+        </div>
+      </section>
+    </>
   );
 }

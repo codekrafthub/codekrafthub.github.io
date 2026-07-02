@@ -10,6 +10,22 @@ if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
+const LinkedinIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+    <rect width="4" height="12" x="2" y="9"/>
+    <circle cx="4" cy="4" r="2"/>
+  </svg>
+);
+
+const InstagramIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+  </svg>
+);
+
 export default function YouthXScene() {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -161,6 +177,25 @@ export default function YouthXScene() {
         });
       }
 
+      // ─── SCENE: VOICES / TESTIMONIALS ────────────────────────────────
+      const voiceCards = gsap.utils.toArray<HTMLElement>('.voice-card');
+      gsap.set(voiceCards, { opacity: 0, y: 50 });
+
+      ScrollTrigger.create({
+        trigger: '#scene-voices',
+        start: 'top 70%',
+        onEnter: () => {
+          gsap.to(voiceCards, {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.2,
+            ease: 'power3.out',
+          });
+        },
+        once: true,
+      });
+
       // ─── SCENE: PARTNER CTA ──────────────────────────────────────────
       const ctaTitle = document.querySelector<HTMLElement>('.cta-title');
       const ctaBtn = document.querySelector<HTMLElement>('.cta-btn');
@@ -236,7 +271,7 @@ export default function YouthXScene() {
           </div>
           <div className={styles.dataFooter}>
             <span className={styles.dataMeta}>OPEN TO AGE 14+</span>
-            <span className={styles.dataMeta}>RAIPUR, CHHATTISGARH</span>
+            <span className={styles.dataMeta}>BILASPUR, CHHATTISGARH</span>
             <span className={styles.dataMeta}>EDUCATORS · PROFESSIONALS · LEADERS</span>
           </div>
         </div>
@@ -314,8 +349,8 @@ export default function YouthXScene() {
           </div>
           <div className={styles.goalsList}>
             {[
-              'Empower 400+ young minds with technology and career guidance',
-              'Showcase 20-30 innovative student and professional projects',
+              'Empower young minds with technology and career guidance',
+              'Showcase innovative student and professional projects',
               'Facilitate meaningful networking and mentorship connections',
               'Establish annual tradition of youth empowerment',
               'Facilitate meaningful mentor-mentee connections',
@@ -415,6 +450,61 @@ export default function YouthXScene() {
         </div>
       </section>
 
+      {/* ── SCENE: VOICES / TESTIMONIALS ─────────────────────────────── */}
+      <section id="scene-voices" className={styles.scene}>
+        <div className={styles.voicesInner}>
+          <div className={styles.voicesHeader}>
+            <span className={styles.sysLabel}>[ COMMUNITY FEEDBACK ]</span>
+            <h2 className={styles.voicesTitle}>Voices of<br /><span className={styles.gradientText}>YouthX</span></h2>
+          </div>
+          <div className={styles.voicesGrid}>
+            {[
+              {
+                name: 'Namrata Bagh',
+                role: 'Sr. Software Engineer',
+                image: '/testimonials/namrata.jpg',
+                quote: "I've always carried a vision to bridge the gap between college education and the global IT industry. At the YouthX Tech Summit, I watched that vision come to life. The atmosphere was electric, with halls packed full of students eager to learn from incredible industry experts across data science, psychiatry, and law. Seeing such a powerful platform emerge for the next generation brings me so much joy and pride. When vision meets action, transformation happens. YouthX is just getting started!",
+              },
+              {
+                name: 'Michelle Shine Paul',
+                role: 'UI/UX Designer',
+                image: '/testimonials/michelle.jpg',
+                quote: "Moments like these remind me why the intersection of community and technology truly matters. Witnessing the scale and energy of the YouthX Tech Summit was incredibly inspiring. To see such a powerful gathering of young minds, mentors, and tech enthusiasts coming together under one roof was unforgettable. This is definitely a movement to watch!",
+              },
+              {
+                name: 'Sahil Ghora',
+                role: 'AI/ML Developer',
+                image: '/testimonials/sahil.jpg',
+                quote: "Attending the YouthX Tech Summit gave me the incredible opportunity to showcase my work on integrating specialized AI models across various sectors. Presenting at this summit allowed me to discuss the practical scalability of machine learning with a brilliant audience. The feedback from the tech community and mentors was deeply insightful and provided a clear roadmap for my next phase of development. A huge thank you for creating such a dynamic platform to discuss the future of AI!",
+              },
+              {
+                name: 'Shreya Kshatri',
+                role: 'Cybersecurity Enthusiast',
+                image: '/testimonials/shreya.jpg',
+                quote: "The YouthX Tech Summit was an insightful experience filled with industry perspectives, innovation discussions, and meaningful networking with fellow tech enthusiasts and leaders. Such platforms play a crucial role in shaping future-ready professionals and fostering a strong tech ecosystem. A fantastic start to 2026!",
+              },
+              {
+                name: 'Mahendra Sahu',
+                role: 'Web Developer',
+                image: '/testimonials/mahendra.jpg',
+                quote: "Participating in the YouthX Tech Summit was a true privilege. Showcasing innovative projects and engaging in conversations around skill-based learning made the event incredibly enriching. Interacting with such talented students, professionals, and innovators was inspiring. I look forward to more of these networking experiences!",
+              },
+            ].map(({ name, role, quote, image }, i) => (
+              <div key={i} className={`voice-card ${styles.voiceCard}`}>
+                <p className={styles.voiceQuote}>{quote}</p>
+                <div className={styles.voiceAuthor}>
+                  <img src={image} alt={name} className={styles.voiceImage} loading="lazy" />
+                  <div className={styles.voiceAuthorText}>
+                    <span className={styles.voiceName}>{name}</span>
+                    <span className={styles.voiceRole}>{role}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── SCENE: PARTNER CTA ───────────────────────────────────────── */}
       <section id="scene-cta" className={styles.sceneCta}>
         <div className={styles.ctaInner}>
@@ -443,6 +533,14 @@ export default function YouthXScene() {
             <a href="mailto:codekraft.hub@gmail.com" className={styles.footerContact}>codekraft.hub@gmail.com</a>
             <a href="tel:+917898378933" className={styles.footerContact}>+91 78983 78933</a>
             <span className={styles.footerContact}>Chhattisgarh, India</span>
+            <div className={styles.footerSocials}>
+              <a href="https://www.linkedin.com/company/codekrafthub/" target="_blank" rel="noopener noreferrer" className={styles.footerSocialLink} aria-label="LinkedIn">
+                <LinkedinIcon />
+              </a>
+              <a href="https://instagram.com/codekrafthub" target="_blank" rel="noopener noreferrer" className={styles.footerSocialLink} aria-label="Instagram">
+                <InstagramIcon />
+              </a>
+            </div>
           </div>
         </div>
         <div className={styles.footerCopy}>
