@@ -23,10 +23,12 @@ function FloatingMesh({
   scale: number;
 }) {
   const meshRef = useRef<THREE.Mesh>(null);
+  const timeRef = useRef(0);
 
-  useFrame((state) => {
+  useFrame((state, delta) => {
     if (!meshRef.current) return;
-    const t = state.clock.getElapsedTime();
+    timeRef.current += delta;
+    const t = timeRef.current;
     (meshRef.current.rotation as any)[axis] = t * speed;
     meshRef.current.position.y = position[1] + Math.sin(t * 0.4 + position[0]) * 0.4;
   });

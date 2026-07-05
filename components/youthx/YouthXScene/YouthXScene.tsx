@@ -26,6 +26,15 @@ const InstagramIcon = () => (
   </svg>
 );
 
+const pressMentions = [
+  "Naya Adhayay", "Samaj Jagran", "Hind Ki Syahi (Bhopal)", "News Hunt (Jalandhar)", 
+  "Vaqt Darshan (Kanpur)", "Telegraph Times (Jaipur)", "Jyoti Darpan (Karnal)", 
+  "Coal Field Mirror (Kolkata)", "Hum Panch (M.P.)", "Parivahan Vishesh (Delhi)", 
+  "Aaj Ki Pehchaan (Delhi)", "First Editor (U.P.)", "Dainik Pratigya (Dehradun)", 
+  "Kanooni Jung (Meerut)", "U.P. News Express (Noida)", "Fatwa (Bhopal)", 
+  "Kaushambi Sandesh (U.P.)", "GNews Bilaspur", "Rudrapath Digital", "N Express News"
+];
+
 export default function YouthXScene() {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -186,6 +195,25 @@ export default function YouthXScene() {
         start: 'top 70%',
         onEnter: () => {
           gsap.to(voiceCards, {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.2,
+            ease: 'power3.out',
+          });
+        },
+        once: true,
+      });
+
+      // ─── SCENE: PRESS ────────────────────────────────────────────────
+      const pressCards = gsap.utils.toArray<HTMLElement>('.press-card');
+      gsap.set(pressCards, { opacity: 0, y: 50 });
+
+      ScrollTrigger.create({
+        trigger: '#scene-press',
+        start: 'top 75%',
+        onEnter: () => {
+          gsap.to(pressCards, {
             opacity: 1,
             y: 0,
             duration: 0.8,
@@ -365,56 +393,6 @@ export default function YouthXScene() {
         </div>
       </section>
 
-      {/* ── SCENE: SPONSOR ───────────────────────────────────────────── */}
-      <section id="scene-sponsor" className={styles.scene}>
-        <div className={styles.sponsorInner}>
-          <div className={styles.sponsorHeader}>
-            <span className={styles.sysLabel}>[ PARTNERSHIP ]</span>
-            <h2 className={styles.sponsorTitle}>Why Sponsor<br /><span className={styles.gradientText}>YouthX?</span></h2>
-          </div>
-          <div className={styles.sponsorGrid}>
-            {[
-              {
-                id: 'R',
-                title: 'Regional Impact',
-                points: [
-                  'State-level visibility across Chhattisgarh',
-                  'Association with premier youth initiative',
-                  'Media coverage and social buzz',
-                ],
-              },
-              {
-                id: 'B',
-                title: 'Brand Alignment',
-                points: [
-                  'Position with innovation, education & youth',
-                  'Demonstrate CSR commitment to skill development',
-                  'Connect with purpose-driven demographic',
-                ],
-              },
-              {
-                id: 'L',
-                title: 'Long-Term Association',
-                points: [
-                  'Foundation for annual event tradition',
-                  'Ongoing partnership opportunities',
-                  "Access to CodeKraft's growing alumni network",
-                ],
-              },
-            ].map(({ id, title, points }) => (
-              <div key={id} className={`sponsor-pillar ${styles.sponsorPillar}`}>
-                <div className={styles.sponsorId}>{id}</div>
-                <h3 className={styles.sponsorPillarTitle}>{title}</h3>
-                <ul className={styles.sponsorList}>
-                  {points.map((p) => (
-                    <li key={p}>{p}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ── SCENE: AFTERMOVIE ────────────────────────────────────────── */}
       <section id="scene-aftermovie" className={styles.scene}>
@@ -432,19 +410,6 @@ export default function YouthXScene() {
                 referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
               />
-            </div>
-          </div>
-
-          {/* Media publication marquee */}
-          <div className={styles.marqueeOuter}>
-            <div className={styles.marqueeTrack}>
-              {[...Array(2)].map((_, ri) => (
-                <div key={ri} className={styles.marqueeRow}>
-                  {['Press Release', 'Featured in Tech Today', 'News 18 Coverage', 'Startup Weekly', 'Local Daily Front Page', 'Digital India Now'].map((pub) => (
-                    <span key={pub} className={styles.marqueeItem}>{pub}</span>
-                  ))}
-                </div>
-              ))}
             </div>
           </div>
         </div>
@@ -499,6 +464,110 @@ export default function YouthXScene() {
                     <span className={styles.voiceRole}>{role}</span>
                   </div>
                 </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── SCENE: PRESS / MEDIA COVERAGE ────────────────────────────── */}
+      <section id="scene-press" className={styles.scene}>
+        <div className={styles.pressInner}>
+          <div className={styles.pressHeader}>
+            <span className={styles.sysLabel}>[ MEDIA COVERAGE ]</span>
+            <h2 className={styles.pressTitle}>National &amp; <span className={styles.gradientText}>Regional Impact</span></h2>
+          </div>
+
+          <div className={styles.pressFeatured}>
+            <div className={`press-card ${styles.pressCard}`}>
+              <div className={styles.pressImgWrap}>
+                <img src="/news_clipping_Dainik_Bhaskar.png" alt="Dainik Bhaskar Coverage" className={styles.pressImg} loading="lazy" />
+              </div>
+              <div className={styles.pressMeta}>
+                <span className={styles.pressName}>Dainik Bhaskar</span>
+                <span className={styles.pressDate}>Jan 15, 2026 | M.P. &amp; C.G.</span>
+              </div>
+            </div>
+            
+            <div className={`press-card ${styles.pressCard}`}>
+              <div className={styles.pressImgWrap}>
+                <img src="/news_clipping_Nayi_Duniya.png" alt="Nayi Duniya Coverage" className={styles.pressImg} loading="lazy" />
+              </div>
+              <div className={styles.pressMeta}>
+                <span className={styles.pressName}>Nayi Duniya</span>
+                <span className={styles.pressDate}>Jan 12, 2026 | C.G.</span>
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.pressMarqueeOuter}>
+            <div className={styles.pressMarqueeTrack}>
+              {/* Render twice for seamless loop */}
+              {[1, 2].map(row => (
+                <div key={row} className={styles.pressMarqueeRow}>
+                  {pressMentions.map((name, i) => (
+                    <div key={`${row}-${i}`} className={styles.pressMarqueeItem}>
+                      {name}
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className={styles.pressAction}>
+            <a href="/youthx-press.pdf" target="_blank" rel="noopener noreferrer" className={styles.pressBtn}>
+              Download Complete Press Coverage (PDF)
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ── SCENE: SPONSOR ───────────────────────────────────────────── */}
+      <section id="scene-sponsor" className={styles.scene}>
+        <div className={styles.sponsorInner}>
+          <div className={styles.sponsorHeader}>
+            <span className={styles.sysLabel}>[ PARTNERSHIP ]</span>
+            <h2 className={styles.sponsorTitle}>Why Sponsor<br /><span className={styles.gradientText}>YouthX?</span></h2>
+          </div>
+          <div className={styles.sponsorGrid}>
+            {[
+              {
+                id: 'R',
+                title: 'Regional Impact',
+                points: [
+                  'State-level visibility across Chhattisgarh',
+                  'Association with premier youth initiative',
+                  'Media coverage and social buzz',
+                ],
+              },
+              {
+                id: 'B',
+                title: 'Brand Alignment',
+                points: [
+                  'Position with innovation, education & youth',
+                  'Demonstrate CSR commitment to skill development',
+                  'Connect with purpose-driven demographic',
+                ],
+              },
+              {
+                id: 'L',
+                title: 'Long-Term Association',
+                points: [
+                  'Foundation for annual event tradition',
+                  'Ongoing partnership opportunities',
+                  "Access to CodeKraft's growing alumni network",
+                ],
+              },
+            ].map(({ id, title, points }) => (
+              <div key={id} className={`sponsor-pillar ${styles.sponsorPillar}`}>
+                <div className={styles.sponsorId}>{id}</div>
+                <h3 className={styles.sponsorPillarTitle}>{title}</h3>
+                <ul className={styles.sponsorList}>
+                  {points.map((p) => (
+                    <li key={p}>{p}</li>
+                  ))}
+                </ul>
               </div>
             ))}
           </div>
