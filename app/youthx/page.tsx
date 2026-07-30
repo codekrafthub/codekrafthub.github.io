@@ -6,6 +6,27 @@ import YouthXScene from '@/components/youthx/YouthXScene/YouthXScene';
 export const metadata: Metadata = {
   title: 'YouthX Summit | Creating Lasting Impact',
   description: 'A premier annual tech summit by CodeKraft — empowering 400+ young minds through keynotes, exhibitions, and mentorship. Chhattisgarh, India.',
+  openGraph: {
+    title: 'YouthX Summit | Creating Lasting Impact',
+    description: 'A premier annual tech summit by CodeKraft — empowering 400+ young minds through keynotes, exhibitions, and mentorship. Chhattisgarh, India.',
+    url: 'https://codekrafthub.in/youthx',
+    siteName: 'YouthX',
+    images: [
+      {
+        url: 'https://codekrafthub.in/youthx-logo-full.png',
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: 'en_IN',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'YouthX Summit | Creating Lasting Impact',
+    description: 'A premier annual tech summit by CodeKraft — empowering 400+ young minds.',
+    images: ['https://codekrafthub.in/youthx-logo-full.png'],
+  },
 };
 
 export default function YouthXPage() {

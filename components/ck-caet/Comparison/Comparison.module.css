@@ -1,0 +1,248 @@
+.section {
+  padding: 8rem 1.5rem;
+  background: #060911;
+  color: #fff;
+}
+
+.inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.labelRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.labelBar {
+  width: 24px;
+  height: 2px;
+  background: #0088ff;
+}
+
+.label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #0088ff;
+}
+
+.heading {
+  font-family: var(--header-font);
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+}
+
+.sub {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.45);
+  max-width: 700px;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.flexHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4rem;
+  margin-bottom: 4rem;
+}
+
+.textContent {
+  flex: 1;
+}
+
+.visualContainer {
+  flex: 0 0 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.glitchBox {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.corePulse {
+  position: relative;
+  z-index: 2;
+  color: #0088ff;
+  animation: float 6s ease-in-out infinite;
+}
+
+.brainIcon {
+  filter: drop-shadow(0 0 15px rgba(0, 136, 255, 0.5));
+}
+
+.orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 140px;
+  height: 140px;
+  border: 1px dashed rgba(0, 136, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: rotate 20s linear infinite;
+}
+
+.ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 180px;
+  height: 180px;
+  border: 1px solid rgba(0, 136, 255, 0.1);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: pulse 4s ease-in-out infinite;
+}
+
+.floatingTag {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.5rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #fff;
+  white-space: nowrap;
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes rotate {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes pulse {
+  0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.5; }
+  50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.5; }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .flexHeader {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+  
+  .labelRow {
+    justify-content: center;
+  }
+  
+  .sub {
+    margin: 0 auto 2rem;
+  }
+}
+
+.col {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+}
+
+.colFeatured {
+  background: rgba(0, 136, 255, 0.03);
+  border: 1px solid rgba(0, 136, 255, 0.2);
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  position: relative;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.colHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.alertIcon {
+  color: #ef4444;
+}
+
+.rocketIcon {
+  color: #0088ff;
+}
+
+.colHeader h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.colContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.item {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.itemIconRed {
+  color: #ef4444;
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+}
+
+.itemIconBlue {
+  color: #0088ff;
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+}
+
+.itemText h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.itemText p {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.4);
+  line-height: 1.5;
+}
+
+.colFeatured .itemText p {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

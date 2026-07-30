@@ -7,6 +7,7 @@ import styles from './Navbar.module.css';
 
 const navLinks = [
   { href: '#caet-about',     label: 'About CAET' },
+  { href: '/ck-caet/courses', label: 'Courses' },
   { href: '#caet-programs',  label: 'Programs' },
   { href: '/youthx',         label: 'YouthX' },
   { href: '#caet-contact',   label: 'Contact' },
@@ -32,6 +33,9 @@ export default function Navbar() {
       const target = document.getElementById(targetId);
       if (target) {
         target.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        // If element not found on current page, redirect to home with hash
+        window.location.href = `/ck-caet${href}`;
       }
     } else {
       setMenuOpen(false);
@@ -40,12 +44,12 @@ export default function Navbar() {
 
   return (
     <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`} aria-label="CAET navigation">
-      <a href="#home" className={styles.logo} onClick={(e) => smoothScroll(e, '#home')}>
+      <Link href="/ck-caet" className={styles.logo} onClick={() => setMenuOpen(false)}>
         <div className={styles.logoText}>
           <span className={styles.brandName}>CK-CAET</span>
           <span className={styles.brandSubName}>Centre for AI &amp; Emerging Tech</span>
         </div>
-      </a>
+      </Link>
 
       <button
         className={`${styles.toggle} ${menuOpen ? styles.open : ''}`}
@@ -59,12 +63,21 @@ export default function Navbar() {
       <ul ref={menuRef} className={`${styles.links} ${menuOpen ? styles.show : ''}`}>
         {navLinks.map(({ href, label }) => (
           <li key={href}>
-            <a
-              href={href}
-              onClick={(e) => smoothScroll(e, href)}
-            >
-              {label}
-            </a>
+            {href.startsWith('#') ? (
+              <a
+                href={href}
+                onClick={(e) => smoothScroll(e, href)}
+              >
+                {label}
+              </a>
+            ) : (
+              <Link
+                href={href}
+                onClick={() => setMenuOpen(false)}
+              >
+                {label}
+              </Link>
+            )}
           </li>
         ))}
         <li>

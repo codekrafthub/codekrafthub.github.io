@@ -4,6 +4,10 @@ import Navbar from '@/components/ck-caet/Navbar/Navbar';
 import Hero from '@/components/ck-caet/Hero/Hero';
 import About from '@/components/ck-caet/About/About';
 import Programs from '@/components/ck-caet/Programs/Programs';
+import SuccessComparison from '@/components/ck-caet/Comparison/Comparison';
+import Roadmap from '@/components/ck-caet/Roadmap/Roadmap';
+import TechMosaic from '@/components/ck-caet/TechMosaic/TechMosaic';
+import FAQ from '@/components/ck-caet/FAQ/FAQ';
 import Contact from '@/components/ck-caet/Contact/Contact';
 import Footer from '@/components/ck-caet/Footer/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton/WhatsAppButton';
@@ -20,7 +24,11 @@ const TRUST_ITEMS = [
 
 export default function CKCAETPage() {
   const aboutRef = useScrollReveal();
+  const comparisonRef = useScrollReveal();
   const programsRef = useScrollReveal();
+  const techRef = useScrollReveal();
+  const roadmapRef = useScrollReveal();
+  const faqRef = useScrollReveal();
   const contactRef = useScrollReveal();
 
   function scrollToSection(id: string) {
@@ -54,8 +62,24 @@ export default function CKCAETPage() {
           <About />
         </div>
 
+        <div ref={comparisonRef as any} className="reveal">
+          <SuccessComparison />
+        </div>
+
         <div ref={programsRef as any} className="reveal">
           <Programs />
+        </div>
+
+        <div ref={techRef as any} className="reveal">
+          <TechMosaic />
+        </div>
+
+        <div ref={roadmapRef as any} className="reveal">
+          <Roadmap />
+        </div>
+
+        <div ref={faqRef as any} className="reveal">
+          <FAQ />
         </div>
 
         <div ref={contactRef as any} className="reveal">

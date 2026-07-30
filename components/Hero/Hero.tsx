@@ -15,11 +15,11 @@ export default function Hero({ onServicesClick, onContactClick }: HeroProps) {
       <div className={styles.heroMediaWrap} aria-hidden="true">
         <video
           src="/hero-bg.mp4"
-          poster="/codekraft_logo.png"
           autoPlay
           loop
           muted
           playsInline
+          preload="auto"
           className={styles.bgVideo}
         />
         <div className={styles.heroFade} />

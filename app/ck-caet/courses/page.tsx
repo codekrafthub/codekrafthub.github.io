@@ -1,0 +1,161 @@
+import type { Metadata } from 'next';
+import { Users, Code, Layout, GraduationCap, Cpu, Terminal, Sparkles, Binary, Orbit } from 'lucide-react';
+import Navbar from '@/components/ck-caet/Navbar/Navbar';
+import Footer from '@/components/ck-caet/Footer/Footer';
+import WhatsAppButton from '@/components/WhatsAppButton/WhatsAppButton';
+import styles from './courses.module.css';
+
+export const metadata: Metadata = {
+  title: 'CK-CAET | Programming Courses',
+  description: 'Master Python and C with our industry-led programming courses. Build a strong foundation in systems and AI.',
+};
+
+const BENEFITS = [
+  {
+    icon: <Users size={32} strokeWidth={1.5} />,
+    title: 'Industry Experienced Instructors'
+  },
+  {
+    icon: <Code size={32} strokeWidth={1.5} />,
+    title: 'Hands-on Practical Training'
+  },
+  {
+    icon: <Layout size={32} strokeWidth={1.5} />,
+    title: 'Real-world Project Experience'
+  },
+  {
+    icon: <GraduationCap size={32} strokeWidth={1.5} />,
+    title: 'Industry Certification'
+  }
+];
+
+const COURSES = [
+  {
+    id: 'python',
+    title: 'Python Programming',
+    subtitle: 'Beginner to Intermediate',
+    tagline: 'Versatile language for web, data science, and AI',
+    description: 'Master syntax, data structures, functions, and powerful libraries to build real-world applications and automation scripts.',
+    features: ['Duration: 8 Weeks', '4+ Hands-on Projects', 'Personalized Mentorship', 'AI & Automation Focus'],
+    color: '#3BB1E6',
+    icon: <Terminal size={32} strokeWidth={1.5} />
+  },
+  {
+    id: 'c-lang',
+    title: 'C Programming',
+    subtitle: 'The Foundational System Language',
+    tagline: 'Mother of all programming languages',
+    description: 'Master the fundamentals of logic, direct memory control, and system architecture through highly efficient low-level coding.',
+    features: ['Duration: 6 Weeks', '3+ Core Projects', 'Memory Management', 'Data Structures Mastery'],
+    color: '#0088ff',
+    icon: <Cpu size={32} strokeWidth={1.5} />
+  }
+];
+
+export default function CoursesPage() {
+  return (
+    <div className={styles.container}>
+      <Navbar />
+      
+      <main className={styles.main}>
+        <section className={styles.hero}>
+          <div className={styles.heroLayout}>
+            <div className={styles.heroText}>
+              <h1 className={styles.title}>CK-CAET <span className={styles.accent}>Technical Training</span></h1>
+              <p className={styles.subtitle}>
+                Comprehensive programming courses designed to build a strong technical foundation through hands-on practice and real-world application.
+              </p>
+            </div>
+            
+            <div className={styles.heroVisual}>
+              <div className={styles.scene}>
+                <div className={styles.coreElement}>
+                  <Binary className={styles.binaryIcon} size={64} />
+                  <div className={styles.dataRing}></div>
+                  <div className={styles.particleField}>
+                    <div className={styles.particle} style={{ '--i': 1 } as any}></div>
+                    <div className={styles.particle} style={{ '--i': 2 } as any}></div>
+                    <div className={styles.particle} style={{ '--i': 3 } as any}></div>
+                  </div>
+                </div>
+                <div className={styles.floatingCourseInfo} style={{ top: '-10%', right: '0%' }}>
+                  <Sparkles size={14} className={styles.sparkle} />
+                  <span>Industry Led</span>
+                </div>
+                <div className={styles.floatingCourseInfo} style={{ bottom: '10%', left: '-5%' }}>
+                  <Users size={14} />
+                  <span>100+ Students</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className={styles.coursesGrid}>
+          {COURSES.map((course) => (
+            <div key={course.id} className={styles.courseCard} style={{ '--accent-color': course.color } as any}>
+              <div className={styles.cardHeader}>
+                <div className={styles.headerTop}>
+                  <div className={styles.courseBadge}>Technical Course</div>
+                  <div className={styles.langIcon}>{course.icon}</div>
+                </div>
+                <h2 className={styles.courseTitle}>{course.title}</h2>
+                <p className={styles.courseSubtitle}>{course.subtitle}</p>
+              </div>
+              
+              <div className={styles.cardBody}>
+                <p className={styles.tagline}>{course.tagline}</p>
+                <p className={styles.description}>{course.description}</p>
+                
+                <div className={styles.featureGrid}>
+                  {course.features.map((feature) => (
+                    <div key={feature} className={styles.featureItem}>
+                      <span className={styles.featureDot} />
+                      {feature}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className={styles.cardFooter}>
+                <a href="/ck-caet#caet-contact" className={styles.enrollBtn}>
+                  Enroll Now
+                </a>
+              </div>
+            </div>
+          ))}
+        </section>
+
+        <section className={styles.benefits}>
+          <div className={styles.benefitItem}>
+            <div className={`${styles.benefitIconWrapper} ${styles.pulseAnim}`}>
+              <Users size={32} strokeWidth={1.5} />
+            </div>
+            <h3>Industry Experienced Instructors</h3>
+          </div>
+          <div className={styles.benefitItem}>
+            <div className={`${styles.benefitIconWrapper} ${styles.typeAnim}`}>
+              <Code size={32} strokeWidth={1.5} />
+            </div>
+            <h3>Hands-on Practical Training</h3>
+          </div>
+          <div className={styles.benefitItem}>
+            <div className={`${styles.benefitIconWrapper} ${styles.floatAnim}`}>
+              <Layout size={32} strokeWidth={1.5} />
+            </div>
+            <h3>Real-world Project Experience</h3>
+          </div>
+          <div className={styles.benefitItem}>
+            <div className={`${styles.benefitIconWrapper} ${styles.shineAnim}`}>
+              <GraduationCap size={32} strokeWidth={1.5} />
+            </div>
+            <h3>Industry Certification</h3>
+          </div>
+        </section>
+      </main>
+
+      <Footer />
+      <WhatsAppButton />
+    </div>
+  );
+}

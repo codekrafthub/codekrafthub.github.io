@@ -50,8 +50,8 @@ export default function Hero({ onProgramsClick, onContactClick }: HeroProps) {
           </div>
 
           <h1 className={styles.title}>
-            Where Code<br />
-            <span className={styles.accent}>Becomes Craft.</span>
+            Master the <br />
+            <span className={styles.accent}>AI Revolution.</span>
           </h1>
 
           <p className={styles.sub}>
@@ -59,11 +59,9 @@ export default function Hero({ onProgramsClick, onContactClick }: HeroProps) {
           </p>
 
           <p className={styles.tagline}>
-            Transform from a student to a placement-ready software engineer through live
-            industrial projects, structured corporate internships, and rigorous technical
-            training.
+            90% of technical roles are evolving through AI. Join the 10% who lead it. 
+            Practical training on real production projects with 100% placement assistance.
           </p>
-
 
           <div className={styles.ctas}>
             <button className={styles.btnPrimary} onClick={onProgramsClick}>

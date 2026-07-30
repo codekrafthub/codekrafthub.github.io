@@ -18,9 +18,10 @@ const InstagramIcon = () => (
 );
 
 const NAV_LINKS = [
-  { href: '#caet-about',    label: 'About CAET' },
-  { href: '#caet-programs', label: 'Programs' },
-  { href: '#caet-contact',  label: 'Contact' },
+  { href: '#caet-about',     label: 'About CAET' },
+  { href: '/ck-caet/courses', label: 'Courses' },
+  { href: '#caet-programs',  label: 'Programs' },
+  { href: '#caet-contact',   label: 'Contact' },
 ];
 
 const SOCIAL_LINKS = [
@@ -58,7 +59,7 @@ export default function Footer() {
             <ul className={styles.navList}>
               {NAV_LINKS.map(({ href, label }) => (
                 <li key={href}>
-                  <a href={href} className={styles.navLink}>{label}</a>
+                  <Link href={href} className={styles.navLink}>{label}</Link>
                 </li>
               ))}
               <li>
@@ -107,6 +108,14 @@ export default function Footer() {
           <p className={styles.copyright}>
             &copy; {new Date().getFullYear()} CK-CAET. All rights reserved.
           </p>
+          <div className={styles.legalLinks}>
+            <Link href="/ck-caet/privacy-policy" className={styles.legalLink}>
+              Privacy Policy
+            </Link>
+            <Link href="/ck-caet/terms-of-service" className={styles.legalLink}>
+              Terms of Service
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
