@@ -1,16 +1,32 @@
 .section {
   background: var(--light);
-  padding: 6rem 1.5rem;
+  padding: 8rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(rgba(59, 177, 230, 0.1) 1px, transparent 1px);
+  background-size: 30px 30px;
+  pointer-events: none;
 }
 
 .inner {
   max-width: 1200px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 .label {
   display: block;
-  text-align: center;
+  text-align: left;
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 1.5px;
@@ -24,22 +40,128 @@
   font-size: clamp(1.8rem, 4vw, 2.6rem);
   font-weight: 800;
   color: var(--primary);
-  text-align: center;
+  text-align: left;
   margin: 0 0 0.5rem;
 }
 
 .sub {
-  text-align: center;
+  text-align: left;
   color: #6b7a8a;
   font-size: 1.1rem;
-  margin: 0 auto 3.5rem;
-  max-width: 580px;
+  margin: 0;
+  max-width: 500px;
 }
 
 .panels {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2.25rem;
+}
+
+/* ── Flex header with animated visual ─────────────────── */
+.flexHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4rem;
+  margin-bottom: 3.5rem;
+}
+
+.textContent {
+  flex: 1;
+}
+
+.visualContainer {
+  flex: 0 0 240px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.matrixBox {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.svcCoreIcon {
+  position: relative;
+  z-index: 2;
+  color: var(--accent);
+  animation: svcFloat 6s ease-in-out infinite;
+  filter: drop-shadow(0 0 18px rgba(59, 177, 230, 0.45));
+}
+
+.matrixGrid {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 155px; height: 155px;
+  background-image:
+    linear-gradient(rgba(59, 177, 230, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 177, 230, 0.1) 1px, transparent 1px);
+  background-size: 18px 18px;
+  transform: translate(-50%, -50%);
+  border-radius: 4px;
+  animation: svcGridSpin 24s linear infinite;
+}
+
+.matrixRing {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 185px; height: 185px;
+  border: 1px solid rgba(59, 177, 230, 0.15);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: svcPulse 5s ease-in-out infinite;
+}
+
+.svcTag {
+  position: absolute;
+  background: rgba(59, 177, 230, 0.08);
+  border: 1px solid rgba(59, 177, 230, 0.22);
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.4px;
+  white-space: nowrap;
+  animation: svcTagFloat 4s ease-in-out infinite;
+}
+
+.svcTagDelay {
+  animation-delay: 2s;
+}
+
+@keyframes svcFloat {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+
+@keyframes svcGridSpin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes svcPulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.4; }
+  50%      { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+}
+
+@keyframes svcTagFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+
+@media (max-width: 900px) {
+  .flexHeader {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .visualContainer { display: none; }
 }
 
 /* Card */
@@ -49,16 +171,16 @@
   box-shadow: 0 4px 20px rgba(11, 43, 60, 0.05);
   padding: 2.5rem 2rem;
   border: 1px solid rgba(59, 177, 230, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s, border-color 0.4s;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
 .card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 30px rgba(11, 43, 60, 0.1);
-  border-color: rgba(59, 177, 230, 0.35);
+  transform: translateY(-8px);
+  box-shadow: 0 16px 40px rgba(11, 43, 60, 0.1);
+  border-color: rgba(59, 177, 230, 0.4);
 }
 
 .cardIconWrapper {
@@ -116,6 +238,28 @@
   background: var(--accent);
   border-radius: 50%;
   flex-shrink: 0;
+}
+
+.cardCta {
+  margin-top: 2rem;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.25rem;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  width: 100%;
+  justify-content: center;
+}
+
+.cardCta:hover {
+  background: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 136, 255, 0.2);
 }
 
 @media (max-width: 768px) {

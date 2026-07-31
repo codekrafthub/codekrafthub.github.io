@@ -1,6 +1,8 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 import Image from 'next/image';
 import styles from './Navbar.module.css';
 
@@ -16,6 +18,9 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLUListElement>(null);
+  const pathname = usePathname();
+  const isHomepage = pathname === '/';
+  const isNavDark = scrolled || !isHomepage;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -27,18 +32,23 @@ export default function Navbar() {
     if (href.startsWith('#')) {
       e.preventDefault();
       setMenuOpen(false);
-      document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+      const target = document.querySelector(href);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        window.location.href = `/${href}`;
+      }
     } else {
       setMenuOpen(false);
     }
   }
 
   return (
-    <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`} aria-label="Primary navigation">
-      <a href="#home" className={styles.logo} onClick={(e) => smoothScroll(e, '#home')}>
+    <nav className={`${styles.navbar} ${isNavDark ? styles.scrolled : ''}`} aria-label="Primary navigation">
+      <Link href="/" className={styles.logo} onClick={() => setMenuOpen(false)}>
         <Image src="/codekraft_logo_white.png" alt="" aria-hidden width={36} height={36} />
         <span>CodeKraft</span>
-      </a>
+      </Link>
 
       <button
         className={`${styles.toggle} ${menuOpen ? styles.open : ''}`}
@@ -52,13 +62,23 @@ export default function Navbar() {
       <ul ref={menuRef} className={`${styles.links} ${menuOpen ? styles.show : ''}`}>
         {navLinks.map(({ href, label, cta }) => (
           <li key={href}>
-            <a
-              href={href}
-              className={cta ? styles.ctaLink : ''}
-              onClick={(e) => smoothScroll(e, href)}
-            >
-              {label}
-            </a>
+            {href.startsWith('#') ? (
+              <a
+                href={href}
+                className={cta ? styles.ctaLink : ''}
+                onClick={(e) => smoothScroll(e, href)}
+              >
+                {label}
+              </a>
+            ) : (
+              <Link
+                href={href}
+                className={cta ? styles.ctaLink : ''}
+                onClick={() => setMenuOpen(false)}
+              >
+                {label}
+              </Link>
+            )}
           </li>
         ))}
       </ul>

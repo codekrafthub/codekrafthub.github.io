@@ -18,6 +18,7 @@ const NAV_LINKS = [
 ];
 
 const PROJECTS = [
+  { href: '/case-studies', label: 'Case Study Library' },
   { href: '/ck-caet', label: 'CK-CAET' },
   { href: '/youthx', label: 'YouthX Summit' },
 ];

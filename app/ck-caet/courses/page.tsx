@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Users, Code, Layout, GraduationCap, Cpu, Terminal, Sparkles, Binary, Orbit } from 'lucide-react';
+import { Users, Code, Layout, GraduationCap, Cpu, Terminal, Sparkles, Binary, Rocket } from 'lucide-react';
 import Navbar from '@/components/ck-caet/Navbar/Navbar';
 import Footer from '@/components/ck-caet/Footer/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton/WhatsAppButton';
@@ -10,45 +10,43 @@ export const metadata: Metadata = {
   description: 'Master Python and C with our industry-led programming courses. Build a strong foundation in systems and AI.',
 };
 
-const BENEFITS = [
-  {
-    icon: <Users size={32} strokeWidth={1.5} />,
-    title: 'Industry Experienced Instructors'
-  },
-  {
-    icon: <Code size={32} strokeWidth={1.5} />,
-    title: 'Hands-on Practical Training'
-  },
-  {
-    icon: <Layout size={32} strokeWidth={1.5} />,
-    title: 'Real-world Project Experience'
-  },
-  {
-    icon: <GraduationCap size={32} strokeWidth={1.5} />,
-    title: 'Industry Certification'
-  }
-];
 
 const COURSES = [
   {
     id: 'python',
+    badge: 'Technical Course',
     title: 'Python Programming',
     subtitle: 'Beginner to Intermediate',
     tagline: 'Versatile language for web, data science, and AI',
     description: 'Master syntax, data structures, functions, and powerful libraries to build real-world applications and automation scripts.',
     features: ['Duration: 8 Weeks', '4+ Hands-on Projects', 'Personalized Mentorship', 'AI & Automation Focus'],
+    outcomes: ['Automation Scripts Portfolio', 'AI & Data Science Readiness', 'Completion Certificate', 'Strong Python Foundation'],
     color: '#3BB1E6',
     icon: <Terminal size={32} strokeWidth={1.5} />
   },
   {
     id: 'c-lang',
+    badge: 'Technical Course',
     title: 'C Programming',
     subtitle: 'The Foundational System Language',
     tagline: 'Mother of all programming languages',
     description: 'Master the fundamentals of logic, direct memory control, and system architecture through highly efficient low-level coding.',
     features: ['Duration: 6 Weeks', '3+ Core Projects', 'Memory Management', 'Data Structures Mastery'],
+    outcomes: ['Systems-Level Thinking', 'Pointer & Memory Mastery', 'Completion Certificate', 'DSA Foundation'],
     color: '#0088ff',
     icon: <Cpu size={32} strokeWidth={1.5} />
+  },
+  {
+    id: 'launchpad',
+    badge: 'Flagship Program',
+    title: 'Launchpad',
+    subtitle: '30-Day AI & Digital Skills Bootcamp',
+    tagline: 'From digitally unaware to confidently employable',
+    description: "CK-CAET's flagship program for any college student. Zero coding background required. Master AI tools, Python, web design, Excel, and career skills.",
+    features: ['Duration: 30 Days', 'AI Tools & Prompt Engineering', 'Python + Web Design + Excel', 'Resume Building & Interview Prep'],
+    outcomes: ['Digital Portfolio', 'Merit Certificate', 'Live Project Experience', 'Job-Ready Resume'],
+    color: '#f59e0b',
+    icon: <Rocket size={32} strokeWidth={1.5} />
   }
 ];
 
@@ -96,7 +94,7 @@ export default function CoursesPage() {
             <div key={course.id} className={styles.courseCard} style={{ '--accent-color': course.color } as any}>
               <div className={styles.cardHeader}>
                 <div className={styles.headerTop}>
-                  <div className={styles.courseBadge}>Technical Course</div>
+                  <div className={styles.courseBadge}>{course.badge}</div>
                   <div className={styles.langIcon}>{course.icon}</div>
                 </div>
                 <h2 className={styles.courseTitle}>{course.title}</h2>
@@ -115,6 +113,20 @@ export default function CoursesPage() {
                     </div>
                   ))}
                 </div>
+
+                {'outcomes' in course && course.outcomes && (
+                  <div className={styles.outcomesBlock}>
+                    <p className={styles.outcomesLabel}>Walk Away With</p>
+                    <div className={styles.featureGrid}>
+                      {(course.outcomes as string[]).map((o) => (
+                        <div key={o} className={styles.featureItem}>
+                          <span className={`${styles.featureDot} ${styles.featureDotGold}`} />
+                          {o}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
 
               <div className={styles.cardFooter}>

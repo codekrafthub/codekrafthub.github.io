@@ -1,0 +1,200 @@
+.container {
+  min-height: 100vh;
+  background: #0f172a;
+}
+
+.main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 8rem 1.5rem 4rem;
+}
+
+/* ── Hero ─────────────────────────────────────────────── */
+.hero {
+  margin-bottom: 5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding-bottom: 3rem;
+}
+
+.heroLabel {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #8b5cf6;
+  margin-bottom: 1rem;
+}
+
+.heroTitle {
+  font-family: var(--header-font);
+  font-size: clamp(2.2rem, 6vw, 3.5rem);
+  font-weight: 800;
+  color: #f8fafc;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  margin-bottom: 1.25rem;
+}
+
+.heroAccent {
+  color: #8b5cf6;
+}
+
+.heroSub {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.45);
+  max-width: 600px;
+  line-height: 1.65;
+}
+
+/* ── Cards grid ───────────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 2rem;
+}
+
+.courseCard {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-top: 3px solid var(--accent-color);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.courseCard:hover {
+  border-color: var(--accent-color);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.headerTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.25rem;
+}
+
+.courseBadge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0.4rem 0.8rem;
+  background: color-mix(in srgb, var(--accent-color) 12%, transparent);
+  color: var(--accent-color);
+  border-radius: 100px;
+}
+
+.langIcon {
+  color: var(--accent-color);
+  opacity: 0.9;
+}
+
+.courseTitle {
+  font-family: var(--header-font);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.4rem;
+}
+
+.courseSubtitle {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.35);
+  margin-bottom: 1.5rem;
+}
+
+.tagline {
+  font-style: italic;
+  color: var(--accent-color);
+  font-size: 0.95rem;
+  margin-bottom: 0.85rem;
+  font-weight: 500;
+}
+
+.description {
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.65;
+  font-size: 0.92rem;
+  margin-bottom: 1.75rem;
+  flex: 1;
+}
+
+.featureGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+  margin-bottom: 1.75rem;
+}
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.83rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.featureDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-color);
+  flex-shrink: 0;
+}
+
+.featureDotGold {
+  opacity: 0.75;
+}
+
+.outcomesBlock {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 1.25rem;
+  margin-top: 0.25rem;
+  margin-bottom: 1.75rem;
+}
+
+.outcomesLabel {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--accent-color);
+  margin-bottom: 0.85rem;
+}
+
+.cardFooter {
+  margin-top: auto;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.enrollBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--accent-color);
+  color: #fff;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: opacity 0.2s, transform 0.2s;
+  width: 100%;
+  justify-content: center;
+}
+
+.enrollBtn:hover {
+  opacity: 0.88;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .grid { grid-template-columns: 1fr; }
+  .featureGrid { grid-template-columns: 1fr; }
+}

@@ -1,6 +1,7 @@
 'use client';
 
 import { Laptop, GraduationCap, Compass } from 'lucide-react';
+import Link from 'next/link';
 import styles from './Programs.module.css';
 
 interface ProgramItem {
@@ -11,6 +12,7 @@ interface ProgramItem {
   items: string[];
   tags: string[];
   featured?: boolean;
+  href?: string;
 }
 
 const PROGRAMS: ProgramItem[] = [
@@ -40,6 +42,7 @@ const PROGRAMS: ProgramItem[] = [
     ],
     tags: ['Machine Learning', 'NLP', 'Computer Vision', 'Git'],
     featured: true,
+    href: '/ck-caet/internships',
   },
   {
     title: 'Placement & Career Prep',
@@ -99,6 +102,12 @@ export default function Programs() {
                     <span key={tag} className={styles.tag}>{tag}</span>
                   ))}
                 </div>
+
+                {prog.href && (
+                  <Link href={prog.href} className={styles.cardCta}>
+                    Explore Internship Programs →
+                  </Link>
+                )}
               </div>
             </div>
           ))}

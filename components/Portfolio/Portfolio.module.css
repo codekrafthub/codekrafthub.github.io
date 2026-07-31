@@ -1,11 +1,53 @@
 .section {
-  background: var(--white);
-  padding: 6rem 1.5rem;
+  background: #0f172a;
+  padding: 8rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* top-right orb */
+.section::before {
+  content: '';
+  position: absolute;
+  top: -120px;
+  right: -80px;
+  width: 560px;
+  height: 560px;
+  background: radial-gradient(circle, rgba(59, 177, 230, 0.1) 0%, transparent 65%);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: orbDriftA 9s ease-in-out infinite;
+}
+
+/* bottom-left orb */
+.section::after {
+  content: '';
+  position: absolute;
+  bottom: -150px;
+  left: -100px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(59, 177, 230, 0.07) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: orbDriftB 12s ease-in-out infinite;
+}
+
+@keyframes orbDriftA {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.7; }
+  50%       { transform: translate(-25px, 20px) scale(1.08); opacity: 1; }
+}
+
+@keyframes orbDriftB {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.6; }
+  50%       { transform: translate(20px, -25px) scale(1.1); opacity: 0.9; }
 }
 
 .inner {
   max-width: 1200px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 .label {
@@ -23,14 +65,14 @@
   font-family: var(--header-font);
   font-size: clamp(1.8rem, 4vw, 2.6rem);
   font-weight: 800;
-  color: var(--primary);
+  color: #f8fafc;
   text-align: center;
   margin: 0 0 0.5rem;
 }
 
 .sub {
   text-align: center;
-  color: #6b7a8a;
+  color: #94a3b8;
   font-weight: 600;
   font-size: 0.9rem;
   letter-spacing: 1.5px;
@@ -40,8 +82,14 @@
 /* Cards grid */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  }
 }
 
 .card {
@@ -56,9 +104,11 @@
   padding: 2.2rem 1.8rem 1.8rem;
   cursor: pointer;
   text-align: left;
-  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s, border-color 0.4s;
   overflow: hidden;
   width: 100%;
+  text-decoration: none !important;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
 }
 
 .card::before {
@@ -72,8 +122,8 @@
 }
 
 .card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 40px rgba(59, 177, 230, 0.15);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(59, 177, 230, 0.15);
   border-color: var(--accent);
 }
 
@@ -92,6 +142,7 @@
   margin: 0;
   padding-right: 1rem;
   line-height: 1.4;
+  text-decoration: none !important;
 }
 
 .cardDesc {
@@ -100,6 +151,7 @@
   line-height: 1.6;
   margin: 0 0 0.5rem;
   flex: 1;
+  text-decoration: none !important;
 }
 
 /* Metadata Grid */
@@ -153,16 +205,25 @@
   position: absolute;
   top: 1.5rem;
   right: 1.5rem;
-  font-size: 1.15rem;
   color: var(--accent);
   opacity: 0.4;
-  transition: opacity 0.2s, transform 0.2s, color 0.2s;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  background: rgba(59, 177, 230, 0.05);
+  border-radius: 50%;
+  padding-left: 2px; /* Visual center for arrows */
 }
 
 .card:hover .cardArrow {
   opacity: 1;
-  color: var(--accent);
-  transform: translate(3px, -3px);
+  color: #fff;
+  background: var(--accent);
+  transform: scale(1.1) rotate(-45deg);
+  box-shadow: 0 4px 12px rgba(59, 177, 230, 0.3);
 }
 
 /* Modal */

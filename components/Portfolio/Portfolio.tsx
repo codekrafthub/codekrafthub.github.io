@@ -1,143 +1,68 @@
 'use client';
 
-import { useState } from 'react';
-import { LineChart, Cog, MessageSquare, HeartPulse, Globe2 } from 'lucide-react';
+import { LineChart, Cog, MessageSquare, HeartPulse, Globe2, ArrowUpRight } from 'lucide-react';
+import Link from 'next/link';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 import styles from './Portfolio.module.css';
 
 export interface Project {
   title: string;
   description: string;
-  link: string;
-  intro: string;
   icon: React.ReactNode;
   industry: string;
   functionTag: string;
   valueDriver: string;
   technology: string[];
+  filterTag: string;
 }
 
 const PROJECTS: Project[] = [
   {
-    title: 'AI-Driven Revenue Optimization in Energy Trading',
-    description: 'Analyzed UK energy trading data to deploy machine learning strategies that maximize trade profits.',
-    link: '#contact',
-    intro: 'Dive into our UK energy trading case study. Explore real market auction data and see how AI-driven trading strategies can help maximize profits from financial energy trades.',
-    icon: <LineChart size={32} strokeWidth={1.5} />,
-    industry: 'Energy & Trading',
-    functionTag: 'Revenue Optimization',
-    valueDriver: 'Maximize Profits',
-    technology: ['Python', 'ML', 'Time Series', 'Predictive Analytics'],
-  },
-  {
-    title: 'Computer Vision Quality Inspection',
-    description: 'Built a deep learning system for instant machine part defect detection in manufacturing.',
-    link: '#contact',
-    intro: 'Try our AI tool for instant machine part defect detection: upload a photo of a Fender Apron, and the deep learning model will tell if it\'s defective or not.',
+    title: 'Enterprise Computer Vision & Visual AI',
+    description: 'Deploying high-accuracy visual intelligence for manufacturing quality, hospitality curation, and PropTech verification.',
     icon: <Cog size={32} strokeWidth={1.5} />,
-    industry: 'Manufacturing',
-    functionTag: 'Quality Control & Safety',
-    valueDriver: 'Reduce Operational Costs',
-    technology: ['Deep Learning', 'Computer Vision', 'CNN'],
+    industry: 'Vision & AI',
+    functionTag: 'Visual Inspection & Search',
+    valueDriver: 'Process Excellence',
+    technology: ['Deep Learning', 'Computer Vision', 'PyTorch', 'TensorRT'],
+    filterTag: 'computer-vision',
   },
   {
-    title: 'Conversational AI & Sentiment Analysis',
-    description: 'Developed an intelligent NLP parser to filter, correct, and analyze customer sentiment reviews.',
-    link: '#contact',
-    intro: 'Experience our automated sentiment analysis tool: upload a CSV of reviews and instantly filter, correct, and rate user sentiments using advanced NLP.',
+    title: 'Conversational AI & Voice Engineering',
+    description: 'Specialized linguistic products and autonomous voice platforms supporting Indic languages and high-scale telephony.',
     icon: <MessageSquare size={32} strokeWidth={1.5} />,
-    industry: 'Customer Support',
-    functionTag: 'Customer Experience',
-    valueDriver: 'Scalable Engagement',
-    technology: ['NLP', 'Sentiment Analysis', 'LLMs'],
+    industry: 'Voice & NLP',
+    functionTag: 'Autonomous Interactions',
+    valueDriver: '95% Latency Reduction',
+    technology: ['LLMs', 'Voice Ops', 'Whisper', 'Indic-NLP'],
+    filterTag: 'conversational-ai',
   },
   {
-    title: 'Applied Data Science for Healthcare Risk',
-    description: 'Created an ML risk classification system analyzing blood pressure metrics for health risks.',
-    link: '#contact',
-    intro: 'See applied data science in action for healthcare risk detection. This project analyzes blood pressure data with Python and ML to classify hypertension vs hypotension.',
-    icon: <HeartPulse size={32} strokeWidth={1.5} />,
-    industry: 'Healthcare',
-    functionTag: 'Clinical Risk Detection',
-    valueDriver: 'Early Risk Classification',
-    technology: ['Healthcare Tech', 'ML', 'Data Science'],
+    title: 'Financial Engineering & Revenue Operations',
+    description: 'Liberating additional revenue through high-precision predictive modeling for marketing attribution and energy trading.',
+    icon: <LineChart size={32} strokeWidth={1.5} />,
+    industry: 'Finance & Trading',
+    functionTag: 'Revenue Optimization',
+    valueDriver: '9% Revenue Lift',
+    technology: ['Predictive Modeling', 'Time Series', 'Python', 'Revenue Ops'],
+    filterTag: 'finance',
   },
   {
-    title: 'Digital ERP for Social & Educational Impact',
-    description: 'Designed custom management and ERP solutions to streamline billing, attendance, and record keeping.',
-    link: '#contact',
-    intro: 'We are building governance, rural tech, and school ERP platforms to bridge digital gaps for local institutions.',
+    title: 'Operational Intelligence & Predictive Risk',
+    description: 'Architecting resilient systems for supply chain optimization, clinical healthcare risk, and enterprise resource planning.',
     icon: <Globe2 size={32} strokeWidth={1.5} />,
-    industry: 'Education & Governance',
-    functionTag: 'Operations & ERP',
-    valueDriver: 'Process Efficiency',
-    technology: ['Web Platforms', 'Custom Database Systems', 'ERP'],
+    industry: 'Operations & Health',
+    functionTag: 'Predictive Resource Mgt',
+    valueDriver: '97% Forecast Accuracy',
+    technology: ['TensorFlow', 'Supply Chain AI', 'Healthcare Tech', 'ERP'],
+    filterTag: 'operations',
   },
 ];
 
-function ProjectModal({ project, onClose }: { project: Project; onClose: () => void }) {
-  const isExternal = project.link.startsWith('http');
-  
-  const handleCtaClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (project.link === '#contact') {
-      e.preventDefault();
-      onClose();
-      // Smooth scroll to contact section
-      const contactSection = document.getElementById('contact');
-      if (contactSection) {
-        contactSection.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-  };
-
-  return (
-    <div className={styles.overlay} onClick={onClose} role="dialog" aria-modal aria-label={project.title}>
-      <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-        <button className={styles.closeBtn} onClick={onClose} aria-label="Close">×</button>
-        <div className={styles.modalIcon}>{project.icon}</div>
-        <h3 className={styles.modalTitle}>{project.title}</h3>
-        
-        <div className={styles.modalMetadata}>
-          <div className={styles.metadataRow}>
-            <span className={styles.metaLabel}>Industry:</span>
-            <span className={styles.metaValue}>{project.industry}</span>
-          </div>
-          <div className={styles.metadataRow}>
-            <span className={styles.metaLabel}>Function:</span>
-            <span className={styles.metaValue}>{project.functionTag}</span>
-          </div>
-          <div className={styles.metadataRow}>
-            <span className={styles.metaLabel}>Value Driver:</span>
-            <span className={styles.metaValue}>{project.valueDriver}</span>
-          </div>
-        </div>
-
-        <p className={styles.modalIntro}>{project.intro}</p>
-
-        <div className={styles.modalTechStack}>
-          {project.technology.map((tech) => (
-            <span key={tech} className={styles.tag}>{tech}</span>
-          ))}
-        </div>
-
-        <a
-          href={project.link}
-          onClick={handleCtaClick}
-          target={isExternal ? '_blank' : undefined}
-          rel={isExternal ? 'noopener noreferrer' : undefined}
-          className={styles.modalCta}
-        >
-          Request Case Study
-        </a>
-      </div>
-    </div>
-  );
-}
-
 export default function Portfolio() {
-  const [active, setActive] = useState<Project | null>(null);
-
+  const revealRef = useScrollReveal();
   return (
-    <section id="portfolio" className={styles.section}>
+    <section id="portfolio" ref={revealRef} className={`${styles.section} reveal`}>
       <div className={styles.inner}>
         <div className={styles.label}>Our Work</div>
         <h2 className={styles.heading}>Case Study Library</h2>
@@ -145,10 +70,10 @@ export default function Portfolio() {
 
         <div className={styles.grid}>
           {PROJECTS.map((project) => (
-            <button
+            <Link
               key={project.title}
+              href={`/case-studies?filter=${project.filterTag}`}
               className={styles.card}
-              onClick={() => setActive(project)}
               aria-label={`View ${project.title}`}
             >
               <div className={styles.cardIcon}>{project.icon}</div>
@@ -175,13 +100,14 @@ export default function Portfolio() {
                   <span key={tech} className={styles.tag}>{tech}</span>
                 ))}
               </div>
-              <span className={styles.cardArrow}>↗</span>
-            </button>
+              <span className={styles.cardArrow}>
+                <ArrowUpRight size={18} strokeWidth={2.5} />
+              </span>
+            </Link>
           ))}
         </div>
       </div>
-
-      {active && <ProjectModal project={active} onClose={() => setActive(null)} />}
     </section>
   );
 }
+

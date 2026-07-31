@@ -2,9 +2,11 @@
 
 import { useState } from 'react';
 import { Mail, Phone, Briefcase, Calendar, Camera } from 'lucide-react';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 import styles from './Contact.module.css';
 
 export default function Contact() {
+  const revealRef = useScrollReveal();
   const [calendlyLoaded, setCalendlyLoaded] = useState(false);
 
   function loadCalendly() {
@@ -16,7 +18,7 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className={styles.section}>
+    <section id="contact" ref={revealRef} className={`${styles.section} reveal`}>
       <div className={styles.inner}>
         <div className={styles.label}>Get In Touch</div>
         <h2 className={styles.heading}>Let&apos;s Build Something Together</h2>

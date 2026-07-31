@@ -234,8 +234,8 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   padding: 0.4rem 0.8rem;
-  background: rgba(0, 136, 255, 0.1);
-  color: #0088ff;
+  background: color-mix(in srgb, var(--accent-color) 12%, transparent);
+  color: var(--accent-color);
   border-radius: 100px;
 }
 
@@ -292,6 +292,28 @@
   height: 6px;
   border-radius: 50%;
   background: var(--accent-color);
+  flex-shrink: 0;
+}
+
+.featureDotGold {
+  background: var(--accent-color);
+  opacity: 0.7;
+}
+
+.outcomesBlock {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 1.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.outcomesLabel {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--accent-color);
+  margin-bottom: 1rem;
 }
 
 .cardFooter {

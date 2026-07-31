@@ -18,10 +18,11 @@ const InstagramIcon = () => (
 );
 
 const NAV_LINKS = [
-  { href: '#caet-about',     label: 'About CAET' },
-  { href: '/ck-caet/courses', label: 'Courses' },
-  { href: '#caet-programs',  label: 'Programs' },
-  { href: '#caet-contact',   label: 'Contact' },
+  { href: '#caet-about',          label: 'About CAET' },
+  { href: '/ck-caet/courses',      label: 'Courses' },
+  { href: '/ck-caet/internships',  label: 'Internships' },
+  { href: '#caet-programs',        label: 'Programs' },
+  { href: '#caet-contact',         label: 'Contact' },
 ];
 
 const SOCIAL_LINKS = [
