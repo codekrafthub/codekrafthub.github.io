@@ -20,7 +20,7 @@ const INTERNSHIPS = [
     description: 'A structured 30-hour internship where students go from foundations to a fully working AI Agent project. The first half covers focused teaching; the second half is guided independent project work under mentor review. 100% online with live sessions.',
     features: ['30 Hours (18 Teaching + 12 Project)', 'Live Online Sessions', 'CrewAI & LangGraph Stack', 'Python + Groq API'],
     outcomes: ['Working AI Agent Project', 'GitHub Portfolio Entry', 'Joint Internship Certificate', '2 Academic Credits'],
-    color: '#8b5cf6',
+    color: '#0088ff',
     icon: <Orbit size={32} strokeWidth={1.5} />,
   },
   {
@@ -32,7 +32,7 @@ const INTERNSHIPS = [
     description: 'A 30-day industry internship for students in their early semesters of CS, CS (AI/ML), or CS (AI/Data Science). Learn Python for data analysis, exploratory data analysis (EDA), and visualization — working on real projects under mentorship by CodeKraft founders, following industry Git workflows.',
     features: ['Duration: 30 Days', 'Python · Pandas · Matplotlib', 'Git & GitHub Workflow', 'Daily Standups & Sprints'],
     outcomes: ['GitHub Portfolio Project', 'EDA & Visualization Skills', 'Internship Certificate', 'Industry Workflow Exposure'],
-    color: '#8b5cf6',
+    color: '#0088ff',
     icon: <BarChart2 size={32} strokeWidth={1.5} />,
   },
   {
@@ -44,7 +44,7 @@ const INTERNSHIPS = [
     description: 'A 30-day advanced internship for final-year students. Goes beyond EDA into statistical modeling, advanced visualization, and ML-integrated pipelines — all built to industry standards with Git, daily stand-ups, and direct founder mentorship.',
     features: ['Duration: 30 Days', 'Statistical Modeling & ML', 'Real Industry Projects', 'Mentorship by Founders'],
     outcomes: ['Advanced Analytics Portfolio', 'Top Performer LoR', 'Internship Certificate', 'Production Pipeline Experience'],
-    color: '#8b5cf6',
+    color: '#0088ff',
     icon: <TrendingUp size={32} strokeWidth={1.5} />,
   },
 ];
