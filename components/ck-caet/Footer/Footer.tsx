@@ -18,11 +18,19 @@ const InstagramIcon = () => (
 );
 
 const NAV_LINKS = [
+  { href: '/ck-caet',              label: 'CAET Academy' },
   { href: '/ck-caet/courses',      label: 'Tech Courses' },
-  { href: '/ck-caet/internships',  label: 'Internships' },
+  { href: '/ck-caet/internships',  label: 'Corporate Internships' },
+  { href: '/ck-caet#caet-about',   label: 'About CAET' },
+  { href: '/ck-caet#caet-contact', label: 'Contact' },
+];
+
+const PLATFORMS = [
+  { href: '/case-studies',         label: 'Case Study Library' },
+  { href: '/ck-caet',              label: 'CK-CAET Academy' },
+  { href: '/ck-caet/courses',      label: 'Tech Courses' },
+  { href: '/ck-caet/internships',  label: 'Corporate Internships' },
   { href: '/youthx',               label: 'YouthX Summit' },
-  { href: '/case-studies',         label: 'Case Studies' },
-  { href: '#caet-contact',         label: 'Contact' },
 ];
 
 const SOCIAL_LINKS = [
@@ -54,9 +62,9 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Quick nav */}
+          {/* Navigation */}
           <div className={styles.navCol}>
-            <div className={styles.colHeading}>Quick Links</div>
+            <div className={styles.colHeading}>Navigation</div>
             <ul className={styles.navList}>
               {NAV_LINKS.map(({ href, label }) => (
                 <li key={href}>
@@ -68,6 +76,18 @@ export default function Footer() {
                   ← Back to IT Services
                 </Link>
               </li>
+            </ul>
+          </div>
+
+          {/* Platforms */}
+          <div className={styles.navCol}>
+            <div className={styles.colHeading}>Platforms</div>
+            <ul className={styles.navList}>
+              {PLATFORMS.map(({ href, label }) => (
+                <li key={href}>
+                  <Link href={href} className={styles.navLink}>{label}</Link>
+                </li>
+              ))}
             </ul>
           </div>
 

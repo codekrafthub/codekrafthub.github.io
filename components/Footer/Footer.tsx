@@ -10,18 +10,18 @@ const LinkedinIcon = () => (
 );
 
 const NAV_LINKS = [
-  { href: '#home', label: 'Home' },
-  { href: '#about', label: 'About' },
-  { href: '#services', label: 'Services' },
-  { href: '#portfolio', label: 'Portfolio' },
-  { href: '#contact', label: 'Contact' },
+  { href: '/#home', label: 'Home' },
+  { href: '/#about', label: 'About' },
+  { href: '/#services', label: 'Services' },
+  { href: '/#portfolio', label: 'Portfolio' },
+  { href: '/#contact', label: 'Contact' },
 ];
 
-const PROJECTS = [
+const PLATFORMS = [
   { href: '/case-studies', label: 'Case Study Library' },
   { href: '/ck-caet', label: 'CK-CAET Academy' },
-  { href: '/ck-caet/courses', label: 'CAET Tech Courses' },
-  { href: '/ck-caet/internships', label: 'CAET Internships' },
+  { href: '/ck-caet/courses', label: 'Tech Courses' },
+  { href: '/ck-caet/internships', label: 'Corporate Internships' },
   { href: '/youthx', label: 'YouthX Summit' },
 ];
 
@@ -53,11 +53,11 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Projects */}
+          {/* Platforms */}
           <div className={styles.navCol}>
             <div className={styles.colHeading}>Platforms</div>
             <ul className={styles.navList}>
-              {PROJECTS.map(({ href, label }) => (
+              {PLATFORMS.map(({ href, label }) => (
                 <li key={href}>
                   <Link href={href} className={styles.navLink}>{label}</Link>
                 </li>

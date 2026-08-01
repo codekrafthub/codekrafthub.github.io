@@ -11,7 +11,7 @@ const CREDENTIALS = [
   {
     icon: <ShieldCheck size={20} strokeWidth={1.5} />,
     label: 'ISO Certified',
-    value: 'IAF 9001:2015 and 21001:2025',
+    value: 'ISO 9001:2015 & ISO 21001:2025',
     detail: 'Quality and Education Management Systems',
   },
   {

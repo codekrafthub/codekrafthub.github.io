@@ -129,7 +129,7 @@ export default function CoursesPage() {
                 </div>
                 <div className={styles.floatingCourseInfo} style={{ bottom: '10%', left: '-5%' }}>
                   <Users size={14} />
-                  <span>100+ Students</span>
+                  <span>500+ Students Trained</span>
                 </div>
               </div>
             </div>
