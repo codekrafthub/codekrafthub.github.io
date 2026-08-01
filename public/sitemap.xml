@@ -28,6 +28,34 @@
   </url>
 
   <url>
+    <loc>https://codekrafthub.in/case-studies/category/computer-vision</loc>
+    <lastmod>2026-08-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://codekrafthub.in/case-studies/category/conversational-ai</loc>
+    <lastmod>2026-08-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://codekrafthub.in/case-studies/category/finance</loc>
+    <lastmod>2026-08-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://codekrafthub.in/case-studies/category/operations</loc>
+    <lastmod>2026-08-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://codekrafthub.in/case-studies/industrial-vision</loc>
     <lastmod>2026-08-01</lastmod>
     <changefreq>yearly</changefreq>

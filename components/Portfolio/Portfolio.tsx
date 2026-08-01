@@ -72,7 +72,7 @@ export default function Portfolio() {
           {PROJECTS.map((project) => (
             <Link
               key={project.title}
-              href={`/case-studies?filter=${project.filterTag}`}
+              href={`/case-studies/category/${project.filterTag}`}
               className={styles.card}
               aria-label={`View ${project.title}`}
             >

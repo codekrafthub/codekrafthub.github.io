@@ -6,6 +6,9 @@ import styles from './legal.module.css';
 export const metadata: Metadata = {
   title: 'Privacy Policy | CodeKraft Hub',
   description: 'Privacy Policy for CodeKraft Hub IT Services.',
+  alternates: {
+    canonical: 'https://codekrafthub.in/privacy-policy',
+  },
 };
 
 export default function PrivacyPolicy() {

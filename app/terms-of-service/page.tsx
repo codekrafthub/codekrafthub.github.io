@@ -6,6 +6,9 @@ import styles from './legal.module.css';
 export const metadata: Metadata = {
   title: 'Terms of Service | CodeKraft Hub',
   description: 'Terms of Service for CodeKraft Hub IT Services.',
+  alternates: {
+    canonical: 'https://codekrafthub.in/terms-of-service',
+  },
 };
 
 export default function TermsOfService() {

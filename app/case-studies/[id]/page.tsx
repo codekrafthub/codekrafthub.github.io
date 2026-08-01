@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import React from 'react';
 import { 
   Cog, ImageIcon, ScanSearch, LineChart, HeartPulse, Globe2, Sparkles, MessageSquare 
@@ -223,10 +224,87 @@ export function generateStaticParams() {
   }));
 }
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+  const { id } = await params;
+  const study = CASE_STUDY_DATA[id] || DEFAULT_STUDY;
+
+  const url = `https://codekrafthub.in/case-studies/${study.id}`;
+
+  return {
+    title: `${study.title} | CodeKraft Case Study`,
+    description: study.problem,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title: `${study.title} | CodeKraft Case Study`,
+      description: study.problem,
+      url: url,
+      siteName: 'CodeKraft',
+      images: [{ url: 'https://codekrafthub.in/codekraft_logo.png', width: 1200, height: 630 }],
+      locale: 'en_IN',
+      type: 'article',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${study.title} | CodeKraft Case Study`,
+      description: study.problem,
+      images: ['https://codekrafthub.in/codekraft_logo.png'],
+    },
+  };
+}
+
 export default async function CaseStudyPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const study = CASE_STUDY_DATA[id] || DEFAULT_STUDY;
 
-  return <CaseStudyClient study={study} />;
+  const allIds = Object.keys(CASE_STUDY_DATA);
+  const relatedStudies = allIds
+    .filter((sId) => sId !== id)
+    .slice(0, 2)
+    .map((sId) => ({
+      id: CASE_STUDY_DATA[sId].id,
+      title: CASE_STUDY_DATA[sId].title,
+      industry: CASE_STUDY_DATA[sId].industry,
+    }));
+
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    'headline': study.title,
+    'description': study.problem,
+    'articleSection': study.industry,
+    'author': {
+      '@type': 'Organization',
+      'name': 'CodeKraft',
+      'url': 'https://codekrafthub.in'
+    },
+    'publisher': {
+      '@type': 'Organization',
+      'name': 'CodeKraft',
+      'logo': {
+        '@type': 'ImageObject',
+        'url': 'https://codekrafthub.in/codekraft_logo.png'
+      }
+    },
+    'mainEntityOfPage': {
+      '@type': 'WebPage',
+      '@id': `https://codekrafthub.in/case-studies/${study.id}`
+    }
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <CaseStudyClient study={study} relatedStudies={relatedStudies} />
+    </>
+  );
 }
 

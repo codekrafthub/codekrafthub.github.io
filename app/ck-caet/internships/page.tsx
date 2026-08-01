@@ -8,6 +8,9 @@ import styles from './internships.module.css';
 export const metadata: Metadata = {
   title: 'CK-CAET | Corporate Internship Programs',
   description: 'Gain real industry experience through CK-CAET structured internships in Agentic AI and Data Analysis with Python.',
+  alternates: {
+    canonical: 'https://codekrafthub.in/ck-caet/internships',
+  },
   openGraph: {
     title: 'CK-CAET | Corporate Internship Programs',
     description: 'Gain real industry experience through CK-CAET structured internships in Agentic AI and Data Analysis with Python.',
@@ -65,8 +68,34 @@ const INTERNSHIPS = [
 ];
 
 export default function InternshipsPage() {
+  const internshipSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    'name': 'CK-CAET Corporate Internship Programs',
+    'itemListElement': INTERNSHIPS.map((program, index) => ({
+      '@type': 'ListItem',
+      'position': index + 1,
+      'item': {
+        '@type': 'EducationalOccupationalProgram',
+        'name': program.title,
+        'description': program.description,
+        'occupationalCategory': 'Software Development & AI',
+        'provider': {
+          '@type': 'EducationalOrganization',
+          'name': 'CK-CAET - CodeKraft Centre for Advanced Emerging Technologies',
+          'url': 'https://codekrafthub.in/ck-caet'
+        },
+        'educationalProgramMode': 'Online'
+      }
+    }))
+  };
+
   return (
     <div className={styles.container}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(internshipSchema) }}
+      />
       <Navbar />
 
       <main className={styles.main}>

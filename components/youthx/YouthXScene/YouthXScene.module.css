@@ -1084,6 +1084,113 @@
   transform: translateY(-2px);
 }
 
+.footerNav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footerNavLink {
+  font-family: var(--yx-header-font);
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footerNavLink:hover {
+  color: #38b6ff;
+}
+
+/* ── CAET CONVERSION BANNER ────────────────────────────────────────────────── */
+.caetConversion {
+  position: relative;
+  padding: 6rem 1.5rem;
+  background: linear-gradient(180deg, #050505 0%, #090d16 50%, #050505 100%);
+  border-top: 1px solid rgba(56, 182, 255, 0.15);
+  border-bottom: 1px solid rgba(56, 182, 255, 0.15);
+  text-align: center;
+}
+
+.conversionInner {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.conversionTitle {
+  font-family: var(--yx-header-font);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 800;
+  color: #ffffff;
+  margin: 1rem 0;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.conversionSub {
+  font-family: var(--yx-header-font);
+  font-size: 1rem;
+  color: #94a3b8;
+  line-height: 1.6;
+  max-width: 620px;
+  margin-bottom: 2rem;
+}
+
+.conversionActions {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.conversionBtnPrimary {
+  display: inline-block;
+  font-family: var(--yx-header-font);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  color: #000;
+  background: #fff;
+  padding: 1.1rem 2.2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.conversionBtnPrimary:hover {
+  background: var(--yx-purple);
+  color: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(168, 85, 247, 0.4);
+}
+
+.conversionBtnOutline {
+  display: inline-block;
+  font-family: var(--yx-header-font);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  color: #fff;
+  background: transparent;
+  padding: 1.1rem 2.2rem;
+  border-radius: 8px;
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.conversionBtnOutline:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.6);
+  color: #fff;
+  transform: translateY(-3px);
+}
+
 .footerCopy {
   max-width: 1200px;
   margin: 0 auto;

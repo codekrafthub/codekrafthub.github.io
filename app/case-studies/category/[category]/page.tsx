@@ -1,50 +1,58 @@
-// Server Component — no 'use client' directive.
-// Next.js pre-renders this entire tree into static HTML at build time.
-// All 13 case study cards are baked into the delivered HTML, making them
-// visible to Google, B2B visitors, and anyone with JS disabled.
-//
-// Filtering is handled by CaseStudiesFilter (a tiny 'use client' island)
-// which reads window.location.search after hydration — a progressive
-// enhancement that never blocks pre-rendering.
-
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import {
   Cog, ScanSearch, ImageIcon, ArrowRight,
   LineChart, MessageSquare, HeartPulse, Globe2,
 } from 'lucide-react';
 import Navbar from '@/components/Navbar/Navbar';
 import Footer from '@/components/Footer/Footer';
-import CaseStudiesFilter from './CaseStudiesFilter';
-import styles from './case-studies.module.css';
+import styles from '../../case-studies.module.css';
 
-export const metadata: Metadata = {
-  title: 'Case Study Library | CodeKraft',
-  description: 'Exploring how we solve high-stakes business challenges through Computer Vision, AI Automation, and Engineering Excellence.',
-  alternates: {
-    canonical: 'https://codekrafthub.in/case-studies',
+interface CategoryMeta {
+  slug: string;
+  name: string;
+  headline: string;
+  sub: string;
+  metaTitle: string;
+  metaDesc: string;
+}
+
+const CATEGORY_MAP: Record<string, CategoryMeta> = {
+  'computer-vision': {
+    slug: 'computer-vision',
+    name: 'Computer Vision & Visual AI',
+    headline: 'Computer Vision & Visual AI Case Studies',
+    sub: 'Deploying high-accuracy visual intelligence for manufacturing quality, hospitality curation, and PropTech verification.',
+    metaTitle: 'Computer Vision & Visual AI Case Studies | CodeKraft',
+    metaDesc: 'Explore real-world case studies in Computer Vision, automated visual quality inspection, travel content curation, and semantic duplication verification.',
   },
-  openGraph: {
-    title: 'Case Study Library | CodeKraft',
-    description: 'Exploring how we solve high-stakes business challenges through Computer Vision, AI Automation, and Engineering Excellence.',
-    url: 'https://codekrafthub.in/case-studies',
-    siteName: 'CodeKraft',
-    images: [{ url: 'https://codekrafthub.in/codekraft_logo.png', width: 1200, height: 630 }],
-    locale: 'en_IN',
-    type: 'website',
+  'conversational-ai': {
+    slug: 'conversational-ai',
+    name: 'Conversational AI & Voice',
+    headline: 'Conversational AI & Voice Engineering Case Studies',
+    sub: 'Specialized linguistic products, autonomous telephony platforms, and WhatsApp conversational commerce.',
+    metaTitle: 'Conversational AI & Voice Engineering Case Studies | CodeKraft',
+    metaDesc: 'Discover case studies in high-scale AI telephony, Indic speech-to-text processing, and omnichannel WhatsApp conversational automation.',
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Case Study Library | CodeKraft',
-    description: 'Exploring how we solve high-stakes business challenges through Computer Vision, AI Automation, and Engineering Excellence.',
-    images: ['https://codekrafthub.in/codekraft_logo.png'],
+  'finance': {
+    slug: 'finance',
+    name: 'Finance & Revenue Ops',
+    headline: 'Financial Engineering & Revenue Operations Case Studies',
+    sub: 'High-precision predictive modeling for marketing attribution, CPA optimization, and energy trading arbitrage.',
+    metaTitle: 'Financial Engineering & Revenue Operations Case Studies | CodeKraft',
+    metaDesc: 'Read case studies on AI-driven energy trading algorithms, global CPA revenue optimization, and time-series forecasting pipelines.',
+  },
+  'operations': {
+    slug: 'operations',
+    name: 'Operations & Health',
+    headline: 'Operational Intelligence & Healthcare Case Studies',
+    sub: 'Predictive risk classification, supply chain inventory forecasting, health insurance fraud detection, and ERP solutions.',
+    metaTitle: 'Operational Intelligence & Healthcare Case Studies | CodeKraft',
+    metaDesc: 'Browse case studies on clinical healthcare risk classification, predictive inventory optimization, insurance claims fraud detection, and enterprise search.',
   },
 };
 
-// ---------------------------------------------------------------------------
-// Static data — all content is known at build time, zero runtime fetching.
-// Adding a case study here bakes it into the HTML on the next deploy.
-// ---------------------------------------------------------------------------
 const CASE_STUDIES = [
   {
     id: 'industrial-vision',
@@ -165,60 +173,102 @@ const CASE_STUDIES = [
   },
 ];
 
-// ---------------------------------------------------------------------------
-// Page — Server Component
-// All card HTML is rendered here and baked into the static export.
-// CaseStudiesFilter is a tiny client island that applies ?filter= after hydration.
-// ---------------------------------------------------------------------------
-export default function CaseStudiesPage() {
+export function generateStaticParams() {
+  return Object.keys(CATEGORY_MAP).map((cat) => ({
+    category: cat,
+  }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ category: string }>;
+}): Promise<Metadata> {
+  const { category } = await params;
+  const meta = CATEGORY_MAP[category];
+
+  if (!meta) {
+    return {
+      title: 'Case Studies | CodeKraft',
+    };
+  }
+
+  const url = `https://codekrafthub.in/case-studies/category/${meta.slug}`;
+
+  return {
+    title: meta.metaTitle,
+    description: meta.metaDesc,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title: meta.metaTitle,
+      description: meta.metaDesc,
+      url: url,
+      siteName: 'CodeKraft',
+      images: [{ url: 'https://codekrafthub.in/codekraft_logo.png', width: 1200, height: 630 }],
+      locale: 'en_IN',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: meta.metaTitle,
+      description: meta.metaDesc,
+      images: ['https://codekrafthub.in/codekraft_logo.png'],
+    },
+  };
+}
+
+export default async function CategoryPage({
+  params,
+}: {
+  params: Promise<{ category: string }>;
+}) {
+  const { category } = await params;
+  const meta = CATEGORY_MAP[category];
+
+  if (!meta) {
+    notFound();
+  }
+
+  const filteredStudies = CASE_STUDIES.filter((s) => s.category === category);
+
   return (
     <div className={styles.container}>
       <Navbar />
       <main className={styles.main}>
         <div className={styles.header}>
-          <span className={styles.label}>Success Stories</span>
-          <h1 className={styles.title}>Case Study Library</h1>
-          <p className={styles.sub}>
-            Exploring how we solve high-stakes business challenges through
-            Computer Vision, AI Automation, and Engineering Excellence.
-          </p>
+          <span className={styles.label}>Category Portfolio</span>
+          <h1 className={styles.title}>{meta.headline}</h1>
+          <p className={styles.sub}>{meta.sub}</p>
 
-          {/* Static Category Navigation Links */}
+          {/* Static Category Navigation */}
           <div className={styles.categoryNav}>
-            <Link href="/case-studies" className={`${styles.categoryTab} ${styles.activeTab}`}>
+            <Link href="/case-studies" className={styles.categoryTab}>
               All ({CASE_STUDIES.length})
             </Link>
-            <Link href="/case-studies/category/computer-vision" className={styles.categoryTab}>
-              Computer Vision & Visual AI ({CASE_STUDIES.filter(s => s.category === 'computer-vision').length})
-            </Link>
-            <Link href="/case-studies/category/conversational-ai" className={styles.categoryTab}>
-              Conversational AI & Voice ({CASE_STUDIES.filter(s => s.category === 'conversational-ai').length})
-            </Link>
-            <Link href="/case-studies/category/finance" className={styles.categoryTab}>
-              Finance & Revenue Ops ({CASE_STUDIES.filter(s => s.category === 'finance').length})
-            </Link>
-            <Link href="/case-studies/category/operations" className={styles.categoryTab}>
-              Operations & Health ({CASE_STUDIES.filter(s => s.category === 'operations').length})
-            </Link>
+            {Object.values(CATEGORY_MAP).map((cat) => {
+              const count = CASE_STUDIES.filter((s) => s.category === cat.slug).length;
+              const isActive = cat.slug === category;
+              return (
+                <Link
+                  key={cat.slug}
+                  href={`/case-studies/category/${cat.slug}`}
+                  className={`${styles.categoryTab} ${isActive ? styles.activeTab : ''}`}
+                >
+                  {cat.name} ({count})
+                </Link>
+              );
+            })}
           </div>
         </div>
 
-        {/*
-          CaseStudiesFilter mounts after hydration and reads window.location.search.
-          It uses data-id / data-category / data-industry attributes on each card
-          to show/hide them. The cards themselves are always in the static HTML.
-        */}
-        <CaseStudiesFilter />
-
-        <div className={styles.grid} id="case-studies-grid">
-          {CASE_STUDIES.map((study) => (
+        <div className={styles.grid}>
+          {filteredStudies.map((study) => (
             <Link
               key={study.id}
               href={`/case-studies/${study.id}`}
               className={styles.card}
-              data-id={study.id}
-              data-category={study.category}
-              data-industry={study.industry.toLowerCase()}
             >
               <div className={styles.cardIcon}>{study.icon}</div>
               <div className={styles.cardIndustry}>{study.industry}</div>
@@ -227,7 +277,9 @@ export default function CaseStudiesPage() {
 
               <div className={styles.cardTech}>
                 {study.tech.map((t) => (
-                  <span key={t} className={styles.techTag}>{t}</span>
+                  <span key={t} className={styles.techTag}>
+                    {t}
+                  </span>
                 ))}
               </div>
 

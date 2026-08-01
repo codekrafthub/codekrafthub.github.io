@@ -23,7 +23,19 @@ interface CaseStudyDetails {
   }[];
 }
 
-export default function CaseStudyClient({ study }: { study: CaseStudyDetails }) {
+interface RelatedStudy {
+  id: string;
+  title: string;
+  industry: string;
+}
+
+export default function CaseStudyClient({
+  study,
+  relatedStudies = [],
+}: {
+  study: CaseStudyDetails;
+  relatedStudies?: RelatedStudy[];
+}) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     alert('Thank you for your interest! Our team will reach out shortly for a demo.');
@@ -112,6 +124,21 @@ export default function CaseStudyClient({ study }: { study: CaseStudyDetails }) 
             </div>
           </aside>
         </div>
+
+        {relatedStudies.length > 0 && (
+          <section className={styles.relatedSection}>
+            <h2 className={styles.relatedHeading}>Related Case Studies</h2>
+            <div className={styles.relatedGrid}>
+              {relatedStudies.map((rel) => (
+                <Link key={rel.id} href={`/case-studies/${rel.id}`} className={styles.relatedCard}>
+                  <span className={styles.relatedIndustry}>{rel.industry}</span>
+                  <h3 className={styles.relatedTitle}>{rel.title}</h3>
+                  <span className={styles.relatedLink}>Read Case Study →</span>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
       </main>
 
       <Footer />

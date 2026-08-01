@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useEffect } from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -604,12 +605,39 @@ export default function YouthXScene() {
         </div>
       </section>
 
+      {/* ── SCENE: CK-CAET ACADEMY CONVERSION ───────────────────────────── */}
+      <section className={styles.caetConversion}>
+        <div className={styles.conversionInner}>
+          <span className={styles.sysLabel}>[ SKILL DEVELOPMENT & CAREERS ]</span>
+          <h2 className={styles.conversionTitle}>
+            TURN INSPIRATION INTO <span className={styles.gradientText}>PRODUCTION SKILLS</span>
+          </h2>
+          <p className={styles.conversionSub}>
+            Ready to build AI agents, master Python systems, or land corporate internships? Explore CK-CAET hands-on training and career programs.
+          </p>
+          <div className={styles.conversionActions}>
+            <Link href="/ck-caet/courses" className={styles.conversionBtnPrimary}>
+              Explore Tech Courses →
+            </Link>
+            <Link href="/ck-caet/internships" className={styles.conversionBtnOutline}>
+              Apply for Corporate Internships →
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* ── FOOTER ───────────────────────────────────────────────────── */}
       <footer className={styles.footer}>
         <div className={styles.footerInner}>
           <div className={styles.footerBrand}>
-            <a href="/" className={styles.footerBrandName}>CodeKraft IT Services</a>
+            <Link href="/" className={styles.footerBrandName}>CodeKraft IT Services</Link>
             <p className={styles.footerTagline}>Empowering youth through technology, education, and innovation.</p>
+          </div>
+          <div className={styles.footerNav}>
+            <span className={styles.footerContact} style={{ fontWeight: 700, color: '#fff' }}>Programs</span>
+            <Link href="/ck-caet/courses" className={styles.footerNavLink}>Tech Courses</Link>
+            <Link href="/ck-caet/internships" className={styles.footerNavLink}>Corporate Internships</Link>
+            <Link href="/case-studies" className={styles.footerNavLink}>Case Studies</Link>
           </div>
           <div className={styles.footerContacts}>
             <a href="mailto:codekraft.hub@gmail.com" className={styles.footerContact}>codekraft.hub@gmail.com</a>

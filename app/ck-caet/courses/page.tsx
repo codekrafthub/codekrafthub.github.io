@@ -8,6 +8,9 @@ import styles from './courses.module.css';
 export const metadata: Metadata = {
   title: 'CK-CAET | Programming Courses',
   description: 'Master Python and C with our industry-led programming courses. Build a strong foundation in systems and AI.',
+  alternates: {
+    canonical: 'https://codekrafthub.in/ck-caet/courses',
+  },
   openGraph: {
     title: 'CK-CAET | Programming Courses',
     description: 'Master Python and C with our industry-led programming courses. Build a strong foundation in systems and AI.',
@@ -66,8 +69,37 @@ const COURSES = [
 ];
 
 export default function CoursesPage() {
+  const courseSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    'name': 'CK-CAET Technical Training & Programming Courses',
+    'itemListElement': COURSES.map((course, index) => ({
+      '@type': 'ListItem',
+      'position': index + 1,
+      'item': {
+        '@type': 'Course',
+        'name': course.title,
+        'description': course.description,
+        'provider': {
+          '@type': 'EducationalOrganization',
+          'name': 'CK-CAET - CodeKraft Centre for Advanced Emerging Technologies',
+          'url': 'https://codekrafthub.in/ck-caet'
+        },
+        'hasCourseInstance': {
+          '@type': 'CourseInstance',
+          'courseMode': 'Online',
+          'duration': course.features.find(f => f.startsWith('Duration:'))?.replace('Duration: ', '') || 'Flexible'
+        }
+      }
+    }))
+  };
+
   return (
     <div className={styles.container}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(courseSchema) }}
+      />
       <Navbar />
       
       <main className={styles.main}>

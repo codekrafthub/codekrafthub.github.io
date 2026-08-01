@@ -6,6 +6,9 @@ import styles from '../privacy-policy/policy.module.css';
 export const metadata: Metadata = {
   title: 'Terms of Service | CK-CAET',
   description: 'Terms of Service for CodeKraft Centre for AI & Emerging Technologies.',
+  alternates: {
+    canonical: 'https://codekrafthub.in/ck-caet/terms-of-service',
+  },
   openGraph: {
     title: 'Terms of Service | CK-CAET',
     description: 'Terms of Service for CodeKraft Centre for AI & Emerging Technologies.',

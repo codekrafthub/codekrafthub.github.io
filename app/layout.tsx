@@ -17,9 +17,13 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://codekrafthub.in'),
   title: 'CodeKraft | Where Code Becomes Craft, Dreams Become Reality',
   description: 'CodeKraft brings AI & Automation, cutting-edge coding training, industry-ready internships, and real-world software solutions for businesses and students in India.',
   keywords: 'AI Automation, Coding Training, Data Science, AI, Internships, college students, Digital Transformation, Chatbots, Software Solutions, India',
+  alternates: {
+    canonical: 'https://codekrafthub.in/',
+  },
   openGraph: {
     title: 'CodeKraft | Where Code Becomes Craft, Dreams Become Reality',
     description: 'Unlock AI, automation, and technical training. Explore our projects and services.',

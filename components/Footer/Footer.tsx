@@ -19,7 +19,9 @@ const NAV_LINKS = [
 
 const PROJECTS = [
   { href: '/case-studies', label: 'Case Study Library' },
-  { href: '/ck-caet', label: 'CK-CAET' },
+  { href: '/ck-caet', label: 'CK-CAET Academy' },
+  { href: '/ck-caet/courses', label: 'CAET Tech Courses' },
+  { href: '/ck-caet/internships', label: 'CAET Internships' },
   { href: '/youthx', label: 'YouthX Summit' },
 ];
 

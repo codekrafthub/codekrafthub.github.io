@@ -226,3 +226,71 @@
 .backLink:hover {
   opacity: 1;
 }
+
+/* Related Section */
+.relatedSection {
+  margin-top: 5rem;
+  padding-top: 3rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.relatedHeading {
+  font-family: var(--header-font);
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #0b2b3c;
+  margin-bottom: 1.5rem;
+}
+
+.relatedGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.relatedCard {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.75rem;
+  text-decoration: none;
+  color: #1e293b;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.relatedCard:hover {
+  border-color: #0088ff;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 136, 255, 0.12);
+}
+
+.relatedIndustry {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #0088ff;
+  letter-spacing: 1px;
+}
+
+.relatedTitle {
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: #0b2b3c;
+  margin: 0;
+}
+
+.relatedLink {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #0088ff;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
