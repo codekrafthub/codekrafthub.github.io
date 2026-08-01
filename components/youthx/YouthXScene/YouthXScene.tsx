@@ -500,9 +500,22 @@ export default function YouthXScene() {
             </div>
           </div>
 
+          {/*
+            Accessible equivalent: rendered once for screen readers,
+            visually hidden so it doesn't appear in the layout.
+            The animated marquee below is aria-hidden to prevent AT
+            from reading every outlet name twice.
+          */}
+          <ul className={styles.srOnly}>
+            {pressMentions.map((name) => (
+              <li key={name}>{name}</li>
+            ))}
+          </ul>
+
           <div className={styles.pressMarqueeOuter}>
-            <div className={styles.pressMarqueeTrack}>
-              {/* Render twice for seamless loop */}
+            {/* aria-hidden: visual-only animation — accessible list above covers this */}
+            <div className={styles.pressMarqueeTrack} aria-hidden="true">
+              {/* Duplicated for seamless CSS scroll loop */}
               {[1, 2].map(row => (
                 <div key={row} className={styles.pressMarqueeRow}>
                   {pressMentions.map((name, i) => (

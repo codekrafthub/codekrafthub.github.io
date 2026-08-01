@@ -8,6 +8,21 @@ import styles from './courses.module.css';
 export const metadata: Metadata = {
   title: 'CK-CAET | Programming Courses',
   description: 'Master Python and C with our industry-led programming courses. Build a strong foundation in systems and AI.',
+  openGraph: {
+    title: 'CK-CAET | Programming Courses',
+    description: 'Master Python and C with our industry-led programming courses. Build a strong foundation in systems and AI.',
+    url: 'https://codekrafthub.in/ck-caet/courses',
+    siteName: 'CK-CAET',
+    images: [{ url: 'https://codekrafthub.in/ck_caet_hero_new.png', width: 1200, height: 630 }],
+    locale: 'en_IN',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'CK-CAET | Programming Courses',
+    description: 'Master Python and C with our industry-led programming courses. Build a strong foundation in systems and AI.',
+    images: ['https://codekrafthub.in/ck_caet_hero_new.png'],
+  },
 };
 
 

@@ -6,6 +6,19 @@ import styles from '../privacy-policy/policy.module.css';
 export const metadata: Metadata = {
   title: 'Terms of Service | CK-CAET',
   description: 'Terms of Service for CodeKraft Centre for AI & Emerging Technologies.',
+  openGraph: {
+    title: 'Terms of Service | CK-CAET',
+    description: 'Terms of Service for CodeKraft Centre for AI & Emerging Technologies.',
+    url: 'https://codekrafthub.in/ck-caet/terms-of-service',
+    siteName: 'CK-CAET',
+    locale: 'en_IN',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Terms of Service | CK-CAET',
+    description: 'Terms of Service for CodeKraft Centre for AI & Emerging Technologies.',
+  },
 };
 
 export default function TermsOfService() {

@@ -1,3 +1,10 @@
 User-agent: *
 Allow: /
-Sitemap: https://codekrafthub.github.io/sitemap.xml
+
+# Legal/utility pages — crawlable but low-value; kept allowed for completeness
+# Disallow: /privacy-policy
+# Disallow: /terms-of-service
+# Disallow: /ck-caet/privacy-policy
+# Disallow: /ck-caet/terms-of-service
+
+Sitemap: https://codekrafthub.in/sitemap.xml

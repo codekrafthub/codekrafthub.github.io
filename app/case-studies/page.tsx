@@ -1,13 +1,26 @@
-'use client';
+// Server Component — no 'use client' directive.
+// Next.js pre-renders this entire tree into static HTML at build time.
+// All 13 case study cards are baked into the delivered HTML, making them
+// visible to Google, B2B visitors, and anyone with JS disabled.
+//
+// Filtering is handled by CaseStudiesFilter (a tiny 'use client' island)
+// which reads window.location.search after hydration — a progressive
+// enhancement that never blocks pre-rendering.
 
-import { Suspense } from 'react';
-import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
-import { Cog, ScanSearch, Image as ImageIcon, ArrowRight, LineChart, MessageSquare, HeartPulse, Globe2 } from 'lucide-react';
+import {
+  Cog, ScanSearch, ImageIcon, ArrowRight,
+  LineChart, MessageSquare, HeartPulse, Globe2,
+} from 'lucide-react';
 import Navbar from '@/components/Navbar/Navbar';
 import Footer from '@/components/Footer/Footer';
+import CaseStudiesFilter from './CaseStudiesFilter';
 import styles from './case-studies.module.css';
 
+// ---------------------------------------------------------------------------
+// Static data — all content is known at build time, zero runtime fetching.
+// Adding a case study here bakes it into the HTML on the next deploy.
+// ---------------------------------------------------------------------------
 const CASE_STUDIES = [
   {
     id: 'industrial-vision',
@@ -125,51 +138,14 @@ const CASE_STUDIES = [
     desc: 'Designed custom management and ERP solutions to streamline billing, attendance, and record keeping for local institutions.',
     icon: <Globe2 size={36} />,
     tech: ['Web Platforms', 'Custom Database Systems', 'ERP'],
-  }
+  },
 ];
 
-function CaseStudiesList() {
-  const searchParams = useSearchParams();
-  const filter = searchParams.get('filter');
-
-  const filteredStudies = filter 
-    ? CASE_STUDIES.filter(s => s.id === filter || s.category === filter || s.industry.toLowerCase().includes(filter.toLowerCase()))
-    : CASE_STUDIES;
-
-  return (
-    <div className={styles.grid}>
-      {filteredStudies.map((study) => (
-        <Link 
-          key={study.id} 
-          href={`/case-studies/${study.id}`}
-          className={styles.card}
-        >
-          <div className={styles.cardIcon}>{study.icon}</div>
-          <div className={styles.cardIndustry}>{study.industry}</div>
-          <h2 className={styles.cardTitle}>{study.title}</h2>
-          <p className={styles.cardDesc}>{study.desc}</p>
-          
-          <div className={styles.cardTech}>
-            {study.tech.map(t => (
-              <span key={t} className={styles.techTag}>{t}</span>
-            ))}
-          </div>
-
-          <div className={styles.readMore}>
-            View Full Impact <ArrowRight size={16} />
-          </div>
-        </Link>
-      ))}
-      {filteredStudies.length === 0 && (
-        <div className={styles.noResults}>
-          <p>No case studies found matching your criteria.</p>
-          <Link href="/case-studies" className={styles.resetLink}>View All Case Studies</Link>
-        </div>
-      )}
-    </div>
-  );
-}
-
+// ---------------------------------------------------------------------------
+// Page — Server Component
+// All card HTML is rendered here and baked into the static export.
+// CaseStudiesFilter is a tiny client island that applies ?filter= after hydration.
+// ---------------------------------------------------------------------------
 export default function CaseStudiesPage() {
   return (
     <div className={styles.container}>
@@ -179,19 +155,47 @@ export default function CaseStudiesPage() {
           <span className={styles.label}>Success Stories</span>
           <h1 className={styles.title}>Case Study Library</h1>
           <p className={styles.sub}>
-            Exploring how we solve high-stakes business challenges through 
+            Exploring how we solve high-stakes business challenges through
             Computer Vision, AI Automation, and Engineering Excellence.
           </p>
         </div>
 
-        <Suspense fallback={<div>Loading case studies...</div>}>
-          <CaseStudiesList />
-        </Suspense>
+        {/*
+          CaseStudiesFilter mounts after hydration and reads window.location.search.
+          It uses data-id / data-category / data-industry attributes on each card
+          to show/hide them. The cards themselves are always in the static HTML.
+        */}
+        <CaseStudiesFilter />
+
+        <div className={styles.grid} id="case-studies-grid">
+          {CASE_STUDIES.map((study) => (
+            <Link
+              key={study.id}
+              href={`/case-studies/${study.id}`}
+              className={styles.card}
+              data-id={study.id}
+              data-category={study.category}
+              data-industry={study.industry.toLowerCase()}
+            >
+              <div className={styles.cardIcon}>{study.icon}</div>
+              <div className={styles.cardIndustry}>{study.industry}</div>
+              <h2 className={styles.cardTitle}>{study.title}</h2>
+              <p className={styles.cardDesc}>{study.desc}</p>
+
+              <div className={styles.cardTech}>
+                {study.tech.map((t) => (
+                  <span key={t} className={styles.techTag}>{t}</span>
+                ))}
+              </div>
+
+              <div className={styles.readMore}>
+                View Full Impact <ArrowRight size={16} />
+              </div>
+            </Link>
+          ))}
+        </div>
       </main>
       <Footer />
     </div>
   );
 }
-
-
-

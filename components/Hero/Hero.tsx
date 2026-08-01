@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { ArrowRight } from 'lucide-react';
 import styles from './Hero.module.css';
 
@@ -9,19 +10,31 @@ interface HeroProps {
 }
 
 export default function Hero({ onServicesClick, onContactClick }: HeroProps) {
+  const [loadVideo, setLoadVideo] = useState(false);
+
+  useEffect(() => {
+    // Defer background video fetch until after initial LCP paint & hydration
+    const timer = setTimeout(() => {
+      setLoadVideo(true);
+    }, 500);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <section id="home" className={styles.hero}>
       {/* Background Media */}
       <div className={styles.heroMediaWrap} aria-hidden="true">
-        <video
-          src="/hero-bg.mp4"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          className={styles.bgVideo}
-        />
+        {loadVideo && (
+          <video
+            src="/hero-bg.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            className={styles.bgVideo}
+          />
+        )}
         <div className={styles.heroFade} />
         <div className={styles.heroVignette} />
       </div>

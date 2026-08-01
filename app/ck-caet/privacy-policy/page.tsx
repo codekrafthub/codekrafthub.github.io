@@ -6,6 +6,19 @@ import styles from './policy.module.css';
 export const metadata: Metadata = {
   title: 'Privacy Policy | CK-CAET',
   description: 'Privacy Policy for CodeKraft Centre for AI & Emerging Technologies.',
+  openGraph: {
+    title: 'Privacy Policy | CK-CAET',
+    description: 'Privacy Policy for CodeKraft Centre for AI & Emerging Technologies.',
+    url: 'https://codekrafthub.in/ck-caet/privacy-policy',
+    siteName: 'CK-CAET',
+    locale: 'en_IN',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Privacy Policy | CK-CAET',
+    description: 'Privacy Policy for CodeKraft Centre for AI & Emerging Technologies.',
+  },
 };
 
 export default function PrivacyPolicy() {
