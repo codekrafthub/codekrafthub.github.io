@@ -6,6 +6,7 @@ import Hero from '@/components/Hero/Hero';
 import About from '@/components/About/About';
 import Services from '@/components/Services/Services';
 import Portfolio from '@/components/Portfolio/Portfolio';
+import WhyCodeKraft from '@/components/WhyCodeKraft/WhyCodeKraft';
 import Contact from '@/components/Contact/Contact';
 import Footer from '@/components/Footer/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton/WhatsAppButton';
@@ -48,6 +49,8 @@ export default function Home() {
           <Services />
         </div>
         
+        <WhyCodeKraft />
+
         <div ref={portfolioRef as any} className="reveal">
           <Portfolio />
         </div>

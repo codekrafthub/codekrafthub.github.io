@@ -1,12 +1,13 @@
 .hero {
   position: relative;
-  min-height: 100vh; /* Using vh as fallback for svh */
+  min-height: 100vh;
+  /* Using vh as fallback for svh */
   min-height: 100svh;
   display: flex;
   align-items: center;
   background: radial-gradient(circle at 20% 40%, rgba(0, 136, 255, 0.15) 0%, transparent 50%),
-              radial-gradient(circle at 80% 60%, rgba(59, 177, 230, 0.1) 0%, transparent 50%),
-              #0f172a;
+    radial-gradient(circle at 80% 60%, rgba(59, 177, 230, 0.1) 0%, transparent 50%),
+    #0f172a;
   overflow: hidden;
 }
 
@@ -18,7 +19,7 @@
 }
 
 .bgVideo {
-  width: 100%; 
+  width: 100%;
   height: 100%;
   object-fit: cover;
   opacity: 0.6;
@@ -59,8 +60,10 @@
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
-  margin-top: 5rem; /* Increased headroom */
-  padding: 0 clamp(1.5rem, 8vw, 6rem); /* Added side headroom */
+  margin-top: 5rem;
+  /* Increased headroom */
+  padding: 0 clamp(1.5rem, 8vw, 6rem);
+  /* Added side headroom */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -101,8 +104,15 @@
 }
 
 @keyframes floatCard {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 .cardTag {
@@ -195,21 +205,23 @@
   gap: 1rem;
   align-items: center;
   margin-top: 1rem;
-  margin-bottom: 2rem; /* Breathing space below */
+  margin-bottom: 2rem;
+  /* Breathing space below */
   flex-wrap: wrap;
 }
 
-.btnPrimary, .btnOutline {
+.btnPrimary,
+.btnOutline {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
   padding: 0.875rem 2rem;
-  border-radius: 8px; /* Rectangular with smooth corners */
+  border-radius: 8px;
+  /* Rectangular with smooth corners */
   font-family: var(--body-font);
   font-size: 0.875rem;
   font-weight: 700;
-  text-transform: uppercase;
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -241,6 +253,7 @@
   .hero {
     align-items: flex-start;
   }
+
   .inner {
     flex-direction: column;
     align-items: flex-start;
@@ -248,7 +261,28 @@
     padding-top: 2rem;
     padding-bottom: 4rem;
   }
+
   .liquidCard {
     margin-top: 1rem;
   }
+}
+
+/* ── Wave divider ────────────────────────────────── */
+.waveDivider {
+  position: absolute;
+  bottom: -1px;
+  /* Closes sub-pixel seam on retina */
+  left: 0;
+  right: 0;
+  z-index: 3;
+  /* Above vignette (0), glow (1), inner content (2) */
+  line-height: 0;
+  /* Removes baseline gap beneath inline SVG */
+  pointer-events: none;
+}
+
+.waveDivider svg {
+  display: block;
+  width: 100%;
+  height: 70px;
 }

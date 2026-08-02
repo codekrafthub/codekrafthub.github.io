@@ -1,5 +1,6 @@
 import styles from './About.module.css';
 import { Laptop, Compass, Milestone, Building2, ShieldCheck, Users } from 'lucide-react';
+import FeatureCard from '@/components/ui/FeatureCard';
 
 const CREDENTIALS = [
   {
@@ -99,11 +100,13 @@ export default function About() {
 
         <div className={styles.pillars}>
           {PILLARS.map(({ icon, title, desc }) => (
-            <div key={title} className={styles.pillar}>
-              <span className={styles.pillarIcon}>{icon}</span>
-              <strong className={styles.pillarTitle}>{title}</strong>
-              <span className={styles.pillarDesc}>{desc}</span>
-            </div>
+            <FeatureCard
+              key={title}
+              variant="accent-border"
+              icon={icon}
+              title={title}
+              description={desc}
+            />
           ))}
         </div>
 

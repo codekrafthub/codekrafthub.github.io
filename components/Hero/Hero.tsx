@@ -86,6 +86,20 @@ export default function Hero({ onServicesClick, onContactClick }: HeroProps) {
           </div>
         </div>
       </div>
+
+      {/* Wave divider — bridges dark hero into white content below */}
+      <div className={styles.waveDivider} aria-hidden="true">
+        <svg
+          viewBox="0 0 1440 80"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M0,80 C360,20 1080,72 1440,16 L1440,80 L0,80 Z"
+            fill="#ffffff"
+          />
+        </svg>
+      </div>
     </section>
   );
 }

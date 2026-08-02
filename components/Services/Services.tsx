@@ -1,8 +1,8 @@
 'use client';
 
-import { Bot, Cpu, Monitor, Sprout, SearchCode } from 'lucide-react';
-import Link from 'next/link';
+import { Bot, Cpu, Monitor, SearchCode } from 'lucide-react';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
+import FeatureCard from '@/components/ui/FeatureCard';
 import styles from './Services.module.css';
 
 interface ServiceItem {
@@ -16,19 +16,19 @@ interface ServiceItem {
 const SERVICES: ServiceItem[] = [
   {
     title: 'Computer Vision & AI',
-    icon: <SearchCode size={36} strokeWidth={1.5} className={styles.cardIcon} />,
+    icon: <SearchCode size={36} strokeWidth={1.5} />,
     description: 'We build high-performance visual intelligence systems for industrial, hospitality, and real-estate sectors.',
     items: ['Defect & Crack Detection', 'Semantic Search', 'Automated Image Curation', 'OCR & Document Intelligence'],
   },
   {
     title: 'AI & Automation',
-    icon: <Bot size={36} strokeWidth={1.5} className={styles.cardIcon} />,
+    icon: <Bot size={36} strokeWidth={1.5} />,
     description: 'Boost operational efficiency and unlock data insights with custom, AI-driven automation systems built for your workflows.',
     items: ['Process Automation', 'Conversational AI & Chatbots', 'Predictive Analytics & Forecasting', 'AI-powered Systems Integration'],
   },
   {
     title: 'Software Solutions',
-    icon: <Monitor size={36} strokeWidth={1.5} className={styles.cardIcon} />,
+    icon: <Monitor size={36} strokeWidth={1.5} />,
     description: 'From design to cloud deployment, we engineer scalable, high-performance web and mobile products tailormade for business growth.',
     items: ['Web & Mobile Applications', 'API & Integration Services', 'Cloud Architecture & Databases', 'AI/ML Consulting & Prototyping', 'Legacy System Modernization'],
   },
@@ -63,24 +63,15 @@ export default function Services() {
 
         <div className={styles.panels}>
           {SERVICES.map((service) => (
-            <div key={service.title} className={styles.card}>
-              <div className={styles.cardIconWrapper}>{service.icon}</div>
-              <h3 className={styles.cardTitle}>{service.title}</h3>
-              <p className={styles.cardDesc}>{service.description}</p>
-              <ul className={styles.cardList}>
-                {service.items.map((item) => (
-                  <li key={item} className={styles.cardListItem}>
-                    <span className={styles.bulletDot} />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              {service.cta && (
-                <Link href={service.cta.href} className={styles.cardCta}>
-                  {service.cta.label}
-                </Link>
-              )}
-            </div>
+            <FeatureCard
+              key={service.title}
+              variant="default"
+              icon={service.icon}
+              title={service.title}
+              description={service.description}
+              items={service.items}
+              cta={service.cta}
+            />
           ))}
         </div>
       </div>
