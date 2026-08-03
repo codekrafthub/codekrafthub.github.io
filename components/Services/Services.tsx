@@ -30,7 +30,7 @@ const SERVICES: ServiceItem[] = [
     title: 'Software Solutions',
     icon: <Monitor size={36} strokeWidth={1.5} />,
     description: 'From design to cloud deployment, we engineer scalable, high-performance web and mobile products tailormade for business growth.',
-    items: ['Web & Mobile Applications', 'API & Integration Services', 'Cloud Architecture & Databases', 'AI/ML Consulting & Prototyping', 'Legacy System Modernization'],
+    items: ['Web & Mobile Applications', 'API & Integration Services', 'AI/ML Consulting & Prototyping', 'Legacy System Modernization'],
   },
 ];
 

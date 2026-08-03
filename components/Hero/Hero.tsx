@@ -71,12 +71,12 @@ export default function Hero({ onServicesClick, onContactClick }: HeroProps) {
         <div className={styles.liquidCard}>
           <div className={styles.cardTag}>[ Enterprise Solutions ]</div>
           <p className={styles.cardDesc}>Robust software architecture for modern businesses.</p>
-          
+
           <div className={styles.statList}>
             {[
-              { value: '20+', label: 'AI Projects' },
+              { value: '50+', label: 'AI Projects' },
               { value: '99%', label: 'Automation Gain' },
-              { value: '12+', label: 'Years Experience' },
+              { value: '12+', label: 'Years of Combined Experience' },
             ].map(({ value, label }) => (
               <div key={label} className={styles.statItem}>
                 <span className={styles.statValue}>{value}</span>

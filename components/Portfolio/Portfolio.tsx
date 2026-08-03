@@ -24,7 +24,7 @@ const PROJECTS: Project[] = [
     industry: 'Vision & AI',
     functionTag: 'Visual Inspection & Search',
     valueDriver: 'Process Excellence',
-    technology: ['Deep Learning', 'Computer Vision', 'PyTorch', 'TensorRT'],
+    technology: ['PyTorch', 'ResNet-50', 'TensorRT', 'Edge AI'],
     filterTag: 'computer-vision',
   },
   {
@@ -34,7 +34,7 @@ const PROJECTS: Project[] = [
     industry: 'Voice & NLP',
     functionTag: 'Autonomous Interactions',
     valueDriver: '95% Latency Reduction',
-    technology: ['LLMs', 'Voice Ops', 'Whisper', 'Indic-NLP'],
+    technology: ['LiveKit', 'GPT-4', 'STT/TTS', 'MongoDB'],
     filterTag: 'conversational-ai',
   },
   {
@@ -64,7 +64,7 @@ export default function Portfolio() {
   return (
     <section id="portfolio" ref={revealRef} className={`${styles.section} reveal`}>
       <div className={styles.inner}>
-        <div className={styles.label}>Our Work</div>
+        <div className={styles.label}>Portfolio</div>
         <h2 className={styles.heading}>Case Study Library</h2>
         <p className={styles.sub}>STRUCTURED · IMPACT-ORIENTED · ENTERPRISE GRADE</p>
 

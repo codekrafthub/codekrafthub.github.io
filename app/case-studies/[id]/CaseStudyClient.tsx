@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { 
-  ArrowLeft, AlertCircle, TrendingUp, Mail, User, Building, MessageSquare, Brain
+  ArrowLeft, ChevronRight, AlertCircle, TrendingUp, Mail, User, Building, MessageSquare, Brain
 } from 'lucide-react';
 import Navbar from '@/components/Navbar/Navbar';
 import Footer from '@/components/Footer/Footer';
@@ -11,6 +11,7 @@ import styles from './CaseStudy.module.css';
 
 interface CaseStudyDetails {
   id: string;
+  category?: string;
   title: string;
   industry: string;
   icon: React.ReactNode;
@@ -29,6 +30,13 @@ interface RelatedStudy {
   industry: string;
 }
 
+const CATEGORY_NAMES: Record<string, string> = {
+  'computer-vision': 'Computer Vision & Visual AI',
+  'conversational-ai': 'Conversational AI & Voice',
+  'finance': 'Finance & Revenue Ops',
+  'operations': 'Operations & Health',
+};
+
 export default function CaseStudyClient({
   study,
   relatedStudies = [],
@@ -41,16 +49,36 @@ export default function CaseStudyClient({
     alert('Thank you for your interest! Our team will reach out shortly for a demo.');
   };
 
+  const categorySlug = study.category || 'computer-vision';
+  const categoryName = CATEGORY_NAMES[categorySlug] || 'Category Portfolio';
+  const categoryUrl = `/case-studies/category/${categorySlug}`;
+
   return (
     <div className={styles.container}>
       <Navbar />
       
       <header className={styles.hero}>
         <div className={styles.heroInner}>
-          <Link href="/case-studies" className={styles.backLink}>
-            <ArrowLeft size={20} /> Back to Library
+          <div className={styles.navHeader}>
+            <Link href={categoryUrl} className={styles.backLink}>
+              <ArrowLeft size={18} /> Back to {categoryName}
+            </Link>
+
+            <nav aria-label="Breadcrumb" className={styles.breadcrumbs}>
+              <Link href="/case-studies" className={styles.breadcrumbLink}>
+                Case Studies
+              </Link>
+              <ChevronRight size={14} className={styles.breadcrumbChevron} />
+              <Link href={categoryUrl} className={styles.breadcrumbLinkActive}>
+                {categoryName}
+              </Link>
+            </nav>
+          </div>
+
+          <Link href={categoryUrl} className={styles.industryTag} title={`View all ${categoryName} case studies`}>
+            {study.industry} <span className={styles.tagCategorySub}>• {categoryName}</span>
           </Link>
-          <span className={styles.industryTag}>{study.industry}</span>
+
           <h1 className={styles.title}>{study.title}</h1>
           <div className={styles.techStack}>
             {study.tech.map(t => (

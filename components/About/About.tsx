@@ -1,15 +1,15 @@
 'use client';
 
 import styles from './About.module.css';
-import { Bot, Laptop, Rocket, Zap } from 'lucide-react';
+import { Gauge, Layers, Rocket, Zap } from 'lucide-react';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 export default function About() {
   const revealRef = useScrollReveal();
   const pillars = [
-    { icon: <Bot size={28} strokeWidth={1.5} />, title: 'AI & Automation', desc: 'Building intelligent systems that cut costs and boost efficiency.' },
-    { icon: <Laptop size={28} strokeWidth={1.5} />, title: 'Bespoke Software', desc: 'Designing and scaling customized web, mobile, and cloud applications.' },
-    { icon: <Rocket size={28} strokeWidth={1.5} />, title: 'Digital Shift', desc: 'Helping SMEs and enterprises transition to modern digital workflows.' },
+    { icon: <Gauge size={28} strokeWidth={1.5} />, title: 'Operational Efficiency', desc: 'Eliminating manual bottlenecks and reducing overhead with intelligent workflow automation.' },
+    { icon: <Layers size={28} strokeWidth={1.5} />, title: 'Tailored Engineering', desc: 'No off-the-shelf compromises. Custom web, mobile, and cloud software built for your exact specs.' },
+    { icon: <Rocket size={28} strokeWidth={1.5} />, title: 'Enterprise Scalability', desc: 'Architecting modular, cloud-native systems designed to handle business growth seamlessly.' },
   ];
 
   return (

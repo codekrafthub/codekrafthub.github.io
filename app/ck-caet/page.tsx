@@ -7,6 +7,7 @@ import Programs from '@/components/ck-caet/Programs/Programs';
 import SuccessComparison from '@/components/ck-caet/Comparison/Comparison';
 import Roadmap from '@/components/ck-caet/Roadmap/Roadmap';
 import TechMosaic from '@/components/ck-caet/TechMosaic/TechMosaic';
+import Testimonials from '@/components/ck-caet/Testimonials/Testimonials';
 import FAQ from '@/components/ck-caet/FAQ/FAQ';
 import Contact from '@/components/ck-caet/Contact/Contact';
 import Footer from '@/components/ck-caet/Footer/Footer';
@@ -15,10 +16,10 @@ import { useScrollReveal } from '@/hooks/useScrollReveal';
 import styles from './page.module.css';
 
 const TRUST_ITEMS = [
-  { value: '500+', label: 'Students Trained' },
-  { value: '30+',  label: 'Hiring Partners' },
-  { value: '20+',  label: 'Live Projects' },
-  { value: '12+',  label: 'Years of Experience' },
+  { value: '1200+', label: 'Students Trained' },
+  { value: '30+', label: 'Hiring Partners' },
+  { value: '50+', label: 'Live Projects' },
+  { value: '12+', label: 'Years of Combined Experience' },
   { value: '100%', label: 'Practical Curriculum' },
 ];
 
@@ -28,6 +29,7 @@ export default function CKCAETPage() {
   const programsRef = useScrollReveal();
   const techRef = useScrollReveal();
   const roadmapRef = useScrollReveal();
+  const testimonialsRef = useScrollReveal();
   const faqRef = useScrollReveal();
   const contactRef = useScrollReveal();
 
@@ -76,6 +78,10 @@ export default function CKCAETPage() {
 
         <div ref={roadmapRef as any} className="reveal">
           <Roadmap />
+        </div>
+
+        <div ref={testimonialsRef as any} className="reveal">
+          <Testimonials />
         </div>
 
         <div ref={faqRef as any} className="reveal">

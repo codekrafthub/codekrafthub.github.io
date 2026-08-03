@@ -101,7 +101,7 @@ export default function CoursesPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(courseSchema) }}
       />
       <Navbar />
-      
+
       <main className={styles.main}>
         <section className={styles.hero}>
           <div className={styles.heroLayout}>
@@ -111,7 +111,7 @@ export default function CoursesPage() {
                 Comprehensive programming courses designed to build a strong technical foundation through hands-on practice and real-world application.
               </p>
             </div>
-            
+
             <div className={styles.heroVisual}>
               <div className={styles.scene}>
                 <div className={styles.coreElement}>
@@ -129,7 +129,7 @@ export default function CoursesPage() {
                 </div>
                 <div className={styles.floatingCourseInfo} style={{ bottom: '10%', left: '-5%' }}>
                   <Users size={14} />
-                  <span>500+ Students Trained</span>
+                  <span>1200+ Students Trained</span>
                 </div>
               </div>
             </div>
@@ -147,11 +147,11 @@ export default function CoursesPage() {
                 <h2 className={styles.courseTitle}>{course.title}</h2>
                 <p className={styles.courseSubtitle}>{course.subtitle}</p>
               </div>
-              
+
               <div className={styles.cardBody}>
                 <p className={styles.tagline}>{course.tagline}</p>
                 <p className={styles.description}>{course.description}</p>
-                
+
                 <div className={styles.featureGrid}>
                   {course.features.map((feature) => (
                     <div key={feature} className={styles.featureItem}>

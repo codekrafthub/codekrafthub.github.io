@@ -44,7 +44,7 @@ export default function Hero({ onProgramsClick, onContactClick }: HeroProps) {
               width={88}
               height={88}
               className={styles.logoImg}
-              style={{ width: '88px', height: 'auto' }}
+              style={{ width: '88px', height: '88px' }}
               priority
             />
           </div>
