@@ -53,7 +53,7 @@
 .label {
   display: block;
   text-align: center;
-  font-size: 0.75rem;
+  font-size: var(--type-step--1);
   font-weight: 700;
   letter-spacing: 1.5px;
   text-transform: uppercase;
@@ -63,7 +63,7 @@
 
 .heading {
   font-family: var(--header-font);
-  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-size: clamp(1.9rem, 3.4vw, 2.618rem);
   font-weight: 800;
   color: #f8fafc;
   text-align: center;
@@ -74,7 +74,8 @@
   text-align: center;
   color: #94a3b8;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: var(--type-step-0);
+  line-height: var(--leading-body);
   letter-spacing: 1.5px;
   margin: 0 0 3.5rem;
 }
@@ -136,7 +137,7 @@
 
 .cardTitle {
   font-family: var(--header-font);
-  font-size: 1.15rem;
+  font-size: var(--type-step-0);
   font-weight: 700;
   color: var(--primary);
   margin: 0;
@@ -146,9 +147,9 @@
 }
 
 .cardDesc {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: #5a6a78;
-  line-height: 1.6;
+  line-height: 1.7;
   margin: 0 0 0.5rem;
   flex: 1;
   text-decoration: none !important;
@@ -170,7 +171,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 0.82rem;
+  font-size: 0.9rem;
 }
 
 .metaLabel {
@@ -194,7 +195,7 @@
 .tag {
   background: rgba(59, 177, 230, 0.08);
   color: var(--primary);
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   font-weight: 600;
   padding: 3px 12px;
   border-radius: 50px;

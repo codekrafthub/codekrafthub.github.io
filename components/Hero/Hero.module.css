@@ -117,7 +117,7 @@
 
 .cardTag {
   font-family: var(--body-font);
-  font-size: 0.875rem;
+  font-size: var(--type-step--1);
   font-weight: 600;
   color: #0088ff;
   margin-bottom: 0.5rem;
@@ -127,7 +127,7 @@
 
 .cardDesc {
   font-family: var(--body-font);
-  font-size: 0.6875rem;
+  font-size: var(--type-step--1);
   color: rgba(255, 255, 255, 0.6);
   line-height: 1.5;
   margin-bottom: 1.5rem;
@@ -147,7 +147,7 @@
 
 .statValue {
   font-family: var(--header-font);
-  font-size: 2rem;
+  font-size: clamp(1.75rem, 2.8vw, 2.618rem);
   font-weight: 800;
   color: #ffffff;
   line-height: 1;
@@ -155,7 +155,7 @@
 
 .statLabel {
   font-family: var(--body-font);
-  font-size: 0.875rem;
+  font-size: var(--type-step--1);
   color: rgba(255, 255, 255, 0.65);
   letter-spacing: 0.5px;
   text-transform: uppercase;
@@ -173,10 +173,10 @@
 /* Title */
 .title {
   font-family: var(--header-font);
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-size: clamp(2.2rem, 4vw, 4.25rem);
   font-weight: 800;
   color: #ffffff;
-  line-height: 1;
+  line-height: var(--leading-tight);
   text-transform: uppercase;
   letter-spacing: -0.02em;
 }
@@ -193,9 +193,9 @@
 /* Description */
 .description {
   font-family: var(--body-font);
-  font-size: 1rem;
+  font-size: 1.02rem;
   color: #94a3b8;
-  line-height: 1.6;
+  line-height: var(--leading-body);
   max-width: 512px;
 }
 
@@ -220,7 +220,7 @@
   border-radius: 8px;
   /* Rectangular with smooth corners */
   font-family: var(--body-font);
-  font-size: 0.875rem;
+  font-size: var(--type-step-0);
   font-weight: 700;
   cursor: pointer;
   transition: all 0.2s ease;

@@ -14,7 +14,7 @@
 
 .label {
   display: inline-block;
-  font-size: 0.75rem;
+  font-size: var(--type-step--1);
   font-weight: 700;
   letter-spacing: 1.5px;
   text-transform: uppercase;
@@ -24,7 +24,7 @@
 
 .headline {
   font-family: var(--header-font);
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(1.8rem, 3.2vw, 2.618rem);
   font-weight: 800;
   color: var(--primary);
   line-height: 1.2;
@@ -39,9 +39,9 @@
 }
 
 .body {
-  font-size: 1.05rem;
+  font-size: 1.02rem;
   color: #4a5a68;
-  line-height: 1.8;
+  line-height: var(--leading-body);
   max-width: 560px;
   margin: 0;
 }
@@ -85,9 +85,9 @@
 }
 
 .pillarDesc {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: #6b7a8a;
-  line-height: 1.5;
+  line-height: 1.65;
 }
 
 /* ── Flex header with animated visual ─────────────────── */
@@ -194,4 +194,14 @@
     gap: 2.5rem;
   }
   .visualContainer { display: none; }
+}
+
+@media (max-width: 640px) {
+  .headline {
+    font-size: clamp(1.65rem, 5vw, 2rem);
+  }
+
+  .body {
+    font-size: 1rem;
+  }
 }

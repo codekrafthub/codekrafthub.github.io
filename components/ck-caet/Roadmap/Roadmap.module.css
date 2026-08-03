@@ -23,7 +23,7 @@
 }
 
 .label {
-  font-size: 0.75rem;
+  font-size: var(--type-step--1);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1.5px;
@@ -32,7 +32,7 @@
 
 .heading {
   font-family: var(--header-font);
-  font-size: clamp(2rem, 5vw, 2.5rem);
+  font-size: clamp(2rem, 3.3vw, 2.618rem);
   font-weight: 800;
   color: #fff;
   margin-bottom: 5rem;
@@ -86,14 +86,14 @@
 
 .title {
   font-family: var(--header-font);
-  font-size: 1.3rem;
+  font-size: var(--type-step-0);
   font-weight: 700;
   color: #fff;
   margin-bottom: 1rem;
 }
 
 .desc {
-  font-size: 0.95rem;
+  font-size: var(--type-step--1);
   color: rgba(255, 255, 255, 0.45);
   line-height: 1.6;
 }

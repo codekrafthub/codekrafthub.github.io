@@ -48,7 +48,7 @@
   color: rgba(255, 255, 255, 0.88);
   text-decoration: none;
   font-family: var(--body-font);
-  font-size: 0.95rem;
+  font-size: 0.98rem;
   font-weight: 500;
   border-radius: 8px; /* Rectangular with smooth corners */
   transition: color 0.2s, background 0.2s;

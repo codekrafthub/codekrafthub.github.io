@@ -23,7 +23,7 @@
 }
 
 .label {
-  font-size: 0.75rem;
+  font-size: var(--type-step--1);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1.5px;
@@ -32,14 +32,14 @@
 
 .heading {
   font-family: var(--header-font);
-  font-size: clamp(2rem, 5vw, 2.5rem);
+  font-size: clamp(2rem, 3.3vw, 2.618rem);
   font-weight: 800;
   margin-bottom: 1.5rem;
   line-height: 1.1;
 }
 
 .sub {
-  font-size: 1.1rem;
+  font-size: var(--type-step-0);
   color: rgba(255, 255, 255, 0.45);
   max-width: 700px;
   line-height: 1.6;
@@ -198,7 +198,7 @@
 }
 
 .colHeader h3 {
-  font-size: 1.5rem;
+  font-size: var(--type-step-1);
   font-weight: 700;
 }
 
@@ -226,13 +226,13 @@
 }
 
 .itemText h4 {
-  font-size: 1.1rem;
+  font-size: var(--type-step-0);
   font-weight: 700;
   margin-bottom: 0.4rem;
 }
 
 .itemText p {
-  font-size: 0.95rem;
+  font-size: var(--type-step--1);
   color: rgba(255, 255, 255, 0.4);
   line-height: 1.5;
 }

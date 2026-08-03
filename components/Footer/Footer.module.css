@@ -49,7 +49,7 @@
 }
 
 .brandSub {
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   color: #0088ff;
   font-weight: 600;
   text-transform: uppercase;
@@ -58,9 +58,9 @@
 }
 
 .brandDesc {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: rgba(255, 255, 255, 0.5);
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
 /* Nav column */
@@ -70,7 +70,7 @@
 }
 
 .colHeading {
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 1.5px;
   text-transform: uppercase;
@@ -88,7 +88,7 @@
 }
 
 .navLink {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: rgba(255, 255, 255, 0.6);
   text-decoration: none;
   transition: all 0.3s ease;
@@ -129,7 +129,7 @@
 }
 
 .contactLink {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.5);
   text-decoration: none;
   transition: color 0.2s;
@@ -150,7 +150,7 @@
 }
 
 .copyright {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.3);
 }
 
@@ -160,7 +160,7 @@
 }
 
 .legalLink {
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   color: rgba(255, 255, 255, 0.35);
   text-decoration: none;
   font-weight: 500;

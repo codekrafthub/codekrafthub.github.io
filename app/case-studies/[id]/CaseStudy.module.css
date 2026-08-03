@@ -95,7 +95,7 @@
 
 .sectionTitle {
   font-family: var(--header-font);
-  font-size: 1.8rem;
+  font-size: 1.65rem;
   color: var(--primary);
   margin-bottom: 1.5rem;
   display: flex;
@@ -108,7 +108,7 @@
 }
 
 .text {
-  font-size: 1.1rem;
+  font-size: 1rem;
   line-height: 1.8;
   color: #4a5568;
 }
@@ -278,9 +278,9 @@
 }
 
 .relatedTitle {
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   font-weight: 700;
-  line-height: 1.35;
+  line-height: 1.4;
   color: #0b2b3c;
   margin: 0;
 }

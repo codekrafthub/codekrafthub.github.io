@@ -35,9 +35,9 @@
 }
 
 .sub {
-  font-size: 1rem;
+  font-size: 1.02rem;
   color: #94a3b8;
-  line-height: 1.65;
+  line-height: 1.75;
   max-width: 580px;
   margin-bottom: 1.5rem;
 }
@@ -119,16 +119,16 @@
 }
 
 .cardTitle {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  line-height: 1.2;
+  line-height: 1.25;
 }
 
 .cardDesc {
-  font-size: 0.95rem;
+  font-size: 0.98rem;
   color: #94a3b8;
-  line-height: 1.6;
+  line-height: 1.7;
   margin-bottom: 2rem;
   flex: 1;
 }
@@ -141,7 +141,7 @@
 }
 
 .techTag {
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   padding: 0.4rem 0.8rem;
   background: rgba(59, 177, 230, 0.12);
   color: #cbd5e1;

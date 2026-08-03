@@ -6,9 +6,19 @@
   --accent-dark: #2a9ccf;
   --white: #ffffff;
   --light: #f7fafd;
-  
+
   --body-font: 'Inter', sans-serif;
   --header-font: 'Montserrat', sans-serif;
+
+  --type-scale-base: 16px;
+  --type-step--2: 0.5rem;
+  --type-step--1: 0.625rem;
+  --type-step-0: 1rem;
+  --type-step-1: 1.625rem;
+  --type-step-2: 2.625rem;
+  --type-step-3: 4.25rem;
+  --leading-body: calc(var(--type-step-0) * 1.618);
+  --leading-tight: 1.1;
 }
 
 * {
@@ -27,7 +37,8 @@ body {
   font-family: var(--body-font);
   background-color: var(--white);
   color: var(--primary);
-  line-height: 1.6;
+  font-size: var(--type-step-0);
+  line-height: var(--leading-body);
   overflow-x: hidden;
 }
 
